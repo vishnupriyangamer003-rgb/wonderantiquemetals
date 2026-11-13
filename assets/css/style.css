@@ -105,7 +105,7 @@ button {
 
 .brand {
     display: inline-flex;
-    width: 184px;
+    width: 150px;
     flex: 0 0 auto;
     align-items: center;
 }
@@ -1212,7 +1212,7 @@ p {
     }
 
     .brand {
-        width: 155px;
+        width: 135px;
     }
 
     .site-nav {
@@ -1399,7 +1399,7 @@ p {
     }
 
     .brand {
-        width: 144px;
+        width: 120px;
     }
 
     .site-nav {

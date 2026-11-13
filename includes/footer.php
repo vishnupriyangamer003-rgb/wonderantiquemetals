@@ -14,11 +14,11 @@
             </nav>
             <div class="site-footer__links">
                 <span class="footer-label">Acquisition products</span>
-                <span>Precious metals</span>
-                <span>Antique jewelry</span>
-                <span>Vintage timepieces</span>
-                <span>Decorative metalwork</span>
-                <span>Rare materials</span>
+                <span id="product-precious-metals">Precious metals</span>
+                <span id="product-antique-jewelry">Antique jewelry</span>
+                <span id="product-vintage-timepieces">Vintage timepieces</span>
+                <span id="product-decorative-metalwork">Decorative metalwork</span>
+                <span id="product-rare-materials">Rare materials</span>
                 <a href="#acquisition-products">View acquisition services <span aria-hidden="true">↗</span></a>
             </div>
             <address class="site-footer__contact" id="contact" aria-label="Company contact information">

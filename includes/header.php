@@ -28,7 +28,19 @@
                 <a href="index.php">Home</a>
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
-                <a href="#acquisition-products">Acquisition products</a>
+                <details class="nav-dropdown">
+                    <summary>
+                        Acquisition products
+                        <span class="nav-dropdown__indicator" aria-hidden="true">▾</span>
+                    </summary>
+                    <div class="nav-dropdown__menu">
+                        <a href="#product-precious-metals">Precious metals</a>
+                        <a href="#product-antique-jewelry">Antique jewelry</a>
+                        <a href="#product-vintage-timepieces">Vintage timepieces</a>
+                        <a href="#product-decorative-metalwork">Decorative metalwork</a>
+                        <a href="#product-rare-materials">Rare materials</a>
+                    </div>
+                </details>
                 <a class="nav-cta" href="#contact">Contact <span aria-hidden="true">↗</span></a>
             </nav>
         </div>

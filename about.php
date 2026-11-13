@@ -119,13 +119,6 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </section>
 
-    <section class="next-step section-shell" aria-labelledby="about-next-step-title">
-        <div>
-            <p class="eyebrow">Start a conversation</p>
-            <h2 id="about-next-step-title">Bring your questions<br><em>into focus.</em></h2>
-        </div>
-        <a class="button button-dark" href="index.php#contact">Contact us <span aria-hidden="true">↗</span></a>
-    </section>
 </main>
 
 <?php

@@ -119,15 +119,15 @@ button {
 
 .brand {
     display: inline-flex;
-    width: 150px;
     flex: 0 0 auto;
     align-items: center;
 }
 
 .brand img {
     display: block;
-    width: 100%;
+    width: 135px;
     height: auto;
+    mix-blend-mode: multiply;
 }
 
 .site-nav {
@@ -1224,8 +1224,8 @@ p {
         gap: 20px;
     }
 
-    .brand {
-        width: 135px;
+    .brand img {
+        width: 120px;
     }
 
     .site-nav {
@@ -1411,8 +1411,8 @@ p {
         padding-left: 6%;
     }
 
-    .brand {
-        width: 120px;
+    .brand img {
+        width: 110px;
     }
 
     .site-nav {

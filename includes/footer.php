@@ -23,7 +23,7 @@
             </div>
             <address class="site-footer__contact" id="contact" aria-label="Company contact information">
                 <span class="footer-label">Company information</span>
-                <a href="tel:+910000000000">Phone: +91 00000 00000</a>
+                <a href="tel:+919876543210">Phone: +91 9876543210</a>
                 <a href="mailto:hello@example.com">Email: hello@example.com</a>
                 <span>123 Example Road, Example City, India</span>
                 <a class="back-to-top" href="#main" aria-label="Back to top" title="Back to top">

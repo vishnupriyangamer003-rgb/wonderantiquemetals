@@ -71,43 +71,44 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </section>
 
-    <section class="about-areas" id="service-areas" aria-labelledby="about-areas-title">
-        <div class="about-areas__inner section-shell">
+    <section class="about-testimonials" id="testimonials" aria-labelledby="about-testimonials-title">
+        <div class="section-shell">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">Our scope</p>
-                    <h2 id="about-areas-title">Five connected areas<br>of work.</h2>
+                    <p class="eyebrow">Illustrative testimonials</p>
+                    <h2 id="about-testimonials-title">A considered experience.</h2>
                 </div>
-                <p class="section-heading__copy">Our work spans the technical and market considerations that shape precious-metal and antique assets.</p>
+                <p class="section-heading__copy">Fictional example quotes and India-based names—replace these with verified client feedback before publishing.</p>
             </div>
-            <div class="about-areas__grid">
-                <article class="about-area">
-                    <span class="about-area__number">01 / GUIDANCE</span>
-                    <h3>Regulatory</h3>
-                    <p>Understand requirements that can influence activity and transactions.</p>
+            <div class="about-testimonials__grid">
+                <article class="about-testimonial">
+                    <blockquote>
+                        <p>I appreciated how clearly the assessment process was explained and how easy it was to understand the next steps.</p>
+                    </blockquote>
+                    <div class="about-testimonial__author">
+                        <strong>Ananya Iyer</strong>
+                        <span>Chennai, Tamil Nadu</span>
+                    </div>
                 </article>
-                <article class="about-area">
-                    <span class="about-area__number">02 / TECHNICAL</span>
-                    <h3>Assaying</h3>
-                    <p>Build a clearer picture of material composition, grade, and quality.</p>
+                <article class="about-testimonial">
+                    <blockquote>
+                        <p>The communication was organized, and the team took time to understand the history of the pieces I brought in.</p>
+                    </blockquote>
+                    <div class="about-testimonial__author">
+                        <strong>Rohan Mehta</strong>
+                        <span>Mumbai, Maharashtra</span>
+                    </div>
                 </article>
-                <article class="about-area">
-                    <span class="about-area__number">03 / MARKET</span>
-                    <h3>Acquisition</h3>
-                    <p>Consider opportunities across precious metals and distinctive antique items.</p>
-                </article>
-                <article class="about-area">
-                    <span class="about-area__number">04 / EXCHANGE</span>
-                    <h3>Auction</h3>
-                    <p>Prepare assets for thoughtful presentation and informed market consideration.</p>
-                </article>
-                <article class="about-area">
-                    <span class="about-area__number">05 / VALUE</span>
-                    <h3>Monetization</h3>
-                    <p>Explore practical routes to realize value from unique assets.</p>
+                <article class="about-testimonial">
+                    <blockquote>
+                        <p>I received clear guidance on the available options, which helped me decide what to do next.</p>
+                    </blockquote>
+                    <div class="about-testimonial__author">
+                        <strong>Kavita Rao</strong>
+                        <span>Bengaluru, Karnataka</span>
+                    </div>
                 </article>
             </div>
-            <a class="button button-dark about-areas__link" href="index.php#services">Explore our services <span aria-hidden="true">↗</span></a>
         </div>
     </section>
 

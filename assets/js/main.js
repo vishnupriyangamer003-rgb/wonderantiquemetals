@@ -39,10 +39,22 @@ if (carousel) {
     const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
     const previousButton = carousel.querySelector("[data-carousel-prev]");
     const nextButton = carousel.querySelector("[data-carousel-next]");
+    const toggleButton = carousel.querySelector("[data-carousel-toggle]");
+    const toggleIcon = toggleButton && toggleButton.querySelector("[aria-hidden='true']");
     const status = carousel.querySelector(".home-carousel__status");
     let activeIndex = slides.findIndex((slide) => !slide.hidden);
 
-    if (slides.length > 1 && previousButton && nextButton && status) {
+    if (slides.length > 1 && previousButton && nextButton && toggleButton && toggleIcon && status) {
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let autoplayTimer = null;
+
+        const updateControls = () => {
+            const isPlaying = autoplayTimer !== null;
+            toggleButton.setAttribute("aria-label", isPlaying ? "Pause slideshow" : "Play slideshow");
+            toggleIcon.textContent = isPlaying ? "Ⅱ" : "▶";
+            status.setAttribute("aria-live", isPlaying ? "off" : "polite");
+        };
+
         const showSlide = (index) => {
             activeIndex = (index + slides.length) % slides.length;
             slides.forEach((slide, slideIndex) => {
@@ -51,7 +63,58 @@ if (carousel) {
             status.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
         };
 
-        previousButton.addEventListener("click", () => showSlide(activeIndex - 1));
-        nextButton.addEventListener("click", () => showSlide(activeIndex + 1));
+        const stopAutoplay = () => {
+            if (autoplayTimer !== null) {
+                window.clearInterval(autoplayTimer);
+                autoplayTimer = null;
+            }
+            updateControls();
+        };
+
+        const startAutoplay = (userInitiated = false) => {
+            if (autoplayTimer !== null || (prefersReducedMotion.matches && !userInitiated)) {
+                return;
+            }
+            autoplayTimer = window.setInterval(() => showSlide(activeIndex + 1), 6500);
+            updateControls();
+        };
+
+        previousButton.addEventListener("click", () => {
+            stopAutoplay();
+            showSlide(activeIndex - 1);
+        });
+        nextButton.addEventListener("click", () => {
+            stopAutoplay();
+            showSlide(activeIndex + 1);
+        });
+        toggleButton.addEventListener("click", () => {
+            if (autoplayTimer === null) {
+                startAutoplay(true);
+            } else {
+                stopAutoplay();
+            }
+        });
+        carousel.addEventListener("pointerenter", stopAutoplay);
+        carousel.addEventListener("focusin", (event) => {
+            if (event.target !== toggleButton) {
+                stopAutoplay();
+            }
+        });
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                stopAutoplay();
+            }
+        });
+
+        if (typeof prefersReducedMotion.addEventListener === "function") {
+            prefersReducedMotion.addEventListener("change", (event) => {
+                if (event.matches) {
+                    stopAutoplay();
+                }
+            });
+        }
+
+        updateControls();
+        startAutoplay();
     }
 }

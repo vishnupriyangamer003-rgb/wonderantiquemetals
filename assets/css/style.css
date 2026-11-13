@@ -1133,7 +1133,8 @@ p {
     z-index: 1;
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: auto;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
 }
 
@@ -1714,10 +1715,6 @@ p {
 
     .about-hero__copy h1 {
         font-size: clamp(48px, 12vw, 66px);
-    }
-
-    .about-hero__visual img {
-        aspect-ratio: 16 / 10;
     }
 
     .about-perspective {

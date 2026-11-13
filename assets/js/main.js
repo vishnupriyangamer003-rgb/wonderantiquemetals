@@ -50,18 +50,30 @@ if (siteHeader && menuToggle && primaryNavigation) {
     });
 }
 
-const carousel = document.querySelector("[data-carousel]");
+const carousels = document.querySelectorAll("[data-carousel]");
 
-if (carousel) {
+carousels.forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
     const previousButton = carousel.querySelector("[data-carousel-prev]");
     const nextButton = carousel.querySelector("[data-carousel-next]");
-    const status = carousel.querySelector(".home-carousel__status");
+    const toggleButton = carousel.querySelector("[data-carousel-toggle]");
+    const status = carousel.querySelector("[data-carousel-status]");
     let activeIndex = slides.findIndex((slide) => !slide.hidden);
 
     if (slides.length > 1 && previousButton && nextButton && status) {
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
         let autoplayTimer = null;
+        let userPaused = false;
+
+        const updateToggleButton = () => {
+            if (!toggleButton) {
+                return;
+            }
+
+            toggleButton.hidden = prefersReducedMotion.matches;
+            toggleButton.textContent = userPaused ? "Play" : "Pause";
+            toggleButton.setAttribute("aria-label", `${userPaused ? "Resume" : "Pause"} automatic slide rotation`);
+        };
 
         const showSlide = (index, announce = false) => {
             activeIndex = (index + slides.length) % slides.length;
@@ -78,22 +90,36 @@ if (carousel) {
                 autoplayTimer = null;
             }
             status.setAttribute("aria-live", "polite");
+            updateToggleButton();
         };
 
         const startAutoplay = () => {
-            if (autoplayTimer !== null) {
+            if (autoplayTimer !== null || userPaused) {
                 return;
             }
             if (prefersReducedMotion.matches || document.hidden) {
                 status.setAttribute("aria-live", "polite");
+                updateToggleButton();
                 return;
             }
             autoplayTimer = window.setInterval(() => showSlide(activeIndex + 1), 6500);
             status.setAttribute("aria-live", "off");
+            updateToggleButton();
         };
 
         previousButton.addEventListener("click", () => showSlide(activeIndex - 1, true));
         nextButton.addEventListener("click", () => showSlide(activeIndex + 1, true));
+        if (toggleButton) {
+            toggleButton.addEventListener("click", () => {
+                userPaused = !userPaused;
+                if (userPaused) {
+                    stopAutoplay();
+                } else {
+                    startAutoplay();
+                }
+                updateToggleButton();
+            });
+        }
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
                 stopAutoplay();
@@ -114,4 +140,4 @@ if (carousel) {
 
         startAutoplay();
     }
-}
+});

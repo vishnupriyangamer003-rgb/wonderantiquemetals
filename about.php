@@ -71,7 +71,7 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </section>
 
-    <section class="about-testimonials" id="testimonials" aria-labelledby="about-testimonials-title">
+    <section class="about-testimonials" id="testimonials" data-carousel aria-roledescription="carousel" aria-labelledby="about-testimonials-title">
         <div class="section-shell">
             <div class="section-heading">
                 <div>
@@ -80,8 +80,8 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
                 <p class="section-heading__copy">Fictional example quotes and India-based names—replace these with verified client feedback before publishing.</p>
             </div>
-            <div class="about-testimonials__grid">
-                <article class="about-testimonial">
+            <div class="about-testimonials__slides">
+                <article class="about-testimonial" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 1 of 4">
                     <blockquote>
                         <p>I appreciated how clearly the assessment process was explained and how easy it was to understand the next steps.</p>
                     </blockquote>
@@ -90,7 +90,7 @@ require_once __DIR__ . '/includes/header.php';
                         <span>Chennai, Tamil Nadu</span>
                     </div>
                 </article>
-                <article class="about-testimonial">
+                <article class="about-testimonial" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 2 of 4" hidden>
                     <blockquote>
                         <p>The communication was organized, and the team took time to understand the history of the pieces I brought in.</p>
                     </blockquote>
@@ -99,7 +99,7 @@ require_once __DIR__ . '/includes/header.php';
                         <span>Mumbai, Maharashtra</span>
                     </div>
                 </article>
-                <article class="about-testimonial">
+                <article class="about-testimonial" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 3 of 4" hidden>
                     <blockquote>
                         <p>I received clear guidance on the available options, which helped me decide what to do next.</p>
                     </blockquote>
@@ -108,6 +108,25 @@ require_once __DIR__ . '/includes/header.php';
                         <span>Bengaluru, Karnataka</span>
                     </div>
                 </article>
+                <article class="about-testimonial" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 4 of 4" hidden>
+                    <blockquote>
+                        <p>The team explained each step clearly and answered my questions, making it easier to consider the options.</p>
+                    </blockquote>
+                    <div class="about-testimonial__author">
+                        <strong>Priya Nair</strong>
+                        <span>Kochi, Kerala</span>
+                    </div>
+                </article>
+            </div>
+            <div class="about-testimonials__controls" role="group" aria-label="Testimonial controls">
+                <span class="about-testimonials__status" data-carousel-status aria-live="off" aria-atomic="true">01 / 04</span>
+                <button class="about-testimonials__button" type="button" data-carousel-prev aria-label="Previous testimonial">
+                    <span aria-hidden="true">←</span>
+                </button>
+                <button class="about-testimonials__button about-testimonials__button--toggle" type="button" data-carousel-toggle aria-label="Pause automatic slide rotation">Pause</button>
+                <button class="about-testimonials__button" type="button" data-carousel-next aria-label="Next testimonial">
+                    <span aria-hidden="true">→</span>
+                </button>
             </div>
         </div>
     </section>

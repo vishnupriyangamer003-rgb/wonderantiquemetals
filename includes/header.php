@@ -18,7 +18,7 @@
     <header class="site-header">
         <div class="site-header__inner">
             <a class="brand" href="index.php" aria-label="Wonder Antique Metals home">
-                <img src="assets/images/logo.jpg" alt="Wonder Antique Metals">
+                <img src="assets/images/logo.png" alt="Wonder Antique Metals">
             </a>
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
                 <span class="menu-toggle__label">Menu</span>

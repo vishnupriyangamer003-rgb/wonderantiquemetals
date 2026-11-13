@@ -29,7 +29,7 @@
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
                 <a href="#acquisition-products">Acquisition products</a>
-                <a class="nav-cta" href="#services">Contact <span aria-hidden="true">↗</span></a>
+                <a class="nav-cta" href="#contact">Contact <span aria-hidden="true">↗</span></a>
             </nav>
         </div>
     </header>

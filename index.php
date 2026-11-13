@@ -100,6 +100,18 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </section>
 
+    <section class="story" id="about" aria-labelledby="about-title">
+        <div class="story__ornament" aria-hidden="true">W</div>
+        <div class="story__content">
+            <p class="eyebrow eyebrow--light">About Wonder Antique Metals</p>
+            <h2 id="about-title">A market shaped by<br><em>many perspectives.</em></h2>
+            <div class="story__bottom">
+                <p>Precious-metal work connects commercial and technical disciplines. Investment, production, refining, fabrication, metallurgy, research, and end use all bring a different perspective to the value of an asset.</p>
+                <a class="button button-light" href="#standards">Our principles <span aria-hidden="true">↗</span></a>
+            </div>
+        </div>
+    </section>
+
     <section class="intro-strip" aria-label="Our service areas">
         <div class="intro-strip__inner">
             <span>Regulatory</span><i aria-hidden="true"></i>
@@ -170,22 +182,10 @@ require_once __DIR__ . '/includes/header.php';
         </div>
     </section>
 
-    <section class="story" id="about" aria-labelledby="about-title">
-        <div class="story__ornament" aria-hidden="true">W</div>
-        <div class="story__content">
-            <p class="eyebrow eyebrow--light">About Wonder Antique Metals</p>
-            <h2 id="about-title">A market shaped by<br><em>many perspectives.</em></h2>
-            <div class="story__bottom">
-                <p>Precious-metal work connects commercial and technical disciplines. Investment, production, refining, fabrication, metallurgy, research, and end use all bring a different perspective to the value of an asset.</p>
-                <a class="button button-light" href="#standards">Our principles <span aria-hidden="true">↗</span></a>
-            </div>
-        </div>
-    </section>
-
     <section class="standards section-shell" id="standards" aria-labelledby="standards-title">
         <div class="section-heading">
             <div>
-                <p class="eyebrow">The way we work</p>
+                <p class="eyebrow">Why choose us</p>
                 <h2 id="standards-title">Integrity in every step.<br><em>Expertise in every detail.</em></h2>
             </div>
             <p class="section-heading__copy">We aim to bring sound technical examination, professional service, and clear communication to every engagement.</p>

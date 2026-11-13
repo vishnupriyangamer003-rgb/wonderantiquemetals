@@ -1,0 +1,12 @@
+# ZIP archives
+*.zip
+*.ZIP
+
+# Backup files and directories
+*.bak
+*.backup
+*.old
+*.orig
+*~
+backup/
+backups/

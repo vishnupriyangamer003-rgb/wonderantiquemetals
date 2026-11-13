@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Explore technical and market support for precious metals, antique items, and rare materials.">
     <meta name="theme-color" content="#f3f0e8">
+    <meta name="author" content="Wonder Antique Metals">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Wonder Antique Metals">
+    <meta property="og:title" content="Wonder Antique Metals — Precious Metals &amp; Market Services">
+    <meta property="og:description" content="Explore technical and market support for precious metals, antique items, and rare materials.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Wonder Antique Metals — Precious Metals &amp; Market Services">
+    <meta name="twitter:description" content="Explore technical and market support for precious metals, antique items, and rare materials.">
     <title>Wonder Antique Metals — Precious Metals &amp; Market Services</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/main.js" defer></script>
 </head>

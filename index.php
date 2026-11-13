@@ -72,7 +72,7 @@ require_once __DIR__ . '/includes/header.php';
             <p class="hero-intro">Technical and market support across precious metals, antique items, and rare materials—from assessment and acquisition to auction and monetization.</p>
             <div class="hero-actions">
                 <a class="button button-dark" href="#services">Explore our services <span aria-hidden="true">↗</span></a>
-                <a class="text-link" href="#about">Who we are <span aria-hidden="true">→</span></a>
+                <a class="text-link" href="about.php">Who we are <span aria-hidden="true">→</span></a>
             </div>
             <p class="hero-note">A considered view of value, quality, and opportunity.</p>
         </div>

@@ -3,6 +3,68 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 
 <main id="main">
+    <section class="home-carousel" data-carousel aria-roledescription="carousel" aria-label="Featured Wonder Antique Metals services">
+        <div class="home-carousel__slides">
+            <article class="home-carousel__slide" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
+                <img
+                    class="home-carousel__image"
+                    src="assets/images/antique-collection-slide.jpg"
+                    alt="Antique jewelry and small decorative objects arranged across a vintage market display"
+                    width="1920"
+                    height="1280"
+                    fetchpriority="high">
+                <div class="home-carousel__content">
+                    <p class="home-carousel__eyebrow">Antique objects · Precious metals</p>
+                    <h2>The value<br>of a story.</h2>
+                    <p>A considered approach to antique objects, precious metals, and rare materials.</p>
+                    <a class="button button-light" href="#services">Explore our services <span aria-hidden="true">↗</span></a>
+                </div>
+                <a class="home-carousel__credit" href="https://www.pexels.com/photo/choice-of-retro-decor-items-and-jewelry-5865376/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
+            </article>
+            <article class="home-carousel__slide" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 2 of 3" hidden>
+                <img
+                    class="home-carousel__image"
+                    src="assets/images/pocket-watch-slide.jpg"
+                    alt="Vintage pocket watches and antique objects arranged for display"
+                    width="1920"
+                    height="1280"
+                    loading="lazy">
+                <div class="home-carousel__content">
+                    <p class="home-carousel__eyebrow">Technical insight · Market perspective</p>
+                    <h2>Expertise<br>you can rely on.</h2>
+                    <p>Careful assessment and clear communication help bring each asset into focus.</p>
+                    <a class="button button-light" href="#standards">Our standards <span aria-hidden="true">↗</span></a>
+                </div>
+                <a class="home-carousel__credit" href="https://www.pexels.com/photo/display-of-antique-items-6795489/" target="_blank" rel="noopener noreferrer">Photo by Freitas Junior / Pexels</a>
+            </article>
+            <article class="home-carousel__slide" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 3 of 3" hidden>
+                <img
+                    class="home-carousel__image"
+                    src="assets/images/antique-display-slide.jpg"
+                    alt="Vintage and antique items including jewelry and decorative pieces displayed together"
+                    width="1920"
+                    height="1280"
+                    loading="lazy">
+                <div class="home-carousel__content">
+                    <p class="home-carousel__eyebrow">Acquisition · Auction · Monetization</p>
+                    <h2>Make your<br>next move.</h2>
+                    <p>Explore thoughtful routes for distinctive metal and antique assets.</p>
+                    <a class="button button-light" href="#services">See our services <span aria-hidden="true">↗</span></a>
+                </div>
+                <a class="home-carousel__credit" href="https://www.pexels.com/photo/antiques-on-display-in-a-store-5865384/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
+            </article>
+        </div>
+        <div class="home-carousel__controls" role="group" aria-label="Banner slide controls">
+            <span class="home-carousel__status" aria-live="polite" aria-atomic="true">01 / 03</span>
+            <button class="home-carousel__button" type="button" data-carousel-prev aria-label="Previous slide">
+                <span aria-hidden="true">←</span>
+            </button>
+            <button class="home-carousel__button" type="button" data-carousel-next aria-label="Next slide">
+                <span aria-hidden="true">→</span>
+            </button>
+        </div>
+    </section>
+
     <section class="hero section-shell" aria-labelledby="hero-title">
         <div class="hero-copy">
             <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Integrity · Professionalism · Expertise</p>

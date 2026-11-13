@@ -5,14 +5,14 @@ require_once __DIR__ . '/includes/header.php';
 <main id="main">
     <section class="hero section-shell" aria-labelledby="hero-title">
         <div class="hero-copy">
-            <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Wonder Antique Metals</p>
-            <h1 id="hero-title">The beauty<br>of time,<br><em>recast.</em></h1>
-            <p class="hero-intro">A considered collection of antique metalwork, chosen for its character, craft, and the stories it carries forward.</p>
+            <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Integrity · Professionalism · Expertise</p>
+            <h1 id="hero-title">Precious<br>metals.<br><em>Expertise.</em></h1>
+            <p class="hero-intro">Technical and market support across precious metals, antique items, and rare materials—from assessment and acquisition to auction and monetization.</p>
             <div class="hero-actions">
-                <a class="button button-dark" href="#collection">Explore the collection <span aria-hidden="true">↗</span></a>
-                <a class="text-link" href="#story">Our approach <span aria-hidden="true">→</span></a>
+                <a class="button button-dark" href="#services">Explore our services <span aria-hidden="true">↗</span></a>
+                <a class="text-link" href="#about">Who we are <span aria-hidden="true">→</span></a>
             </div>
-            <p class="hero-note">Objects with a past. Pieces for the future.</p>
+            <p class="hero-note">A considered view of value, quality, and opportunity.</p>
         </div>
 
         <div class="hero-art" aria-label="Decorative antique-inspired medallion artwork">
@@ -24,86 +24,106 @@ require_once __DIR__ . '/includes/header.php';
                     <span class="medallion__star medallion__star--top">✳</span>
                     <span class="medallion__star medallion__star--bottom">✳</span>
                 </div>
-                <span class="hero-art__caption">Collected with care<br>kept for generations</span>
-                <span class="hero-art__index">No. 01 — Objects &amp; ornament</span>
+                <span class="hero-art__caption">Assess · Acquire<br>· Realize value</span>
+                <span class="hero-art__index">01 — Metals &amp; antique assets</span>
             </div>
-            <span class="hero-art__side-note" aria-hidden="true">A study in permanence</span>
+            <span class="hero-art__side-note" aria-hidden="true">A connected market view</span>
         </div>
     </section>
 
-    <section class="intro-strip" aria-label="Our point of view">
+    <section class="intro-strip" aria-label="Our service areas">
         <div class="intro-strip__inner">
-            <span>Material</span><i aria-hidden="true"></i>
-            <span>Memory</span><i aria-hidden="true"></i>
-            <span>Meaning</span>
+            <span>Regulatory</span><i aria-hidden="true"></i>
+            <span>Assaying</span><i aria-hidden="true"></i>
+            <span>Acquisition</span><i aria-hidden="true"></i>
+            <span>Auction</span><i aria-hidden="true"></i>
+            <span>Monetization</span>
         </div>
     </section>
 
-    <section class="collection section-shell" id="collection" aria-labelledby="collection-title">
+    <section class="services section-shell" id="services" aria-labelledby="services-title">
         <div class="section-heading">
             <div>
-                <p class="eyebrow">A collection in conversation</p>
-                <h2 id="collection-title">Made to endure.<br><em>Meant to be kept.</em></h2>
+                <p class="eyebrow">How we help</p>
+                <h2 id="services-title">Five disciplines.<br><em>One connected view.</em></h2>
             </div>
-            <p class="section-heading__copy">From finely worked details to expressive forms, every piece invites a closer look. Discover objects selected for their enduring materials and unmistakable presence.</p>
+            <p class="section-heading__copy">From technical examination to market transactions, our service areas support the evaluation and movement of precious metals, antique items, and rare materials.</p>
         </div>
 
-        <div class="collection-grid">
-            <article class="collection-card collection-card--one">
-                <div class="collection-card__art" aria-hidden="true">
-                    <span class="artifact artifact--vessel"></span>
-                    <span class="artifact-label">I</span>
-                </div>
-                <div class="collection-card__meta">
-                    <div><span class="card-number">01 / FORM</span><h3>Sculptural forms</h3></div>
-                    <a href="#contact" aria-label="Enquire about sculptural forms">↗</a>
-                </div>
+        <div class="services-grid">
+            <article class="service-card">
+                <div class="service-card__top"><span class="card-number">01 / GUIDANCE</span><span class="service-card__seal" aria-hidden="true">R</span></div>
+                <h3>Regulatory support</h3>
+                <p>Understand the regulatory considerations that can shape precious-metal activity and transactions.</p>
             </article>
-            <article class="collection-card collection-card--two">
-                <div class="collection-card__art" aria-hidden="true">
-                    <span class="artifact artifact--rosette"></span>
-                    <span class="artifact-label">II</span>
-                </div>
-                <div class="collection-card__meta">
-                    <div><span class="card-number">02 / DETAIL</span><h3>Architectural details</h3></div>
-                    <a href="#contact" aria-label="Enquire about architectural details">↗</a>
-                </div>
+            <article class="service-card">
+                <div class="service-card__top"><span class="card-number">02 / TECHNICAL</span><span class="service-card__seal" aria-hidden="true">A</span></div>
+                <h3>Assaying &amp; assessment</h3>
+                <p>Careful examination and quality assessment help build a clearer picture of the material in question.</p>
             </article>
-            <article class="collection-card collection-card--three">
-                <div class="collection-card__art" aria-hidden="true">
-                    <span class="artifact artifact--sun"></span>
-                    <span class="artifact-label">III</span>
-                </div>
-                <div class="collection-card__meta">
-                    <div><span class="card-number">03 / OBJECT</span><h3>Everyday heirlooms</h3></div>
-                    <a href="#contact" aria-label="Enquire about everyday heirlooms">↗</a>
-                </div>
+            <article class="service-card">
+                <div class="service-card__top"><span class="card-number">03 / MARKET</span><span class="service-card__seal" aria-hidden="true">A</span></div>
+                <h3>Acquisition</h3>
+                <p>Evaluate acquisition opportunities across precious metals and distinctive antique items.</p>
+            </article>
+            <article class="service-card">
+                <div class="service-card__top"><span class="card-number">04 / EXCHANGE</span><span class="service-card__seal" aria-hidden="true">A</span></div>
+                <h3>Auction services</h3>
+                <p>Prepare metal and antique assets for auction with attention to their qualities and market context.</p>
+            </article>
+            <article class="service-card">
+                <div class="service-card__top"><span class="card-number">05 / VALUE</span><span class="service-card__seal" aria-hidden="true">M</span></div>
+                <h3>Monetization</h3>
+                <p>Consider practical routes to realize value from precious-metal holdings and unique assets.</p>
             </article>
         </div>
-        <a class="text-link collection-link" href="#contact">Ask about the collection <span aria-hidden="true">→</span></a>
     </section>
 
-    <section class="story" id="story" aria-labelledby="story-title">
+    <section class="story" id="about" aria-labelledby="about-title">
         <div class="story__ornament" aria-hidden="true">W</div>
         <div class="story__content">
-            <p class="eyebrow eyebrow--light">Our point of view</p>
-            <h2 id="story-title">The marks of time<br>are <em>part of the beauty.</em></h2>
+            <p class="eyebrow eyebrow--light">About Wonder Antique Metals</p>
+            <h2 id="about-title">A market shaped by<br><em>many perspectives.</em></h2>
             <div class="story__bottom">
-                <p>We believe the best objects are never just things. Their patina, workmanship, and quiet imperfections tell a story that no new piece can repeat.</p>
-                <a class="button button-light" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+                <p>Precious-metal work connects commercial and technical disciplines. Investment, production, refining, fabrication, metallurgy, research, and end use all bring a different perspective to the value of an asset.</p>
+                <a class="button button-light" href="#standards">Our principles <span aria-hidden="true">↗</span></a>
             </div>
         </div>
     </section>
 
-    <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
+    <section class="standards section-shell" id="standards" aria-labelledby="standards-title">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">The way we work</p>
+                <h2 id="standards-title">Integrity in every step.<br><em>Expertise in every detail.</em></h2>
+            </div>
+            <p class="section-heading__copy">We aim to bring sound technical examination, professional service, and clear communication to every engagement.</p>
+        </div>
+        <div class="standards-grid">
+            <article class="standard-card">
+                <span class="card-number">01 / PRINCIPLE</span>
+                <h3>Integrity</h3>
+                <p>Open communication and considered handling of each opportunity.</p>
+            </article>
+            <article class="standard-card">
+                <span class="card-number">02 / PRACTICE</span>
+                <h3>Professionalism</h3>
+                <p>Careful coordination, dependable follow-through, and respect for agreed timelines.</p>
+            </article>
+            <article class="standard-card">
+                <span class="card-number">03 / KNOW-HOW</span>
+                <h3>Expertise</h3>
+                <p>Technical assessment and market understanding brought together in one view.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="next-step section-shell" aria-labelledby="next-step-title">
         <div>
-            <p class="eyebrow">Begin a conversation</p>
-            <h2 id="contact-title">Looking for<br><em>something lasting?</em></h2>
+            <p class="eyebrow">Precious metals · Antique assets · Rare materials</p>
+            <h2 id="next-step-title">Find the right path<br><em>for your asset.</em></h2>
         </div>
-        <div class="contact__aside">
-            <p>Start with the collection and discover objects selected for their enduring materials, thoughtful details, and unmistakable presence.</p>
-            <a class="button button-dark" href="#collection">Explore the collection <span aria-hidden="true">↗</span></a>
-        </div>
+        <a class="button button-dark" href="#services">Review our services <span aria-hidden="true">↗</span></a>
     </section>
 </main>
 

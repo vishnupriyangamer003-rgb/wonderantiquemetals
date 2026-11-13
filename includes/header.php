@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Explore considered antique metalwork, selected for its character, craft, and enduring stories.">
+    <meta name="description" content="Explore technical and market support for precious metals, antique items, and rare materials.">
     <meta name="theme-color" content="#f3f0e8">
-    <title>Wonder Antique Metals — Objects with a past</title>
+    <title>Wonder Antique Metals — Precious Metals &amp; Market Services</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/main.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="announcement">
-        <span>Antique metalwork, thoughtfully collected</span>
-        <span class="announcement__right">Objects with a past <span aria-hidden="true">✳</span></span>
+        <span>Precious metals · Antique items · Rare materials</span>
+        <span class="announcement__right">Integrity · Expertise <span aria-hidden="true">✳</span></span>
     </div>
     <header class="site-header">
         <div class="site-header__inner">
@@ -25,10 +25,10 @@
                 <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i></span>
             </button>
             <nav class="site-nav" id="primary-navigation" aria-label="Main navigation">
-                <a href="#collection">Collection</a>
-                <a href="#story">Our story</a>
-                <a href="#contact">Enquiries</a>
-                <a class="nav-cta" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#standards">Our standards</a>
+                <a class="nav-cta" href="#services">Explore services <span aria-hidden="true">↗</span></a>
             </nav>
         </div>
     </header>

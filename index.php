@@ -111,12 +111,23 @@ require_once __DIR__ . '/includes/header.php';
     </section>
 
     <section class="services section-shell" id="services" aria-labelledby="services-title">
-        <div class="section-heading">
-            <div>
+        <div class="services-overview">
+            <div class="services-overview__copy">
                 <p class="eyebrow">How we help</p>
-                <h2 id="services-title">Five disciplines.<br><em>One connected view.</em></h2>
+                <h2 id="services-title">Our Services</h2>
+                <p class="services-overview__text">Our work spans five connected areas—regulatory guidance, assaying, acquisition, auction, and monetization. We bring technical and market perspective to precious-metal and antique assets, from initial assessment through next steps.</p>
             </div>
-            <p class="section-heading__copy">From technical examination to market transactions, our service areas support the evaluation and movement of precious metals, antique items, and rare materials.</p>
+            <figure class="services-overview__image">
+                <img
+                    src="assets/images/antique-display-slide.jpg"
+                    alt="Vintage and antique jewelry and decorative objects arranged together"
+                    width="1920"
+                    height="1280"
+                    loading="lazy">
+                <figcaption>
+                    <a href="https://www.pexels.com/photo/antiques-on-display-in-a-store-5865384/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
+                </figcaption>
+            </figure>
         </div>
 
         <div class="services-grid">
@@ -145,6 +156,17 @@ require_once __DIR__ . '/includes/header.php';
                 <h3>Monetization</h3>
                 <p>Consider practical routes to realize value from precious-metal holdings and unique assets.</p>
             </article>
+        </div>
+    </section>
+
+    <section class="guarantee" aria-labelledby="guarantee-title">
+        <div class="guarantee__inner section-shell">
+            <div class="guarantee__seal" aria-hidden="true">✓</div>
+            <div class="guarantee__content">
+                <p class="eyebrow">Our Commitment</p>
+                <h2 id="guarantee-title">Our Guarantee</h2>
+                <p>We approach each engagement with professional care, communicate clearly, and work toward agreed timelines. If our service falls short of your expectations, contact us so we can understand your concerns and discuss a constructive next step.</p>
+            </div>
         </div>
     </section>
 

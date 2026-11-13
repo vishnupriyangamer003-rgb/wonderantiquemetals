@@ -422,6 +422,8 @@ p {
 
 .hero h1 em,
 .section-heading h2 em,
+.services-overview h2 em,
+.guarantee h2 em,
 .story h2 em,
 .standards h2 em,
 .next-step h2 em,
@@ -658,6 +660,74 @@ p {
     padding-bottom: 116px;
 }
 
+.services-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: clamp(32px, 6vw, 80px);
+    margin-bottom: 47px;
+}
+
+.services-overview__copy .eyebrow {
+    margin-bottom: 19px;
+}
+
+.services-overview__copy h2 {
+    margin-bottom: 22px;
+}
+
+.services-overview__text {
+    max-width: 570px;
+    margin: 0;
+    color: #6f695f;
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+.services-overview__image {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    min-height: 280px;
+    aspect-ratio: 3 / 2;
+    margin: 0;
+    overflow: hidden;
+    background: var(--dark);
+}
+
+.services-overview__image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 52%;
+}
+
+.services-overview__image::after {
+    position: absolute;
+    inset: 40% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(25, 23, 19, 0.7));
+    content: "";
+}
+
+.services-overview__image figcaption {
+    position: absolute;
+    z-index: 1;
+    right: 14px;
+    bottom: 12px;
+    left: 14px;
+    color: var(--paper);
+    font-size: 16px;
+    text-align: right;
+}
+
+.services-overview__image a {
+    text-decoration: underline;
+    text-decoration-color: rgba(243, 240, 232, 0.6);
+    text-underline-offset: 3px;
+}
+
 .section-heading {
     display: flex;
     align-items: end;
@@ -672,6 +742,7 @@ p {
 }
 
 .section-heading h2,
+.services-overview h2,
 .story h2,
 .standards h2,
 .next-step h2 {
@@ -758,6 +829,60 @@ p {
     color: #6f695f;
     font-size: 16px;
     line-height: 1.8;
+}
+
+.guarantee {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper-deep);
+}
+
+.guarantee__inner {
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(32px, 6vw, 80px);
+    padding-top: 78px;
+    padding-bottom: 78px;
+}
+
+.guarantee__seal {
+    display: grid;
+    width: 132px;
+    height: 132px;
+    place-items: center;
+    border: 1px solid rgba(166, 76, 56, 0.48);
+    border-radius: 50%;
+    background: radial-gradient(circle, #f8f3e8, #e5d8c3);
+    box-shadow: inset 0 0 0 8px rgba(245, 229, 191, 0.3);
+    color: var(--rust);
+    font-family: var(--serif);
+    font-size: 54px;
+}
+
+.guarantee__content {
+    max-width: 880px;
+}
+
+.guarantee__content .eyebrow {
+    margin-bottom: 18px;
+}
+
+.guarantee__content h2 {
+    margin-bottom: 18px;
+    font-size: clamp(44px, 5vw, 68px);
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+}
+
+.guarantee__content > p:last-child {
+    max-width: 780px;
+    margin: 0;
+    color: #615b52;
+    font-size: 16px;
+    line-height: 1.85;
 }
 
 .story {
@@ -1007,6 +1132,25 @@ p {
         min-height: 339px;
     }
 
+    .services-overview {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+        gap: 30px;
+    }
+
+    .services-overview__image {
+        min-height: 250px;
+    }
+
+    .guarantee__inner {
+        grid-template-columns: 112px minmax(0, 1fr);
+        gap: 30px;
+    }
+
+    .guarantee__seal {
+        width: 112px;
+        height: 112px;
+    }
+
     .services-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1118,6 +1262,38 @@ p {
     .section-shell {
         padding-right: 7%;
         padding-left: 7%;
+    }
+
+    .services-overview {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+
+    .services-overview__copy h2 {
+        font-size: clamp(42px, 11vw, 60px);
+    }
+
+    .services-overview__image {
+        min-height: 220px;
+        aspect-ratio: 16 / 10;
+    }
+
+    .guarantee__inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-top: 58px;
+        padding-bottom: 58px;
+    }
+
+    .guarantee__seal {
+        width: 74px;
+        height: 74px;
+        font-size: 34px;
+    }
+
+    .guarantee__content h2 {
+        font-size: clamp(42px, 11vw, 62px);
     }
 
     .hero {

@@ -22,9 +22,6 @@ require_once __DIR__ . '/includes/header.php';
                 width="1920"
                 height="1280"
                 fetchpriority="high">
-            <figcaption class="about-hero__credit">
-                <a href="https://www.pexels.com/photo/display-of-antique-items-6795489/" target="_blank" rel="noopener noreferrer">Photo by Freitas Junior / Pexels</a>
-            </figcaption>
         </figure>
     </section>
 

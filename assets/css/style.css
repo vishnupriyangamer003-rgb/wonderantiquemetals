@@ -1138,24 +1138,6 @@ p {
     object-fit: cover;
 }
 
-.about-hero__credit {
-    position: absolute;
-    z-index: 2;
-    right: 0;
-    bottom: 0;
-    max-width: 90%;
-    padding: 10px 12px;
-    background: var(--dark);
-    color: #eee9df;
-    font-size: 16px;
-    line-height: 1.4;
-}
-
-.about-hero__credit a {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
 .about-perspective {
     padding: 83px 0 88px;
     background: var(--dark);

@@ -21,9 +21,6 @@ html {
 }
 
 #about,
-#approach,
-#principles,
-#testimonials,
 #services,
 #acquisition-products,
 #standards,
@@ -1076,191 +1073,6 @@ p {
     font-size: clamp(48px, 6vw, 76px);
 }
 
-.about-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    align-items: center;
-    gap: 7%;
-    padding-top: 72px;
-    padding-bottom: 82px;
-}
-
-.about-hero__copy h1 {
-    margin-bottom: 25px;
-    font-family: var(--serif);
-    font-size: clamp(56px, 6.6vw, 88px);
-    font-weight: 400;
-    letter-spacing: -0.07em;
-    line-height: 0.88;
-    text-transform: uppercase;
-}
-
-.about-hero__copy h1 em {
-    color: var(--rust);
-    font-weight: 400;
-}
-
-.about-hero__intro {
-    max-width: 520px;
-    margin-bottom: 28px;
-    color: #605b52;
-    font-size: 18px;
-    line-height: 1.8;
-}
-
-.about-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 22px;
-}
-
-.about-hero__visual {
-    position: relative;
-    margin: 0;
-    padding: 16px 0 0 16px;
-}
-
-.about-hero__visual::before {
-    position: absolute;
-    inset: 0 22px 34px 0;
-    border: 1px solid var(--gold);
-    content: "";
-}
-
-.about-hero__visual img {
-    position: relative;
-    z-index: 1;
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-}
-
-.about-perspective {
-    padding: 83px 0 88px;
-    background: var(--dark);
-    color: var(--paper);
-}
-
-.about-perspective__inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    align-items: center;
-    gap: 8%;
-}
-
-.about-perspective__copy h2 {
-    max-width: 660px;
-    margin-bottom: 22px;
-    font-family: var(--serif);
-    font-size: clamp(44px, 5.2vw, 70px);
-    font-weight: 400;
-    letter-spacing: -0.055em;
-    line-height: 0.98;
-}
-
-.about-perspective__copy > p:last-child {
-    max-width: 630px;
-    margin: 0;
-    color: #c5beb2;
-    font-size: 16px;
-    line-height: 1.85;
-}
-
-.about-perspective__list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 22px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.about-perspective__list li {
-    display: flex;
-    min-height: 58px;
-    align-items: center;
-    gap: 12px;
-    border-top: 1px solid rgba(243, 240, 232, 0.2);
-    color: #eee9df;
-    font-size: 16px;
-}
-
-.about-perspective__list span {
-    color: #d3b88a;
-    font-size: 16px;
-    letter-spacing: 0.08em;
-}
-
-.about-principles {
-    padding-top: 92px;
-    padding-bottom: 96px;
-}
-
-.about-testimonials {
-    padding: 85px 0 92px;
-    background: var(--paper-deep);
-}
-
-.about-testimonials__viewport {
-    max-width: 1100px;
-    overflow: hidden;
-    margin: 42px auto 0;
-}
-
-.about-testimonials__viewport:focus-visible {
-    outline: 2px solid var(--rust);
-    outline-offset: 4px;
-}
-
-.about-testimonials__track {
-    display: flex;
-    gap: 18px;
-    transition: transform 600ms ease;
-}
-
-.about-testimonial {
-    display: flex;
-    flex: 0 0 calc((100% - 36px) / 3);
-    flex-direction: column;
-    min-height: 255px;
-    padding: 24px;
-    border: 1px solid var(--line);
-    background: var(--paper);
-}
-
-.about-testimonial blockquote {
-    margin: 0 0 26px;
-}
-
-.about-testimonial blockquote p {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: 23px;
-    line-height: 1.5;
-}
-
-.about-testimonial__author {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
-}
-
-.about-testimonial__author strong {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.about-testimonial__author span {
-    color: #615b52;
-    font-size: 16px;
-}
-
 .site-footer {
     padding: 50px 7.5% 19px;
     background: #23221f;
@@ -1514,23 +1326,6 @@ p {
         min-height: 339px;
     }
 
-    .about-hero {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
-        gap: 30px;
-    }
-
-    .about-hero__copy h1 {
-        font-size: clamp(50px, 7vw, 68px);
-    }
-
-    .about-perspective__inner {
-        gap: 40px;
-    }
-
-    .about-testimonial {
-        flex-basis: calc((100% - 18px) / 2);
-    }
-
     .services-overview {
         grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
         gap: 30px;
@@ -1688,48 +1483,6 @@ p {
 
     .hero-banner {
         min-height: 314px;
-    }
-
-    .about-hero {
-        grid-template-columns: 1fr;
-        gap: 34px;
-        padding-top: 54px;
-        padding-bottom: 64px;
-    }
-
-    .about-hero__copy h1 {
-        font-size: clamp(48px, 12vw, 66px);
-    }
-
-    .about-perspective {
-        padding: 66px 0 70px;
-    }
-
-    .about-perspective__inner {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-
-    .about-perspective__copy h2 {
-        font-size: clamp(42px, 11vw, 60px);
-    }
-
-    .about-principles {
-        padding-top: 76px;
-        padding-bottom: 80px;
-    }
-
-    .about-testimonials {
-        padding: 70px 0 76px;
-    }
-
-    .about-testimonials__viewport {
-        margin-top: 30px;
-    }
-
-    .about-testimonial {
-        flex-basis: 100%;
-        min-height: 0;
     }
 
     .hero-art__side-note {

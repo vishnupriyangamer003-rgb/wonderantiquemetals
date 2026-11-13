@@ -1,32 +1,20 @@
-<?php
-$metaTitle = htmlspecialchars(
-    $pageTitle ?? 'Wonder Antique Metals — Precious Metals & Market Services',
-    ENT_QUOTES,
-    'UTF-8'
-);
-$metaDescription = htmlspecialchars(
-    $pageDescription ?? 'Explore technical and market support for precious metals, antique items, and rare materials.',
-    ENT_QUOTES,
-    'UTF-8'
-);
-?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php echo $metaDescription; ?>">
+    <meta name="description" content="Explore technical and market support for precious metals, antique items, and rare materials.">
     <meta name="theme-color" content="#f3f0e8">
     <meta name="author" content="Wonder Antique Metals">
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Wonder Antique Metals">
-    <meta property="og:title" content="<?php echo $metaTitle; ?>">
-    <meta property="og:description" content="<?php echo $metaDescription; ?>">
+    <meta property="og:title" content="Wonder Antique Metals — Precious Metals &amp; Market Services">
+    <meta property="og:description" content="Explore technical and market support for precious metals, antique items, and rare materials.">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="<?php echo $metaTitle; ?>">
-    <meta name="twitter:description" content="<?php echo $metaDescription; ?>">
-    <title><?php echo $metaTitle; ?></title>
+    <meta name="twitter:title" content="Wonder Antique Metals — Precious Metals &amp; Market Services">
+    <meta name="twitter:description" content="Explore technical and market support for precious metals, antique items, and rare materials.">
+    <title>Wonder Antique Metals — Precious Metals &amp; Market Services</title>
     <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/main.js" defer></script>
@@ -48,22 +36,22 @@ $metaDescription = htmlspecialchars(
             </button>
             <nav class="site-nav" id="primary-navigation" aria-label="Main navigation">
                 <a href="index.php">Home</a>
-                <a href="about.php">About</a>
-                <a href="index.php#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
                 <details class="nav-dropdown">
                     <summary>
                         Acquisition products
                         <span class="nav-dropdown__indicator" aria-hidden="true">▾</span>
                     </summary>
                     <div class="nav-dropdown__menu">
-                        <a href="index.php#product-precious-metals">Precious metals</a>
-                        <a href="index.php#product-antique-jewelry">Antique jewelry</a>
-                        <a href="index.php#product-vintage-timepieces">Vintage timepieces</a>
-                        <a href="index.php#product-decorative-metalwork">Decorative metalwork</a>
-                        <a href="index.php#product-rare-materials">Rare materials</a>
+                        <a href="#product-precious-metals">Precious metals</a>
+                        <a href="#product-antique-jewelry">Antique jewelry</a>
+                        <a href="#product-vintage-timepieces">Vintage timepieces</a>
+                        <a href="#product-decorative-metalwork">Decorative metalwork</a>
+                        <a href="#product-rare-materials">Rare materials</a>
                     </div>
                 </details>
-                <a class="nav-cta" href="index.php#contact">Contact <span aria-hidden="true">↗</span></a>
+                <a class="nav-cta" href="#contact">Contact <span aria-hidden="true">↗</span></a>
             </nav>
         </div>
     </header>

@@ -7,10 +7,10 @@
             <nav class="site-footer__links" aria-label="Quick links">
                 <span class="footer-label">Quick links</span>
                 <a href="index.php">Home</a>
-                <a href="about.php">About</a>
-                <a href="index.php#services">Services</a>
-                <a href="index.php#acquisition-products">Acquisition products</a>
-                <a href="index.php#contact">Contact</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#acquisition-products">Acquisition products</a>
+                <a href="#contact">Contact</a>
             </nav>
             <div class="site-footer__links">
                 <span class="footer-label">Acquisition products</span>
@@ -19,7 +19,7 @@
                 <span id="product-vintage-timepieces">Vintage timepieces</span>
                 <span id="product-decorative-metalwork">Decorative metalwork</span>
                 <span id="product-rare-materials">Rare materials</span>
-                <a href="index.php#acquisition-products">View acquisition services <span aria-hidden="true">↗</span></a>
+                <a href="#acquisition-products">View acquisition services <span aria-hidden="true">↗</span></a>
             </div>
             <address class="site-footer__contact" id="contact" aria-label="Company contact information">
                 <span class="footer-label">Company information</span>

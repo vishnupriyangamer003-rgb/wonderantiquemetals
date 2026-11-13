@@ -50,30 +50,18 @@ if (siteHeader && menuToggle && primaryNavigation) {
     });
 }
 
-const carousels = document.querySelectorAll("[data-carousel]");
+const carousel = document.querySelector("[data-carousel]");
 
-carousels.forEach((carousel) => {
+if (carousel) {
     const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
     const previousButton = carousel.querySelector("[data-carousel-prev]");
     const nextButton = carousel.querySelector("[data-carousel-next]");
-    const toggleButton = carousel.querySelector("[data-carousel-toggle]");
-    const status = carousel.querySelector("[data-carousel-status]");
+    const status = carousel.querySelector(".home-carousel__status");
     let activeIndex = slides.findIndex((slide) => !slide.hidden);
 
     if (slides.length > 1 && previousButton && nextButton && status) {
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
         let autoplayTimer = null;
-        let userPaused = false;
-
-        const updateToggleButton = () => {
-            if (!toggleButton) {
-                return;
-            }
-
-            toggleButton.hidden = prefersReducedMotion.matches;
-            toggleButton.textContent = userPaused ? "Play" : "Pause";
-            toggleButton.setAttribute("aria-label", `${userPaused ? "Resume" : "Pause"} automatic slide rotation`);
-        };
 
         const showSlide = (index, announce = false) => {
             activeIndex = (index + slides.length) % slides.length;
@@ -90,156 +78,22 @@ carousels.forEach((carousel) => {
                 autoplayTimer = null;
             }
             status.setAttribute("aria-live", "polite");
-            updateToggleButton();
         };
 
         const startAutoplay = () => {
-            if (autoplayTimer !== null || userPaused) {
+            if (autoplayTimer !== null) {
                 return;
             }
             if (prefersReducedMotion.matches || document.hidden) {
                 status.setAttribute("aria-live", "polite");
-                updateToggleButton();
                 return;
             }
             autoplayTimer = window.setInterval(() => showSlide(activeIndex + 1), 6500);
             status.setAttribute("aria-live", "off");
-            updateToggleButton();
         };
 
         previousButton.addEventListener("click", () => showSlide(activeIndex - 1, true));
         nextButton.addEventListener("click", () => showSlide(activeIndex + 1, true));
-        if (toggleButton) {
-            toggleButton.addEventListener("click", () => {
-                userPaused = !userPaused;
-                if (userPaused) {
-                    stopAutoplay();
-                } else {
-                    startAutoplay();
-                }
-                updateToggleButton();
-            });
-        }
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                stopAutoplay();
-            } else {
-                startAutoplay();
-            }
-        });
-
-        if (typeof prefersReducedMotion.addEventListener === "function") {
-            prefersReducedMotion.addEventListener("change", (event) => {
-                if (event.matches) {
-                    stopAutoplay();
-                } else {
-                    startAutoplay();
-                }
-            });
-        }
-
-        startAutoplay();
-    }
-});
-
-const testimonialCarousel = document.querySelector("[data-testimonial-carousel]");
-
-if (testimonialCarousel) {
-    const track = testimonialCarousel.querySelector(".about-testimonials__track");
-    const slides = Array.from(testimonialCarousel.querySelectorAll(".about-testimonial"));
-
-    if (track && slides.length > 1) {
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-        let autoplayTimer = null;
-        let pointerInside = false;
-        let focusInside = false;
-
-        const stopAutoplay = () => {
-            if (autoplayTimer !== null) {
-                window.clearInterval(autoplayTimer);
-                autoplayTimer = null;
-            }
-        };
-
-        const startAutoplay = () => {
-            if (
-                autoplayTimer !== null ||
-                prefersReducedMotion.matches ||
-                document.hidden ||
-                pointerInside ||
-                focusInside
-            ) {
-                return;
-            }
-
-            autoplayTimer = window.setInterval(advanceSlide, 6500);
-        };
-
-        const updateSlideLabels = () => {
-            Array.from(track.children).forEach((slide, index) => {
-                slide.setAttribute("aria-label", `Testimonial ${index + 1} of ${slides.length}`);
-            });
-        };
-
-        const advanceSlide = () => {
-            const firstSlide = track.firstElementChild;
-            if (!firstSlide) {
-                return;
-            }
-
-            const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 0;
-            const distance = firstSlide.getBoundingClientRect().width + gap;
-            let completed = false;
-
-            const finishTransition = () => {
-                if (completed) {
-                    return;
-                }
-
-                completed = true;
-                window.clearTimeout(fallbackTimer);
-                track.removeEventListener("transitionend", handleTransitionEnd);
-                track.style.transition = "none";
-                track.append(firstSlide);
-                track.style.transform = "translateX(0)";
-                track.getBoundingClientRect();
-                track.style.transition = "";
-                updateSlideLabels();
-            };
-
-            const handleTransitionEnd = (event) => {
-                if (event.target === track && event.propertyName === "transform") {
-                    finishTransition();
-                }
-            };
-
-            track.addEventListener("transitionend", handleTransitionEnd);
-            track.style.transform = `translateX(-${distance}px)`;
-            const fallbackTimer = window.setTimeout(finishTransition, 750);
-        };
-
-        testimonialCarousel.addEventListener("pointerenter", () => {
-            pointerInside = true;
-            stopAutoplay();
-        });
-
-        testimonialCarousel.addEventListener("pointerleave", () => {
-            pointerInside = false;
-            startAutoplay();
-        });
-
-        testimonialCarousel.addEventListener("focusin", () => {
-            focusInside = true;
-            stopAutoplay();
-        });
-
-        testimonialCarousel.addEventListener("focusout", (event) => {
-            if (!testimonialCarousel.contains(event.relatedTarget)) {
-                focusInside = false;
-                startAutoplay();
-            }
-        });
-
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
                 stopAutoplay();

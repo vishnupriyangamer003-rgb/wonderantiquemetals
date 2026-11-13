@@ -25,9 +25,10 @@
                 <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i></span>
             </button>
             <nav class="site-nav" id="primary-navigation" aria-label="Main navigation">
-                <a href="#services">Services</a>
+                <a href="index.php">Home</a>
                 <a href="#about">About</a>
-                <a href="#standards">Our standards</a>
+                <a href="#services">Services</a>
+                <a href="#acquisition-products">Acquisition products</a>
                 <a class="nav-cta" href="#services">Contact <span aria-hidden="true">↗</span></a>
             </nav>
         </div>

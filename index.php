@@ -153,7 +153,7 @@ require_once __DIR__ . '/includes/header.php';
                 <h3>Assaying &amp; assessment</h3>
                 <p>Careful examination and quality assessment help build a clearer picture of the material in question.</p>
             </article>
-            <article class="service-card">
+            <article class="service-card" id="acquisition-products">
                 <div class="service-card__top"><span class="card-number">03 / MARKET</span><span class="service-card__seal" aria-hidden="true">A</span></div>
                 <h3>Acquisition</h3>
                 <p>Evaluate acquisition opportunities across precious metals and distinctive antique items.</p>

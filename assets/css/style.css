@@ -20,6 +20,19 @@ html {
     scroll-behavior: smooth;
 }
 
+#about,
+#services,
+#acquisition-products,
+#standards,
+#product-precious-metals,
+#product-antique-jewelry,
+#product-vintage-timepieces,
+#product-decorative-metalwork,
+#product-rare-materials,
+#contact {
+    scroll-margin-top: 120px;
+}
+
 body {
     margin: 0;
     background: var(--paper);
@@ -88,7 +101,8 @@ button {
 }
 
 .site-header {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 5;
     border-bottom: 1px solid var(--line);
     background: var(--paper);

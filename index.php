@@ -15,18 +15,25 @@ require_once __DIR__ . '/includes/header.php';
             <p class="hero-note">A considered view of value, quality, and opportunity.</p>
         </div>
 
-        <div class="hero-art" aria-label="Decorative antique-inspired medallion artwork">
-            <div class="hero-art__frame">
-                <div class="medallion" aria-hidden="true">
-                    <span class="medallion__outer"></span>
-                    <span class="medallion__inner"></span>
-                    <span class="medallion__initial">W</span>
-                    <span class="medallion__star medallion__star--top">✳</span>
-                    <span class="medallion__star medallion__star--bottom">✳</span>
-                </div>
-                <span class="hero-art__caption">Assess · Acquire<br>· Realize value</span>
-                <span class="hero-art__index">01 — Metals &amp; antique assets</span>
-            </div>
+        <div class="hero-art hero-art--photo">
+            <figure class="hero-banner">
+                <img
+                    class="hero-banner__image"
+                    src="assets/images/antique-metals-banner.jpg"
+                    alt="Ornate antique mantel clock displayed between decorative vases in a shop window"
+                    width="1800"
+                    height="1200"
+                    fetchpriority="high">
+                <figcaption class="hero-banner__caption">
+                    <span class="hero-banner__eyebrow">Antique metalwork</span>
+                    <span class="hero-banner__headline">Value with<br>a history.</span>
+                </figcaption>
+                <a
+                    class="hero-banner__credit"
+                    href="https://www.pexels.com/photo/vintage-clock-in-an-antique-shop-window-16470625/"
+                    target="_blank"
+                    rel="noopener noreferrer">Photo by Ömer Derinyar / Pexels</a>
+            </figure>
             <span class="hero-art__side-note" aria-hidden="true">A connected market view</span>
         </div>
     </section>

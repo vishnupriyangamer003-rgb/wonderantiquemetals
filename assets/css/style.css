@@ -374,109 +374,77 @@ p {
     bottom: -28px;
 }
 
-.hero-art__frame {
-    position: relative;
-    display: flex;
-    min-height: 409px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 1px solid rgba(41, 38, 33, 0.26);
-    background:
-        radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.54), transparent 58%),
-        linear-gradient(145deg, #e0d4bd, #eee8dc 48%, #d2c2a4);
+.hero-art--photo {
+    padding: 18px;
 }
 
-.hero-art__frame::before,
-.hero-art__frame::after {
+.hero-banner {
+    position: relative;
+    z-index: 1;
+    min-height: 409px;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgba(41, 38, 33, 0.26);
+    background: var(--dark);
+}
+
+.hero-banner::after {
     position: absolute;
-    width: 76%;
-    height: 76%;
-    border: 1px solid rgba(166, 76, 56, 0.25);
-    border-radius: 50%;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(25, 23, 19, 0.02) 28%, rgba(25, 23, 19, 0.78) 100%);
     content: "";
 }
 
-.hero-art__frame::after {
-    width: 60%;
-    height: 60%;
-    border-color: rgba(41, 38, 33, 0.2);
-}
-
-.medallion {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    width: clamp(175px, 23vw, 280px);
-    aspect-ratio: 1;
-    place-items: center;
-    border: 1px solid #8e6537;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 34% 28%, rgba(255, 242, 205, 0.95), transparent 34%),
-        radial-gradient(circle at 64% 72%, #986d3b, transparent 56%),
-        #c5a36d;
-    box-shadow: 0 23px 42px rgba(67, 47, 24, 0.22), inset 0 0 0 8px rgba(245, 229, 191, 0.3), inset 0 0 0 11px rgba(101, 69, 35, 0.45);
-}
-
-.medallion__outer,
-.medallion__inner {
+.hero-banner__image {
     position: absolute;
-    inset: 14px;
-    border: 1px solid rgba(83, 53, 26, 0.7);
-    border-radius: 50%;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 46%;
 }
 
-.medallion__inner {
-    inset: 25px;
-    border-style: dotted;
-    border-color: rgba(255, 240, 207, 0.8);
-}
-
-.medallion__initial {
-    color: #684728;
-    font-family: var(--serif);
-    font-size: clamp(94px, 13vw, 154px);
-    line-height: 1;
-    text-shadow: 1px 2px 0 rgba(255, 235, 192, 0.55), -1px -1px 0 rgba(73, 48, 23, 0.22);
-}
-
-.medallion__star {
+.hero-banner__caption {
     position: absolute;
-    color: #eee0be;
+    z-index: 2;
+    right: 20px;
+    bottom: 73px;
+    left: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--paper);
+}
+
+.hero-banner__eyebrow {
+    color: #f0d7a4;
     font-size: 16px;
-}
-
-.medallion__star--top {
-    top: 25px;
-}
-
-.medallion__star--bottom {
-    bottom: 25px;
-}
-
-.hero-art__caption,
-.hero-art__index {
-    position: absolute;
-    z-index: 1;
-    color: #514638;
-    font-size: 16px;
-    letter-spacing: 0.16em;
-    line-height: 1.7;
-    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
-.hero-art__caption {
-    bottom: 28px;
+.hero-banner__headline {
+    font-family: var(--serif);
+    font-size: clamp(32px, 3.8vw, 48px);
+    letter-spacing: -0.035em;
+    line-height: 1.04;
 }
 
-.hero-art__index {
-    top: 24px;
-    right: 25px;
-    color: #756a5a;
+.hero-banner__credit {
+    position: absolute;
+    z-index: 2;
+    right: 14px;
+    bottom: 12px;
+    left: 14px;
+    color: var(--paper);
     font-size: 16px;
+    line-height: 1.4;
+    text-align: right;
+    text-decoration: underline;
+    text-decoration-color: rgba(243, 240, 232, 0.55);
+    text-underline-offset: 3px;
 }
 
 .hero-art__side-note {
@@ -804,7 +772,7 @@ p {
         min-height: 490px;
     }
 
-    .hero-art__frame {
+    .hero-banner {
         min-height: 454px;
     }
 }
@@ -839,7 +807,7 @@ p {
         min-height: 375px;
     }
 
-    .hero-art__frame {
+    .hero-banner {
         min-height: 339px;
     }
 
@@ -953,7 +921,7 @@ p {
         min-height: 350px;
     }
 
-    .hero-art__frame {
+    .hero-banner {
         min-height: 314px;
     }
 
@@ -1070,11 +1038,6 @@ p {
         align-items: flex-start;
         flex-direction: column;
         gap: 11px;
-    }
-
-    .hero-art__index {
-        right: 14px;
-        font-size: 16px;
     }
 
     .site-footer__main {

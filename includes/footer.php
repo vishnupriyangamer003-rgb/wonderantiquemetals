@@ -11,7 +11,9 @@
             <div class="site-footer__links">
                 <span class="footer-label">Our work</span>
                 <a href="#services">View service areas <span aria-hidden="true">↗</span></a>
-                <a class="back-to-top" href="#main" aria-label="Back to top">Back to top <span aria-hidden="true">↑</span></a>
+                <a class="back-to-top" href="#main" aria-label="Back to top" title="Back to top">
+                    <span aria-hidden="true">↑</span>
+                </a>
             </div>
         </div>
         <div class="site-footer__bottom">

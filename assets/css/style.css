@@ -932,6 +932,33 @@ p {
     outline-offset: 4px;
 }
 
+.back-to-top {
+    position: fixed;
+    z-index: 20;
+    right: 24px;
+    bottom: 24px;
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    border: 1px solid rgba(243, 240, 232, 0.62);
+    background: var(--dark);
+    box-shadow: 0 8px 22px rgba(41, 38, 33, 0.2);
+    color: var(--paper);
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+    transform: translateY(-2px);
+    background: var(--rust);
+    color: var(--paper);
+}
+
 @media (min-width: 1440px) {
     .hero {
         min-height: 650px;
@@ -999,6 +1026,11 @@ p {
 }
 
 @media (max-width: 700px) {
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+    }
+
     .home-carousel {
         min-height: 590px;
     }

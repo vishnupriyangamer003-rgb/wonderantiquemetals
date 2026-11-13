@@ -56,9 +56,6 @@ require_once __DIR__ . '/includes/header.php';
         </div>
         <div class="home-carousel__controls" role="group" aria-label="Banner slide controls">
             <span class="home-carousel__status" aria-live="off" aria-atomic="true">01 / 03</span>
-            <button class="home-carousel__button" type="button" data-carousel-toggle aria-label="Play slideshow">
-                <span aria-hidden="true">▶</span>
-            </button>
             <button class="home-carousel__button" type="button" data-carousel-prev aria-label="Previous slide">
                 <span aria-hidden="true">←</span>
             </button>

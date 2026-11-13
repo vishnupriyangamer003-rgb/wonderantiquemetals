@@ -39,27 +39,19 @@ if (carousel) {
     const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
     const previousButton = carousel.querySelector("[data-carousel-prev]");
     const nextButton = carousel.querySelector("[data-carousel-next]");
-    const toggleButton = carousel.querySelector("[data-carousel-toggle]");
-    const toggleIcon = toggleButton && toggleButton.querySelector("[aria-hidden='true']");
     const status = carousel.querySelector(".home-carousel__status");
     let activeIndex = slides.findIndex((slide) => !slide.hidden);
 
-    if (slides.length > 1 && previousButton && nextButton && toggleButton && toggleIcon && status) {
+    if (slides.length > 1 && previousButton && nextButton && status) {
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
         let autoplayTimer = null;
 
-        const updateControls = () => {
-            const isPlaying = autoplayTimer !== null;
-            toggleButton.setAttribute("aria-label", isPlaying ? "Pause slideshow" : "Play slideshow");
-            toggleIcon.textContent = isPlaying ? "Ⅱ" : "▶";
-            status.setAttribute("aria-live", isPlaying ? "off" : "polite");
-        };
-
-        const showSlide = (index) => {
+        const showSlide = (index, announce = false) => {
             activeIndex = (index + slides.length) % slides.length;
             slides.forEach((slide, slideIndex) => {
                 slide.hidden = slideIndex !== activeIndex;
             });
+            status.setAttribute("aria-live", announce || autoplayTimer === null ? "polite" : "off");
             status.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
         };
 
@@ -68,41 +60,28 @@ if (carousel) {
                 window.clearInterval(autoplayTimer);
                 autoplayTimer = null;
             }
-            updateControls();
+            status.setAttribute("aria-live", "polite");
         };
 
-        const startAutoplay = (userInitiated = false) => {
-            if (autoplayTimer !== null || (prefersReducedMotion.matches && !userInitiated)) {
+        const startAutoplay = () => {
+            if (autoplayTimer !== null) {
+                return;
+            }
+            if (prefersReducedMotion.matches || document.hidden) {
+                status.setAttribute("aria-live", "polite");
                 return;
             }
             autoplayTimer = window.setInterval(() => showSlide(activeIndex + 1), 6500);
-            updateControls();
+            status.setAttribute("aria-live", "off");
         };
 
-        previousButton.addEventListener("click", () => {
-            stopAutoplay();
-            showSlide(activeIndex - 1);
-        });
-        nextButton.addEventListener("click", () => {
-            stopAutoplay();
-            showSlide(activeIndex + 1);
-        });
-        toggleButton.addEventListener("click", () => {
-            if (autoplayTimer === null) {
-                startAutoplay(true);
-            } else {
-                stopAutoplay();
-            }
-        });
-        carousel.addEventListener("pointerenter", stopAutoplay);
-        carousel.addEventListener("focusin", (event) => {
-            if (event.target !== toggleButton) {
-                stopAutoplay();
-            }
-        });
+        previousButton.addEventListener("click", () => showSlide(activeIndex - 1, true));
+        nextButton.addEventListener("click", () => showSlide(activeIndex + 1, true));
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
                 stopAutoplay();
+            } else {
+                startAutoplay();
             }
         });
 
@@ -110,11 +89,12 @@ if (carousel) {
             prefersReducedMotion.addEventListener("change", (event) => {
                 if (event.matches) {
                     stopAutoplay();
+                } else {
+                    startAutoplay();
                 }
             });
         }
 
-        updateControls();
         startAutoplay();
     }
 }

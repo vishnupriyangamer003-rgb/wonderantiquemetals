@@ -8,6 +8,23 @@ if (siteHeader && menuToggle && primaryNavigation) {
         menuToggle.setAttribute("aria-expanded", "false");
     };
 
+    const acquisitionDropdown = primaryNavigation.querySelector(".nav-dropdown");
+    if (acquisitionDropdown) {
+        const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+        acquisitionDropdown.addEventListener("pointerenter", (event) => {
+            if (supportsHover.matches && event.pointerType !== "touch") {
+                acquisitionDropdown.open = true;
+            }
+        });
+
+        acquisitionDropdown.addEventListener("pointerleave", () => {
+            if (supportsHover.matches && !acquisitionDropdown.contains(document.activeElement)) {
+                acquisitionDropdown.open = false;
+            }
+        });
+    }
+
     menuToggle.addEventListener("click", () => {
         const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
         siteHeader.classList.toggle("is-open", !isOpen);

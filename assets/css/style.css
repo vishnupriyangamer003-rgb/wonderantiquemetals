@@ -1108,13 +1108,6 @@ p {
     line-height: 1.8;
 }
 
-.about-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 22px;
-}
-
 .about-hero__visual {
     position: relative;
     margin: 0;

@@ -10,10 +10,6 @@ require_once __DIR__ . '/includes/header.php';
             <p class="eyebrow">About Wonder Antique Metals</p>
             <h1 id="about-title">A clearer<br><em>perspective.</em></h1>
             <p class="about-hero__intro">We bring market context and technical understanding to precious metals, antique items, and rare materials—helping clients understand an asset and consider informed next steps.</p>
-            <div class="about-hero__actions">
-                <a class="button button-dark" href="#approach">Our approach <span aria-hidden="true">↓</span></a>
-                <a class="text-link" href="index.php#services">Explore services <span aria-hidden="true">↗</span></a>
-            </div>
         </div>
         <figure class="about-hero__visual">
             <img

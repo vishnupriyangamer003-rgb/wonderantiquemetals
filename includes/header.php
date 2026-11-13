@@ -28,7 +28,7 @@
                 <a href="#services">Services</a>
                 <a href="#about">About</a>
                 <a href="#standards">Our standards</a>
-                <a class="nav-cta" href="#services">Explore services <span aria-hidden="true">↗</span></a>
+                <a class="nav-cta" href="#services">Contact <span aria-hidden="true">↗</span></a>
             </nav>
         </div>
     </header>

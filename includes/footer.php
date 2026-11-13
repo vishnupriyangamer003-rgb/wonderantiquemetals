@@ -21,12 +21,11 @@
                 <span>Rare materials</span>
                 <a href="#acquisition-products">View acquisition services <span aria-hidden="true">↗</span></a>
             </div>
-            <address class="site-footer__contact" id="contact" aria-label="Sample company contact information">
+            <address class="site-footer__contact" id="contact" aria-label="Company contact information">
                 <span class="footer-label">Company information</span>
-                <a href="tel:+12025550147">Phone (sample): +1 (202) 555-0147</a>
-                <a href="mailto:hello@example.com">Email (sample): hello@example.com</a>
-                <span>Sample address</span>
-                <span>123 Example Street, Sample City, ZZ 00000, USA</span>
+                <a href="tel:+910000000000">Phone: +91 00000 00000</a>
+                <a href="mailto:hello@example.com">Email: hello@example.com</a>
+                <span>123 Example Road, Example City, India</span>
                 <a class="back-to-top" href="#main" aria-label="Back to top" title="Back to top">
                     <span aria-hidden="true">↑</span>
                 </a>

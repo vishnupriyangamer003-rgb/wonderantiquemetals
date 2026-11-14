@@ -64,11 +64,11 @@ $metaDescription = htmlspecialchars(
                     </summary>
                     <div class="nav-dropdown__menu">
                         <a href="services.php">All services</a>
-                        <a href="services.php#service-regulatory">Regulatory support</a>
-                        <a href="services.php#service-assaying">Assaying &amp; assessment</a>
-                        <a href="services.php#service-acquisition">Acquisition</a>
-                        <a href="services.php#service-auction">Auction services</a>
-                        <a href="services.php#service-monetization">Monetization</a>
+                        <a href="service-detail.php?service=regulatory">Regulatory support</a>
+                        <a href="service-detail.php?service=assaying">Assaying &amp; assessment</a>
+                        <a href="service-detail.php?service=acquisition">Acquisition</a>
+                        <a href="service-detail.php?service=auction">Auction services</a>
+                        <a href="service-detail.php?service=monetization">Monetization</a>
                     </div>
                 </details>
                 <a class="nav-cta" href="index.php#contact">Contact <span aria-hidden="true">↗</span></a>

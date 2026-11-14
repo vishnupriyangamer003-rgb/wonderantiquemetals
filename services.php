@@ -45,6 +45,7 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="eyebrow">Guidance</p>
                 <h2>Regulatory support</h2>
                 <p>Understand the regulatory considerations that can shape precious-metal activity and transactions.</p>
+                <a class="text-link" href="service-detail.php?service=regulatory">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
         <article class="service-detail" id="service-assaying">
@@ -53,6 +54,7 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="eyebrow">Technical</p>
                 <h2>Assaying &amp; assessment</h2>
                 <p>Careful examination and quality assessment help build a clearer picture of the material in question.</p>
+                <a class="text-link" href="service-detail.php?service=assaying">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
         <article class="service-detail" id="service-acquisition">
@@ -61,6 +63,7 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="eyebrow">Market</p>
                 <h2>Acquisition</h2>
                 <p>Evaluate acquisition opportunities across precious metals and distinctive antique items.</p>
+                <a class="text-link" href="service-detail.php?service=acquisition">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
         <article class="service-detail" id="service-auction">
@@ -69,6 +72,7 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="eyebrow">Exchange</p>
                 <h2>Auction services</h2>
                 <p>Prepare metal and antique assets for auction with attention to their qualities and market context.</p>
+                <a class="text-link" href="service-detail.php?service=auction">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
         <article class="service-detail" id="service-monetization">
@@ -77,6 +81,7 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="eyebrow">Value</p>
                 <h2>Monetization</h2>
                 <p>Consider practical routes to realize value from precious-metal holdings and unique assets.</p>
+                <a class="text-link" href="service-detail.php?service=monetization">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
     </section>

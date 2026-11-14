@@ -125,7 +125,6 @@ require_once __DIR__ . '/includes/header.php';
             <?php foreach ($service['details'] as $paragraph) : ?>
                 <p><?php echo $e($paragraph); ?></p>
             <?php endforeach; ?>
-            <a class="service-page-round" href="index.php#contact">Get in touch <span aria-hidden="true">→</span></a>
         </div>
     </article>
 </main>

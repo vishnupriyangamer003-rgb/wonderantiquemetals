@@ -2411,3 +2411,18 @@ p {
         font-size: 19px;
     }
 }
+
+.service-page-layout__visual figcaption {
+    padding: 10px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+
+.service-page-layout__visual figcaption a {
+    color: var(--muted);
+}
+
+.service-page-layout__visual figcaption a:hover,
+.service-page-layout__visual figcaption a:focus-visible {
+    color: var(--rust);
+}

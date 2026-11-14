@@ -32,6 +32,14 @@ $metaDescription = htmlspecialchars(
     <script src="assets/js/main.js" defer></script>
 </head>
 <body>
+    <div class="site-preloader" data-site-preloader aria-hidden="true">
+        <div class="site-preloader__content">
+            <div class="site-preloader__mark"><span>W</span></div>
+            <p class="site-preloader__name">Wonder <em>Antique Metals</em></p>
+            <p class="site-preloader__caption">A considered view of value</p>
+            <span class="site-preloader__rule" aria-hidden="true"></span>
+        </div>
+    </div>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="announcement">
         <span>Precious metals · Antique items · Rare materials</span>
@@ -49,18 +57,18 @@ $metaDescription = htmlspecialchars(
             <nav class="site-nav" id="primary-navigation" aria-label="Main navigation">
                 <a href="index.php">Home</a>
                 <a href="about.php">About</a>
-                <a href="index.php#services">Services</a>
                 <details class="nav-dropdown">
                     <summary>
-                        Acquisition products
+                        Services
                         <span class="nav-dropdown__indicator" aria-hidden="true">▾</span>
                     </summary>
                     <div class="nav-dropdown__menu">
-                        <a href="index.php#product-precious-metals">Precious metals</a>
-                        <a href="index.php#product-antique-jewelry">Antique jewelry</a>
-                        <a href="index.php#product-vintage-timepieces">Vintage timepieces</a>
-                        <a href="index.php#product-decorative-metalwork">Decorative metalwork</a>
-                        <a href="index.php#product-rare-materials">Rare materials</a>
+                        <a href="services.php">All services</a>
+                        <a href="services.php#service-regulatory">Regulatory support</a>
+                        <a href="services.php#service-assaying">Assaying &amp; assessment</a>
+                        <a href="services.php#service-acquisition">Acquisition</a>
+                        <a href="services.php#service-auction">Auction services</a>
+                        <a href="services.php#service-monetization">Monetization</a>
                     </div>
                 </details>
                 <a class="nav-cta" href="index.php#contact">Contact <span aria-hidden="true">↗</span></a>

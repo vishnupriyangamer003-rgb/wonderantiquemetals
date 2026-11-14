@@ -8,7 +8,7 @@
                 <span class="footer-label">Quick links</span>
                 <a href="index.php">Home</a>
                 <a href="about.php">About</a>
-                <a href="index.php#services">Services</a>
+                <a href="services.php">Services</a>
                 <a href="index.php#acquisition-products">Acquisition products</a>
                 <a href="index.php#contact">Contact</a>
             </nav>

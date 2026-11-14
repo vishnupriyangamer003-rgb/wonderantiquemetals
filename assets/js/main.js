@@ -1,3 +1,35 @@
+const sitePreloader = document.querySelector("[data-site-preloader]");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (sitePreloader && !prefersReducedMotion.matches) {
+    const minimumDisplayTime = 600;
+    const startedAt = performance.now();
+    let dismissalScheduled = false;
+
+    const dismissPreloader = () => {
+        if (dismissalScheduled) {
+            return;
+        }
+
+        dismissalScheduled = true;
+        const remainingTime = Math.max(0, minimumDisplayTime - (performance.now() - startedAt));
+
+        window.setTimeout(() => {
+            document.documentElement.classList.remove("is-preloading");
+            sitePreloader.classList.add("is-hiding");
+            window.setTimeout(() => sitePreloader.remove(), 500);
+        }, remainingTime);
+    };
+
+    document.documentElement.classList.add("is-preloading");
+    if (document.readyState === "complete") {
+        dismissPreloader();
+    } else {
+        window.addEventListener("load", dismissPreloader, { once: true });
+    }
+    window.setTimeout(dismissPreloader, 2500);
+}
+
 const siteHeader = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const primaryNavigation = document.querySelector("#primary-navigation");

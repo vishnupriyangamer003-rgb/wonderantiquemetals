@@ -128,6 +128,7 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="eyebrow">How we help</p>
                 <h2 id="services-title">Our Services</h2>
                 <p class="services-overview__text">Our work spans five connected areas—regulatory guidance, assaying, acquisition, auction, and monetization. We bring technical and market perspective to precious-metal and antique assets, from initial assessment through next steps.</p>
+                <a class="text-link services-overview__link" href="services.php">Explore all services <span aria-hidden="true">→</span></a>
             </div>
             <figure class="services-overview__image">
                 <img

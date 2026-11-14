@@ -356,7 +356,7 @@ html.is-preloading .site-preloader {
 .nav-dropdown__menu {
     position: absolute;
     z-index: 30;
-    top: calc(100% + 10px);
+    top: calc(100% - 1px);
     left: -16px;
     display: flex;
     min-width: 240px;

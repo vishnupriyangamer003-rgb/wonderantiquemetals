@@ -1378,35 +1378,9 @@ p {
     line-height: 1.55;
 }
 
-.contact-hero__note {
-    margin: 0;
-    padding: 10px 0 10px 15px;
-    border-left: 1px solid var(--rust);
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.7;
-}
-
 .contact-details {
-    padding-top: 28px;
+    padding-top: 42px;
     padding-bottom: 96px;
-}
-
-.contact-details__heading {
-    margin-bottom: 34px;
-}
-
-.contact-details__heading .eyebrow {
-    margin-bottom: 10px;
-}
-
-.contact-details__heading h2 {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: clamp(38px, 5vw, 58px);
-    font-weight: 400;
-    letter-spacing: -0.055em;
-    line-height: 1;
 }
 
 .contact-details__grid {
@@ -2574,7 +2548,7 @@ p {
     }
 
     .contact-details {
-        padding-top: 16px;
+        padding-top: 26px;
         padding-bottom: 66px;
     }
 

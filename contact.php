@@ -12,15 +12,10 @@ require_once __DIR__ . '/includes/header.php';
         </div>
         <div class="contact-hero__copy">
             <p>For enquiries about precious metals, antique items, and rare materials, get in touch using the details below.</p>
-            <p class="contact-hero__note">Sample contact information for layout preview. Replace these details before publishing.</p>
         </div>
     </section>
 
-    <section class="contact-details section-shell" id="contact-details" aria-labelledby="contact-details-title">
-        <div class="contact-details__heading">
-            <p class="eyebrow">Get in touch</p>
-            <h2 id="contact-details-title">Contact details</h2>
-        </div>
+    <section class="contact-details section-shell" id="contact-details" aria-label="Contact information">
         <div class="contact-details__grid">
             <article class="contact-card">
                 <span class="card-number">01 / ADDRESS</span>

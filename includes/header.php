@@ -71,7 +71,7 @@ $metaDescription = htmlspecialchars(
                         <a href="service-detail.php?service=monetization">Monetization</a>
                     </div>
                 </details>
-                <a class="nav-cta" href="index.php#contact">Contact <span aria-hidden="true">↗</span></a>
+                <a class="nav-cta" href="contact.php#contact-details">Contact <span aria-hidden="true">↗</span></a>
             </nav>
         </div>
     </header>

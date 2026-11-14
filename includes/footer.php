@@ -10,7 +10,7 @@
                 <a href="about.php">About</a>
                 <a href="services.php">Services</a>
                 <a href="index.php#acquisition-products">Acquisition products</a>
-                <a href="index.php#contact">Contact</a>
+                <a href="contact.php#contact-details">Contact</a>
             </nav>
             <div class="site-footer__links">
                 <span class="footer-label">Acquisition products</span>
@@ -23,9 +23,9 @@
             </div>
             <address class="site-footer__contact" id="contact" aria-label="Company contact information">
                 <span class="footer-label">Company information</span>
-                <a href="tel:+919876543210">Phone: +91 9876543210</a>
+                <span>Phone: +91 00000 00000</span>
                 <a href="mailto:hello@example.com">Email: hello@example.com</a>
-                <span>123 Example Road, Example City, India</span>
+                <span>12 Example Street, Karur, Tamil Nadu 639001, India</span>
                 <a class="back-to-top" href="#main" aria-label="Back to top" title="Back to top">
                     <span aria-hidden="true">↑</span>
                 </a>

@@ -2,13 +2,15 @@
 
 ## What this is
 
-Small static Core PHP multi-page site: no framework, no database, no Composer, no `package.json`, no tests, no lint/format config, and **no CI workflows** (`.github/` contains only agent instructions and skills — see below). Root-level `*.php` pages are served directly by XAMPP from this directory.
+Small static Core PHP multi-page site (root-level `*.php`, served directly by XAMPP) with a **parallel Laravel 13 app being built in `laravel-app/`** (Phase 1 scaffolded 2026-11). No database, no CI workflows (`.github/` holds only agent instructions and skills). The legacy site is the fallback until cutover is approved.
 
 ## Commands
 
-- PHP is **not on PATH**. Use the XAMPP CLI directly: `C:\xampp\php\php.exe -l <file>` — syntax checking is the only automated verification available.
-- There is no test runner, linter, or build step. Verify changes with `php -l` plus browser checks (navigation links, asset paths, desktop/mobile).
-- Verified 2026-11: local XAMPP PHP CLI is **8.0.30**. `.github/instructions/laravel-migration.instructions.md` claims 8.2.12 — re-verify at runtime before trusting either number; Laravel 12 requires PHP ≥ 8.2, so the local runtime may be insufficient.
+- PHP is **not on PATH**. Use the XAMPP CLI directly: `C:\xampp\php\php.exe`.
+- Composer is not installed globally; a working `composer.phar` lives at `%LOCALAPPDATA%\Temp\opencode\composer.phar` (re-download from `https://getcomposer.org/composer-stable.phar` if missing): `C:\xampp\php\php.exe <phar> <args>`.
+- Local PHP is **8.0.30** (both CLI and Apache). This is below `laravel-app/`'s `php ^8.3` requirement, so **`artisan`, PHPUnit, and Laravel's test runner cannot run locally** — they run on the live host (PHP ≥ 8.3). Local verification = `php -l` + browser checks of the legacy site.
+- Local Composer operations inside `laravel-app/` must pass `--ignore-platform-reqs` (platform check would otherwise fail on PHP 8.0.30). `composer validate` works without it.
+- `.github/instructions/laravel-migration.instructions.md` claims local PHP is 8.2.12 — that is wrong; verified 8.0.30 at runtime.
 
 ## Page structure (Core PHP)
 
@@ -17,15 +19,16 @@ Small static Core PHP multi-page site: no framework, no database, no Composer, n
 - `service-detail.php?service={slug}` renders from a `$services` array; allowed slugs: `regulatory`, `assaying`, `acquisition`, `auction`, `monetization`. Unknown slugs set `http_response_code(404)` and show an inline not-found section. Keep that validation when editing.
 - Nav links are page-relative (`services.php`, `service-detail.php?service=…`). After touching any page, verify every nav link resolves from each page.
 
-## Laravel migration (paused)
+## Laravel migration (Phase 1 done: scaffold)
 
-- A parallel Laravel app is planned at `laravel-app/`; it does not exist yet. Full spec: `.github/skills/core-php-to-laravel/SKILL.md` and `.github/instructions/laravel-migration.instructions.md`.
-- **Stop gate:** do not scaffold Laravel, install Composer, or change any PHP runtime until the user confirms the target hosting PHP version. Composer is not installed.
+- `laravel-app/` now holds a stock Laravel **13.11** scaffold (framework 13.42, `php ^8.3`), created with `--no-scripts` (artisan can't run locally), plus a copy of `assets/` in `public/assets/`. `.env` + `APP_KEY` were generated manually; `vendor/` and `.env` are gitignored. Full spec: `.github/skills/core-php-to-laravel/SKILL.md`.
+- Remaining phases: shared Blade layout, routes + legacy `.php` redirects, page content migration, tests (on live-host PHP ≥ 8.3), then a separately approved cutover.
+- The skeleton ships its own `laravel-app/AGENTS.md`/`CLAUDE.md` (Laravel Boost boilerplate) — they suggest installing PHP 8.5; **ignore that**, local runtime stays 8.0.30 unless the user approves a change.
 - Keep the root Core PHP site working and unchanged until cutover is explicitly approved.
 
 ## Git
 
-- Default branch is `main`. Current checkout is `feature/core-php-to-laravel` (only the agent-guidance files ahead of `main`); the migration skill says to work there — confirm with the user before switching branches.
+- Default branch is `main`. Current checkout is `feature/core-php-to-laravel` (migration work lives here, ahead of `main`); confirm with the user before switching branches or merging.
 - Commit only completed, validated changes; never force-push or amend; if the remote has advanced or a conflict blocks a safe push, stop and explain. Source: `.github/instructions/git-workflow.instructions.md`.
 
 ## Content rules (from `.github/instructions/`)

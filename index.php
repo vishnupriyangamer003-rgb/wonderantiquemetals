@@ -17,9 +17,8 @@ require_once __DIR__ . '/includes/header.php';
                     <p class="home-carousel__eyebrow">Antique objects · Precious metals</p>
                     <h2>The value<br>of a story.</h2>
                     <p>A considered approach to antique objects, precious metals, and rare materials.</p>
-                    <a class="button button-light" href="#services">Explore our services <span aria-hidden="true">↗</span></a>
+                    <a class="button button-light" href="services.php">Explore our services <span aria-hidden="true">↗</span></a>
                 </div>
-                <a class="home-carousel__credit" href="https://www.pexels.com/photo/choice-of-retro-decor-items-and-jewelry-5865376/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
             </article>
             <article class="home-carousel__slide" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 2 of 3" hidden>
                 <img
@@ -33,9 +32,7 @@ require_once __DIR__ . '/includes/header.php';
                     <p class="home-carousel__eyebrow">Technical insight · Market perspective</p>
                     <h2>Expertise<br>you can rely on.</h2>
                     <p>Careful assessment and clear communication help bring each asset into focus.</p>
-                    <a class="button button-light" href="#standards">Our standards <span aria-hidden="true">↗</span></a>
                 </div>
-                <a class="home-carousel__credit" href="https://www.pexels.com/photo/display-of-antique-items-6795489/" target="_blank" rel="noopener noreferrer">Photo by Freitas Junior / Pexels</a>
             </article>
             <article class="home-carousel__slide" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 3 of 3" hidden>
                 <img
@@ -49,13 +46,12 @@ require_once __DIR__ . '/includes/header.php';
                     <p class="home-carousel__eyebrow">Acquisition · Auction · Monetization</p>
                     <h2>Make your<br>next move.</h2>
                     <p>Explore thoughtful routes for distinctive metal and antique assets.</p>
-                    <a class="button button-light" href="#services">See our services <span aria-hidden="true">↗</span></a>
+                    <a class="button button-light" href="services.php">See our services <span aria-hidden="true">↗</span></a>
                 </div>
-                <a class="home-carousel__credit" href="https://www.pexels.com/photo/antiques-on-display-in-a-store-5865384/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
             </article>
         </div>
         <div class="home-carousel__controls" role="group" aria-label="Banner slide controls">
-            <span class="home-carousel__status" aria-live="off" aria-atomic="true">01 / 03</span>
+            <span class="home-carousel__status" data-carousel-status aria-live="off" aria-atomic="true">01 / 03</span>
             <button class="home-carousel__button" type="button" data-carousel-prev aria-label="Previous slide">
                 <span aria-hidden="true">←</span>
             </button>
@@ -71,8 +67,7 @@ require_once __DIR__ . '/includes/header.php';
             <h1 id="hero-title">Precious<br>metals.<br><em>Expertise.</em></h1>
             <p class="hero-intro">Technical and market support across precious metals, antique items, and rare materials—from assessment and acquisition to auction and monetization.</p>
             <div class="hero-actions">
-                <a class="button button-dark" href="#services">Explore our services <span aria-hidden="true">↗</span></a>
-                <a class="text-link" href="#about">Who we are <span aria-hidden="true">→</span></a>
+                <a class="text-link" href="about.php">Who we are <span aria-hidden="true">→</span></a>
             </div>
             <p class="hero-note">A considered view of value, quality, and opportunity.</p>
         </div>
@@ -90,11 +85,6 @@ require_once __DIR__ . '/includes/header.php';
                     <span class="hero-banner__eyebrow">Antique metalwork</span>
                     <span class="hero-banner__headline">Value with<br>a history.</span>
                 </figcaption>
-                <a
-                    class="hero-banner__credit"
-                    href="https://www.pexels.com/photo/vintage-clock-in-an-antique-shop-window-16470625/"
-                    target="_blank"
-                    rel="noopener noreferrer">Photo by Ömer Derinyar / Pexels</a>
             </figure>
             <span class="hero-art__side-note" aria-hidden="true">A connected market view</span>
         </div>
@@ -107,27 +97,28 @@ require_once __DIR__ . '/includes/header.php';
             <h2 id="about-title">A market shaped by<br><em>many perspectives.</em></h2>
             <div class="story__bottom">
                 <p>Precious-metal work connects commercial and technical disciplines. Investment, production, refining, fabrication, metallurgy, research, and end use all bring a different perspective to the value of an asset.</p>
-                <a class="button button-light" href="#standards">Our principles <span aria-hidden="true">↗</span></a>
             </div>
         </div>
     </section>
 
-    <section class="intro-strip" aria-label="Our service areas">
+    <section class="intro-strip" aria-label="Antique and appraisal service areas">
         <div class="intro-strip__inner">
             <span>Regulatory</span><i aria-hidden="true"></i>
             <span>Assaying</span><i aria-hidden="true"></i>
             <span>Acquisition</span><i aria-hidden="true"></i>
             <span>Auction</span><i aria-hidden="true"></i>
-            <span>Monetization</span>
+            <span>Monetization</span><i aria-hidden="true"></i>
+            <span>Appraisals</span>
         </div>
     </section>
 
     <section class="services section-shell" id="services" aria-labelledby="services-title">
         <div class="services-overview">
             <div class="services-overview__copy">
-                <p class="eyebrow">How we help</p>
-                <h2 id="services-title">Our Services</h2>
-                <p class="services-overview__text">Our work spans five connected areas—regulatory guidance, assaying, acquisition, auction, and monetization. We bring technical and market perspective to precious-metal and antique assets, from initial assessment through next steps.</p>
+                <p class="eyebrow">Antiques</p>
+                <h2 id="services-title">Antique Services</h2>
+                <p class="services-overview__text">Explore regulatory guidance, assaying, acquisition, auction, and monetization for antique and precious-metal assets. Our appraisal pages explain the process, terms, and fee information.</p>
+                <a class="text-link services-overview__link" href="services.php">Explore all services <span aria-hidden="true">→</span></a>
             </div>
             <figure class="services-overview__image">
                 <img
@@ -136,39 +127,56 @@ require_once __DIR__ . '/includes/header.php';
                     width="1920"
                     height="1280"
                     loading="lazy">
-                <figcaption>
-                    <a href="https://www.pexels.com/photo/antiques-on-display-in-a-store-5865384/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
-                </figcaption>
             </figure>
         </div>
 
         <div class="services-grid">
             <article class="service-card">
                 <div class="service-card__top"><span class="card-number">01 / GUIDANCE</span><span class="service-card__seal" aria-hidden="true">R</span></div>
-                <h3>Regulatory support</h3>
-                <p>Understand the regulatory considerations that can shape precious-metal activity and transactions.</p>
+                <h3>Regulatory Services</h3>
+                <p>Navigate changing compliance requirements, documentation, and export logistics with guidance for precious-metal and antique transactions.</p>
+                <a class="text-link service-card__link" href="service-detail.php?service=regulatory" aria-label="Read more about regulatory services">Read more <span aria-hidden="true">→</span></a>
             </article>
             <article class="service-card">
                 <div class="service-card__top"><span class="card-number">02 / TECHNICAL</span><span class="service-card__seal" aria-hidden="true">A</span></div>
-                <h3>Assaying &amp; assessment</h3>
-                <p>Careful examination and quality assessment help build a clearer picture of the material in question.</p>
+                <h3>Assaying Services</h3>
+                <p>Professional testing and quality assessment of metals, stones, and antique items, with findings explained clearly.</p>
+                <a class="text-link service-card__link" href="service-detail.php?service=assaying" aria-label="Read more about assaying services">Read more <span aria-hidden="true">→</span></a>
             </article>
-            <article class="service-card" id="acquisition-products">
+            <article class="service-card">
                 <div class="service-card__top"><span class="card-number">03 / MARKET</span><span class="service-card__seal" aria-hidden="true">A</span></div>
-                <h3>Acquisition</h3>
-                <p>Evaluate acquisition opportunities across precious metals and distinctive antique items.</p>
+                <h3>Acquisition Services</h3>
+                <p>Valuation, negotiation, and completion support to help you find suitable buyers or sellers for precious metals, gemstones, and antiques.</p>
+                <a class="text-link service-card__link" href="service-detail.php?service=acquisition" aria-label="Read more about acquisition services">Read more <span aria-hidden="true">→</span></a>
             </article>
             <article class="service-card">
                 <div class="service-card__top"><span class="card-number">04 / EXCHANGE</span><span class="service-card__seal" aria-hidden="true">A</span></div>
-                <h3>Auction services</h3>
-                <p>Prepare metal and antique assets for auction with attention to their qualities and market context.</p>
+                <h3>Auction Services</h3>
+                <p>Online, offline, and on-site auctions for antiques, rare materials, collectibles, and consignments, from planning to completion.</p>
+                <a class="text-link service-card__link" href="service-detail.php?service=auction" aria-label="Read more about auction services">Read more <span aria-hidden="true">→</span></a>
             </article>
             <article class="service-card">
                 <div class="service-card__top"><span class="card-number">05 / VALUE</span><span class="service-card__seal" aria-hidden="true">M</span></div>
                 <h3>Monetization</h3>
-                <p>Consider practical routes to realize value from precious-metal holdings and unique assets.</p>
+                <p>Convert precious metals, stones, and antique assets into value through one connected route of assessment, approvals, and sale.</p>
+                <a class="text-link service-card__link" href="service-detail.php?service=monetization" aria-label="Read more about monetization">Read more <span aria-hidden="true">→</span></a>
             </article>
         </div>
+
+        <section class="appraisal-overview" aria-labelledby="appraisal-overview-title">
+            <div class="appraisal-overview__copy">
+                <p class="eyebrow">Appraisals</p>
+                <h3 id="appraisal-overview-title">Antique Appraisals</h3>
+                <p>Learn what an appraisal considers, how the process works, and how to request current terms and fee information. Scope and charges are discussed with you before work begins.</p>
+                <a class="text-link" href="antique-appraisals.php">Explore antique appraisals <span aria-hidden="true">→</span></a>
+            </div>
+            <nav class="appraisal-overview__links" aria-label="Appraisal information">
+                <span class="appraisal-overview__label">More information</span>
+                <a href="appraisal-terms.php">Terms &amp; Conditions <span aria-hidden="true">↗</span></a>
+                <a href="appraisal-procedure.php">Procedure <span aria-hidden="true">↗</span></a>
+                <a href="appraisal-fees.php">Fee Structure <span aria-hidden="true">↗</span></a>
+            </nav>
+        </section>
     </section>
 
     <section class="guarantee" aria-labelledby="guarantee-title">
@@ -214,7 +222,7 @@ require_once __DIR__ . '/includes/header.php';
             <p class="eyebrow">Precious metals · Antique assets · Rare materials</p>
             <h2 id="next-step-title">Find the right path<br><em>for your asset.</em></h2>
         </div>
-        <a class="button button-dark" href="#services">Review our services <span aria-hidden="true">↗</span></a>
+        <a class="button button-dark" href="contact.php">Contact us <span aria-hidden="true">↗</span></a>
     </section>
 </main>
 

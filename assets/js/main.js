@@ -1,3 +1,35 @@
+const sitePreloader = document.querySelector("[data-site-preloader]");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (sitePreloader && !prefersReducedMotion.matches) {
+    const minimumDisplayTime = 600;
+    const startedAt = performance.now();
+    let dismissalScheduled = false;
+
+    const dismissPreloader = () => {
+        if (dismissalScheduled) {
+            return;
+        }
+
+        dismissalScheduled = true;
+        const remainingTime = Math.max(0, minimumDisplayTime - (performance.now() - startedAt));
+
+        window.setTimeout(() => {
+            document.documentElement.classList.remove("is-preloading");
+            sitePreloader.classList.add("is-hiding");
+            window.setTimeout(() => sitePreloader.remove(), 500);
+        }, remainingTime);
+    };
+
+    document.documentElement.classList.add("is-preloading");
+    if (document.readyState === "complete") {
+        dismissPreloader();
+    } else {
+        window.addEventListener("load", dismissPreloader, { once: true });
+    }
+    window.setTimeout(dismissPreloader, 2500);
+}
+
 const siteHeader = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const primaryNavigation = document.querySelector("#primary-navigation");
@@ -8,22 +40,22 @@ if (siteHeader && menuToggle && primaryNavigation) {
         menuToggle.setAttribute("aria-expanded", "false");
     };
 
-    const acquisitionDropdown = primaryNavigation.querySelector(".nav-dropdown");
-    if (acquisitionDropdown) {
-        const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const navigationDropdowns = primaryNavigation.querySelectorAll(".nav-dropdown");
+    const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-        acquisitionDropdown.addEventListener("pointerenter", (event) => {
+    navigationDropdowns.forEach((dropdown) => {
+        dropdown.addEventListener("pointerenter", (event) => {
             if (supportsHover.matches && event.pointerType !== "touch") {
-                acquisitionDropdown.open = true;
+                dropdown.open = true;
             }
         });
 
-        acquisitionDropdown.addEventListener("pointerleave", () => {
-            if (supportsHover.matches && !acquisitionDropdown.contains(document.activeElement)) {
-                acquisitionDropdown.open = false;
+        dropdown.addEventListener("pointerleave", () => {
+            if (supportsHover.matches && !dropdown.contains(document.activeElement)) {
+                dropdown.open = false;
             }
         });
-    }
+    });
 
     menuToggle.addEventListener("click", () => {
         const isOpen = menuToggle.getAttribute("aria-expanded") === "true";

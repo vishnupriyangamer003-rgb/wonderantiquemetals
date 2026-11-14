@@ -7,11 +7,6 @@ $services = [
         'summary' => 'Understand the regulatory considerations that can shape precious-metal activity and transactions.',
         'image' => 'assets/images/antique-collection-slide.jpg',
         'alt' => 'Antique jewelry and small decorative objects arranged across a vintage market display',
-        'points' => [
-            'Regulatory considerations that can shape precious-metal activity.',
-            'How those considerations apply to transactions and holdings.',
-            'Clear communication of next steps before you proceed.',
-        ],
     ],
     'assaying' => [
         'number' => '02',
@@ -20,11 +15,6 @@ $services = [
         'summary' => 'Careful examination and quality assessment help build a clearer picture of the material in question.',
         'image' => 'assets/images/pocket-watch-slide.jpg',
         'alt' => 'Vintage pocket watches and antique objects arranged for display',
-        'points' => [
-            'Careful examination of the material in question.',
-            'Quality assessment that supports a clearer picture of value.',
-            'Technical findings explained in plain terms.',
-        ],
     ],
     'acquisition' => [
         'number' => '03',
@@ -33,11 +23,6 @@ $services = [
         'summary' => 'Evaluate acquisition opportunities across precious metals and distinctive antique items.',
         'image' => 'assets/images/antique-metals-banner.jpg',
         'alt' => 'Ornate antique mantel clock displayed between decorative vases in a shop window',
-        'points' => [
-            'Opportunities across precious metals and rare materials.',
-            'Distinctive antique items and their market context.',
-            'A considered view of quality and opportunity.',
-        ],
     ],
     'auction' => [
         'number' => '04',
@@ -46,11 +31,6 @@ $services = [
         'summary' => 'Prepare metal and antique assets for auction with attention to their qualities and market context.',
         'image' => 'assets/images/antique-display-slide.jpg',
         'alt' => 'Vintage and antique jewelry and decorative objects arranged together',
-        'points' => [
-            'Preparing metal and antique assets for auction.',
-            'Attention to the qualities that set each asset apart.',
-            'Market context to inform how an asset is presented.',
-        ],
     ],
     'monetization' => [
         'number' => '05',
@@ -59,11 +39,6 @@ $services = [
         'summary' => 'Consider practical routes to realize value from precious-metal holdings and unique assets.',
         'image' => 'assets/images/antique-collection-slide.jpg',
         'alt' => 'Antique jewelry and small decorative objects arranged across a vintage market display',
-        'points' => [
-            'Practical routes to realize value from holdings.',
-            'Options for precious metals and unique assets.',
-            'Thoughtful next steps once value is understood.',
-        ],
     ],
 ];
 
@@ -123,31 +98,8 @@ require_once __DIR__ . '/includes/header.php';
         </figure>
     </section>
 
-    <section class="service-page-overview" aria-labelledby="service-overview-title">
-        <div class="service-page-overview__inner section-shell">
-            <p class="service-page-label" aria-hidden="true">Section 1.</p>
-            <div>
-                <h2 id="service-overview-title">Overview</h2>
-                <p><?php echo $e($service['summary']); ?> Our work brings technical and market perspective to precious-metal and antique assets, from initial assessment through next steps.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="service-page-points" aria-labelledby="service-points-title">
-        <div class="service-page-points__inner section-shell">
-            <p class="service-page-label" aria-hidden="true">Section 2.</p>
-            <h2 id="service-points-title">What we consider</h2>
-            <ol>
-                <?php foreach ($service['points'] as $i => $point) : ?>
-                    <li><span><?php echo str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT); ?></span> <?php echo $e($point); ?></li>
-                <?php endforeach; ?>
-            </ol>
-        </div>
-    </section>
-
     <section class="service-page-related" aria-labelledby="service-related-title">
         <div class="service-page-related__inner section-shell">
-            <p class="service-page-label" aria-hidden="true">Section 3.</p>
             <h2 id="service-related-title">Connected services</h2>
             <ul>
                 <?php foreach ($services as $key => $item) : ?>

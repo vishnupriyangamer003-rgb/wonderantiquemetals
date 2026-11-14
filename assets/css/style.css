@@ -2325,30 +2325,6 @@ p {
     object-fit: cover;
 }
 
-.service-page-label {
-    margin: 0 0 12px;
-    color: var(--rust);
-    font-family: var(--serif);
-    font-size: clamp(30px, 4vw, 54px);
-    letter-spacing: -0.04em;
-    line-height: 1;
-    text-transform: uppercase;
-}
-
-.service-page-overview {
-    background: #f1dcd2;
-}
-
-.service-page-overview__inner {
-    display: grid;
-    grid-template-columns: minmax(150px, 0.45fr) minmax(0, 1.55fr);
-    gap: 6%;
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-
-.service-page-overview h2,
-.service-page-points h2,
 .service-page-related h2 {
     margin-bottom: 20px;
     font-family: var(--serif);
@@ -2358,48 +2334,9 @@ p {
     line-height: 1;
 }
 
-.service-page-overview p:not(.service-page-label) {
-    max-width: 640px;
-    margin: 0;
-    color: #5f574d;
-    font-size: 18px;
-    line-height: 1.85;
-}
-
-.service-page-points {
-    background: var(--dark);
-    color: var(--paper);
-}
-
-.service-page-points__inner,
 .service-page-related__inner {
     padding-top: 80px;
     padding-bottom: 80px;
-}
-
-.service-page-points ol {
-    margin: 36px 0 0;
-    padding: 0;
-    list-style: none;
-}
-
-.service-page-points li {
-    display: flex;
-    align-items: baseline;
-    gap: 28px;
-    padding: 24px 0;
-    border-top: 1px solid rgba(243, 240, 232, 0.2);
-    font-size: 20px;
-}
-
-.service-page-points li:last-child {
-    border-bottom: 1px solid rgba(243, 240, 232, 0.2);
-}
-
-.service-page-points li span {
-    color: #d39b7a;
-    font-family: var(--serif);
-    font-size: 28px;
 }
 
 .service-page-related ul {
@@ -2481,8 +2418,7 @@ p {
 }
 
 @media (max-width: 900px) {
-    .service-page-hero,
-    .service-page-overview__inner {
+    .service-page-hero {
         grid-template-columns: 1fr;
     }
 
@@ -2501,16 +2437,9 @@ p {
         border-radius: 120px 120px 0 0;
     }
 
-    .service-page-overview__inner,
-    .service-page-points__inner,
     .service-page-related__inner {
         padding-top: 52px;
         padding-bottom: 52px;
-    }
-
-    .service-page-points li {
-        gap: 16px;
-        font-size: 18px;
     }
 
     .service-page-related ul {

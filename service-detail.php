@@ -93,10 +93,6 @@ if (!$found) {
 }
 
 $service = $services[$slug];
-$keys = array_keys($services);
-$index = array_search($slug, $keys, true);
-$prevSlug = $keys[($index + count($keys) - 1) % count($keys)];
-$nextSlug = $keys[($index + 1) % count($keys)];
 
 $e = static function (string $value): string {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
@@ -108,54 +104,30 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 
 <main id="main">
-    <section class="service-page-hero section-shell" aria-labelledby="service-title">
-        <div class="service-page-hero__copy">
-            <nav class="service-page-crumbs" aria-label="Breadcrumb">
-                <a href="services.php">Services</a> <span aria-hidden="true">/</span> <span aria-current="page"><?php echo $e($service['title']); ?></span>
-            </nav>
-            <p class="eyebrow"><?php echo $e($service['number'] . ' · ' . $service['eyebrow']); ?></p>
-            <h1 id="service-title"><?php echo $e($service['title']); ?></h1>
-            <p class="service-page-hero__intro"><?php echo $e($service['summary']); ?></p>
-            <a class="service-page-round" href="index.php#contact">Get in touch <span aria-hidden="true">→</span></a>
-        </div>
-        <figure class="service-page-hero__visual">
+    <nav class="service-chips section-shell" aria-label="Services">
+        <ul>
+            <?php foreach ($services as $key => $item) : ?>
+                <li>
+                    <a href="service-detail.php?service=<?php echo $e($key); ?>"<?php echo $key === $slug ? ' aria-current="page"' : ''; ?>><?php echo $e($item['title']); ?></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
+
+    <article class="service-page-layout section-shell" aria-labelledby="service-title">
+        <figure class="service-page-layout__visual">
             <img src="<?php echo $e($service['image']); ?>" alt="<?php echo $e($service['alt']); ?>" width="1920" height="1280" fetchpriority="high">
         </figure>
-    </section>
-
-    <section class="service-page-about" aria-labelledby="service-about-title">
-        <div class="service-page-about__inner section-shell">
-            <h2 id="service-about-title">About this service</h2>
+        <div class="service-page-layout__copy">
+            <p class="eyebrow"><?php echo $e($service['number'] . ' · ' . $service['eyebrow']); ?></p>
+            <h1 id="service-title"><?php echo $e($service['title']); ?></h1>
+            <p class="service-page-layout__lead"><?php echo $e($service['summary']); ?></p>
             <?php foreach ($service['details'] as $paragraph) : ?>
                 <p><?php echo $e($paragraph); ?></p>
             <?php endforeach; ?>
+            <a class="service-page-round" href="index.php#contact">Get in touch <span aria-hidden="true">→</span></a>
         </div>
-    </section>
-
-    <section class="service-page-related" aria-labelledby="service-related-title">
-        <div class="service-page-related__inner section-shell">
-            <h2 id="service-related-title">Connected services</h2>
-            <ul>
-                <?php foreach ($services as $key => $item) : ?>
-                    <?php if ($key === $slug) { continue; } ?>
-                    <li>
-                        <a href="service-detail.php?service=<?php echo $e($key); ?>">
-                            <span><?php echo $e($item['number']); ?></span>
-                            <strong><?php echo $e($item['title']); ?></strong>
-                            <em aria-hidden="true">→</em>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </section>
-
-    <nav class="service-page-pager" aria-label="Service navigation">
-        <div class="service-page-pager__inner section-shell">
-            <a href="service-detail.php?service=<?php echo $e($prevSlug); ?>" rel="prev"><span aria-hidden="true">←</span> <?php echo $e($services[$prevSlug]['title']); ?></a>
-            <a href="service-detail.php?service=<?php echo $e($nextSlug); ?>" rel="next"><?php echo $e($services[$nextSlug]['title']); ?> <span aria-hidden="true">→</span></a>
-        </div>
-    </nav>
+    </article>
 </main>
 
 <?php

@@ -12,3 +12,4 @@ description: Build consistent, accessible static content pages using the project
 - Use same-page anchors for sections on the current page and page-relative links for destinations on other pages. Verify that every navigation link resolves from each page.
 - Keep page markup semantic, responsive, keyboard-accessible, and consistent with the shared visual system.
 - Run PHP syntax checks and verify navigation and asset paths after adding or changing pages.
+- Content source: use https://www.irishmetal.eu as the reference for service content (`/regulatory-services/`, `/assaying-services/`, `/acquisition-services/`, `/auction-services/`, `/monetization-services/`). Paraphrase in the site's own tone; never copy text verbatim. Do not repeat unverifiable claims from it (licences, office locations, banking instruments, radioactive materials, prices or fees).

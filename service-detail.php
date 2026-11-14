@@ -7,6 +7,10 @@ $services = [
         'summary' => 'Understand the regulatory considerations that can shape precious-metal activity and transactions.',
         'image' => 'assets/images/antique-collection-slide.jpg',
         'alt' => 'Antique jewelry and small decorative objects arranged across a vintage market display',
+        'details' => [
+            'Regulations affecting precious metals and antique items change over time and differ from one country to another. Understanding them early helps avoid delays, avoidable costs, and surprises once a transaction is under way.',
+            'We help you see which considerations may apply to your assets, including documentation and movement across borders, and we point you toward the right specialists where needed. This is general guidance and not legal advice.',
+        ],
     ],
     'assaying' => [
         'number' => '02',
@@ -15,6 +19,10 @@ $services = [
         'summary' => 'Careful examination and quality assessment help build a clearer picture of the material in question.',
         'image' => 'assets/images/pocket-watch-slide.jpg',
         'alt' => 'Vintage pocket watches and antique objects arranged for display',
+        'details' => [
+            'Assaying and assessment give a clear, evidence-based view of what an item is made of and its condition. Examination of metals, stones, and antique pieces helps confirm quality before any decision about value is made.',
+            'We explain findings in plain language, so you understand what was examined, what it shows, and how it relates to the wider market for similar items.',
+        ],
     ],
     'acquisition' => [
         'number' => '03',
@@ -23,6 +31,10 @@ $services = [
         'summary' => 'Evaluate acquisition opportunities across precious metals and distinctive antique items.',
         'image' => 'assets/images/antique-metals-banner.jpg',
         'alt' => 'Ornate antique mantel clock displayed between decorative vases in a shop window',
+        'details' => [
+            'Acquisition begins with understanding what is being offered. We look at technical quality and market context together, so opportunities in precious metals, antique items, and rare materials can be weighed on more than price alone.',
+            'Because assessment, acquisition, and later sale are connected, our support can follow an asset through each stage, helping you consider suitable buyers or sellers and the practical points of completing a transaction.',
+        ],
     ],
     'auction' => [
         'number' => '04',
@@ -31,6 +43,10 @@ $services = [
         'summary' => 'Prepare metal and antique assets for auction with attention to their qualities and market context.',
         'image' => 'assets/images/antique-display-slide.jpg',
         'alt' => 'Vintage and antique jewelry and decorative objects arranged together',
+        'details' => [
+            'A well-prepared lot is easier to understand and easier to value. We help prepare metal and antique assets for auction, with attention to condition, history, and the qualities that make each piece distinctive.',
+            'Market context guides how an item is presented and when it may be offered, whether it is a single piece or a wider collection.',
+        ],
     ],
     'monetization' => [
         'number' => '05',
@@ -39,6 +55,10 @@ $services = [
         'summary' => 'Consider practical routes to realize value from precious-metal holdings and unique assets.',
         'image' => 'assets/images/antique-collection-slide.jpg',
         'alt' => 'Antique jewelry and small decorative objects arranged across a vintage market display',
+        'details' => [
+            'Realizing value from precious-metal holdings or unique assets usually starts with knowing exactly what you have. Assessment and regulatory understanding come first, so that the route you choose is informed.',
+            'From there we discuss practical options, such as sale, auction, or a considered mix, and help you weigh their trade-offs before you decide on next steps.',
+        ],
     ],
 ];
 
@@ -96,6 +116,15 @@ require_once __DIR__ . '/includes/header.php';
         <figure class="service-page-hero__visual">
             <img src="<?php echo $e($service['image']); ?>" alt="<?php echo $e($service['alt']); ?>" width="1920" height="1280" fetchpriority="high">
         </figure>
+    </section>
+
+    <section class="service-page-about" aria-labelledby="service-about-title">
+        <div class="service-page-about__inner section-shell">
+            <h2 id="service-about-title">About this service</h2>
+            <?php foreach ($service['details'] as $paragraph) : ?>
+                <p><?php echo $e($paragraph); ?></p>
+            <?php endforeach; ?>
+        </div>
     </section>
 
     <section class="service-page-related" aria-labelledby="service-related-title">

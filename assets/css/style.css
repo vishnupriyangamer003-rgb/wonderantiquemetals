@@ -2446,3 +2446,39 @@ p {
         grid-template-columns: 1fr;
     }
 }
+
+.service-page-about {
+    background: #f1dcd2;
+}
+
+.service-page-about__inner {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.service-page-about h2 {
+    margin-bottom: 24px;
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 66px);
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 1;
+}
+
+.service-page-about p {
+    max-width: 680px;
+    color: #5f574d;
+    font-size: 18px;
+    line-height: 1.85;
+}
+
+.service-page-about p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    .service-page-about__inner {
+        padding-top: 52px;
+        padding-bottom: 52px;
+    }
+}

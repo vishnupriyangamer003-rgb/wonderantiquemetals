@@ -33,13 +33,7 @@ html {
 #service-monetization,
 #contact-details,
 #contact-map,
-#acquisition-products,
 #standards,
-#product-precious-metals,
-#product-antique-jewelry,
-#product-vintage-timepieces,
-#product-decorative-metalwork,
-#product-rare-materials,
 #contact {
     scroll-margin-top: 120px;
 }
@@ -280,12 +274,13 @@ html.is-preloading .site-preloader {
     text-transform: uppercase;
 }
 
-.site-nav > a:not(.nav-cta) {
+.site-nav > .site-nav__page-link {
     position: relative;
     padding: 8px 0;
+    letter-spacing: normal;
 }
 
-.site-nav > a:not(.nav-cta)::after {
+.site-nav > .site-nav__page-link::after {
     position: absolute;
     right: 0;
     bottom: 3px;
@@ -298,8 +293,8 @@ html.is-preloading .site-preloader {
     transition: transform 180ms ease;
 }
 
-.site-nav > a:not(.nav-cta):hover::after,
-.site-nav > a:not(.nav-cta):focus-visible::after {
+.site-nav > .site-nav__page-link:hover::after,
+.site-nav > .site-nav__page-link:focus-visible::after {
     transform: scaleX(1);
 }
 
@@ -357,44 +352,40 @@ html.is-preloading .site-preloader {
     position: absolute;
     z-index: 30;
     top: calc(100% - 1px);
-    left: -16px;
+    left: 50%;
     display: flex;
-    min-width: 240px;
+    min-width: 260px;
     flex-direction: column;
     padding: 8px;
-    border: 1px solid var(--line);
-    background: var(--paper);
+    border: 1px solid rgba(243, 240, 232, 0.16);
+    background: var(--dark);
     box-shadow: 0 18px 22px rgba(41, 38, 33, 0.1);
+    transform: translateX(-50%);
+}
+
+.nav-dropdown__menu::before {
+    position: absolute;
+    top: -9px;
+    left: calc(50% - 9px);
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid var(--dark);
+    border-left: 9px solid transparent;
+    content: "";
 }
 
 .nav-dropdown__menu a {
     padding: 12px;
-    color: var(--ink);
+    color: var(--paper);
     font-size: 16px;
     letter-spacing: normal;
-    text-transform: none;
+    text-transform: uppercase;
+    white-space: nowrap;
     transition: background-color 180ms ease, color 180ms ease;
 }
 
 .nav-dropdown__menu a:hover,
 .nav-dropdown__menu a:focus-visible {
-    background: var(--paper-deep);
-}
-
-.nav-cta {
-    display: inline-flex;
-    min-height: 39px;
-    align-items: center;
-    gap: 18px;
-    padding: 0 15px;
-    border: 1px solid var(--line);
-    transition: background-color 180ms ease, color 180ms ease;
-}
-
-.nav-cta:hover,
-.nav-cta:focus-visible {
-    background: var(--ink);
-    color: var(--paper);
+    background: rgba(243, 240, 232, 0.12);
 }
 
 .menu-toggle {
@@ -1005,6 +996,74 @@ p {
     font-family: var(--serif);
     font-size: 24px;
     font-weight: 400;
+}
+
+.service-card__link {
+    align-self: flex-start;
+    margin-top: 17px;
+}
+
+.appraisal-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    gap: clamp(30px, 6vw, 76px);
+    margin-top: 56px;
+    padding: clamp(28px, 4vw, 52px);
+    border: 1px solid var(--line);
+    background: var(--paper-deep);
+}
+
+.appraisal-overview__copy .eyebrow {
+    margin-bottom: 16px;
+}
+
+.appraisal-overview__copy h3 {
+    margin: 0 0 15px;
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+}
+
+.appraisal-overview__copy > p:not(.eyebrow) {
+    max-width: 520px;
+    margin: 0;
+    color: #6f695f;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.appraisal-overview__copy .text-link {
+    margin-top: 20px;
+}
+
+.appraisal-overview__links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.appraisal-overview__label {
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 15px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.appraisal-overview__links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    transition: color 180ms ease;
+}
+
+.appraisal-overview__links a:hover,
+.appraisal-overview__links a:focus-visible {
+    color: var(--rust);
 }
 
 .card-number,
@@ -1884,13 +1943,13 @@ p {
         flex-direction: column;
     }
 
-    .site-nav > a:not(.nav-cta) {
+    .site-nav > .site-nav__page-link {
         padding: 13px 0;
         border-bottom: 1px solid var(--line);
         font-size: 16px;
     }
 
-    .site-nav > a:not(.nav-cta)::after {
+    .site-nav > .site-nav__page-link::after {
         display: none;
     }
 
@@ -1913,32 +1972,34 @@ p {
 
     .site-nav .nav-dropdown__menu {
         position: static;
+        left: auto;
         min-width: 0;
         padding: 4px 0 8px;
         border: 0;
         border-bottom: 1px solid var(--line);
         background: transparent;
         box-shadow: none;
+        transform: none;
+    }
+
+    .site-nav .nav-dropdown__menu::before {
+        display: none;
     }
 
     .site-nav .nav-dropdown__menu a {
         padding: 10px 12px;
+        color: var(--ink);
+        white-space: normal;
     }
 
-    .nav-cta {
-        align-self: flex-start;
-        margin-top: 15px;
+    .site-nav .nav-dropdown__menu a:hover,
+    .site-nav .nav-dropdown__menu a:focus-visible {
+        background: var(--paper-deep);
     }
 
     .site-footer__main {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 32px 28px;
-    }
-
-    .nav-cta {
-        min-height: 36px;
-        gap: 11px;
-        padding: 0 11px;
     }
 
     .hero {
@@ -2021,6 +2082,11 @@ p {
         grid-column: auto;
     }
 
+    .appraisal-overview {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
     .section-heading {
         gap: 30px;
     }
@@ -2094,6 +2160,12 @@ p {
     .services-overview__image {
         min-height: 220px;
         aspect-ratio: 16 / 10;
+    }
+
+    .appraisal-overview {
+        gap: 24px;
+        margin-top: 32px;
+        padding: 24px;
     }
 
     .guarantee__inner {
@@ -2423,6 +2495,71 @@ p {
     padding-bottom: 90px;
 }
 
+.appraisal-page {
+    padding-top: clamp(64px, 8vw, 110px);
+    padding-bottom: clamp(72px, 9vw, 120px);
+}
+
+.appraisal-page__inner {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.appraisal-page h1 {
+    margin: 0 0 28px;
+    font-family: var(--serif);
+    font-size: clamp(54px, 8vw, 102px);
+    font-weight: 400;
+    letter-spacing: -0.07em;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.appraisal-page h1 em {
+    color: var(--rust);
+}
+
+.appraisal-page__lead {
+    max-width: 780px;
+    margin: 0 0 46px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--line);
+    font-size: clamp(20px, 3vw, 24px);
+    line-height: 1.6;
+}
+
+.appraisal-page__content {
+    display: grid;
+}
+
+.appraisal-page__section {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.45fr) minmax(0, 1.55fr);
+    gap: 44px;
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+}
+
+.appraisal-page__section h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.appraisal-page__section p {
+    max-width: 680px;
+    margin: 0;
+    color: #5f574d;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.appraisal-page__action {
+    margin-top: 24px;
+}
+
 .service-page-layout__visual {
     position: sticky;
     top: 110px;
@@ -2498,6 +2635,25 @@ p {
 }
 
 @media (max-width: 700px) {
+    .appraisal-page {
+        padding-top: 58px;
+        padding-bottom: 72px;
+    }
+
+    .appraisal-page__lead {
+        margin-bottom: 28px;
+        padding-bottom: 22px;
+    }
+
+    .appraisal-page__section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .appraisal-page__section p {
+        font-size: 16px;
+    }
+
     .service-chips {
         padding-top: 28px;
     }

@@ -55,23 +55,35 @@ $metaDescription = htmlspecialchars(
                 <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i></span>
             </button>
             <nav class="site-nav" id="primary-navigation" aria-label="Main navigation">
-                <a href="index.php">Home</a>
-                <a href="about.php">About</a>
+                <a class="site-nav__page-link" href="index.php">Home</a>
+                <a class="site-nav__page-link" href="about.php">About</a>
                 <details class="nav-dropdown">
                     <summary>
-                        Services
+                        Antiques
                         <span class="nav-dropdown__indicator" aria-hidden="true">▾</span>
                     </summary>
                     <div class="nav-dropdown__menu">
-                        <a href="services.php">All services</a>
-                        <a href="service-detail.php?service=regulatory">Regulatory support</a>
-                        <a href="service-detail.php?service=assaying">Assaying &amp; assessment</a>
-                        <a href="service-detail.php?service=acquisition">Acquisition</a>
-                        <a href="service-detail.php?service=auction">Auction services</a>
+                        <a href="service-detail.php?service=acquisition">Acquisition Services</a>
+                        <a href="service-detail.php?service=assaying">Assaying Services</a>
+                        <a href="service-detail.php?service=auction">Auction Services</a>
                         <a href="service-detail.php?service=monetization">Monetization</a>
+                        <a href="services.php">Services</a>
+                        <a href="service-detail.php?service=regulatory">Regulatory Services</a>
                     </div>
                 </details>
-                <a class="nav-cta" href="contact.php#contact-details">Contact <span aria-hidden="true">↗</span></a>
+                <details class="nav-dropdown">
+                    <summary>
+                        Appraisals
+                        <span class="nav-dropdown__indicator" aria-hidden="true">▾</span>
+                    </summary>
+                    <div class="nav-dropdown__menu">
+                        <a href="antique-appraisals.php">Antique Appraisals</a>
+                        <a href="appraisal-terms.php">Terms &amp; Conditions</a>
+                        <a href="appraisal-procedure.php">Procedure</a>
+                        <a href="appraisal-fees.php">Fee Structure</a>
+                    </div>
+                </details>
+                <a class="site-nav__page-link" href="contact.php">Contact</a>
             </nav>
         </div>
     </header>

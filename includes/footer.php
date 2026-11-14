@@ -2,24 +2,22 @@
         <div class="site-footer__main">
             <div class="site-footer__identity">
                 <a class="footer-brand" href="index.php">Wonder<br><em>Antique Metals</em></a>
-                <p class="site-footer__statement">Technical and market support for metals and antique assets.</p>
+                <p class="site-footer__statement">Technical and market support across precious metals, antique items, and rare materials, connecting assessment, regulatory guidance, acquisition, auction services, and monetization.</p>
             </div>
             <nav class="site-footer__links" aria-label="Quick links">
                 <span class="footer-label">Quick links</span>
                 <a href="index.php">Home</a>
                 <a href="about.php">About</a>
                 <a href="services.php">Services</a>
-                <a href="index.php#acquisition-products">Acquisition products</a>
-                <a href="contact.php#contact-details">Contact</a>
+                <a href="contact.php">Contact</a>
             </nav>
             <div class="site-footer__links">
-                <span class="footer-label">Acquisition products</span>
-                <span id="product-precious-metals">Precious metals</span>
-                <span id="product-antique-jewelry">Antique jewelry</span>
-                <span id="product-vintage-timepieces">Vintage timepieces</span>
-                <span id="product-decorative-metalwork">Decorative metalwork</span>
-                <span id="product-rare-materials">Rare materials</span>
-                <a href="index.php#acquisition-products">View acquisition services <span aria-hidden="true">↗</span></a>
+                <span class="footer-label">Our services</span>
+                <a href="service-detail.php?service=regulatory">Regulatory support</a>
+                <a href="service-detail.php?service=assaying">Assaying &amp; assessment</a>
+                <a href="service-detail.php?service=acquisition">Acquisition</a>
+                <a href="service-detail.php?service=auction">Auction services</a>
+                <a href="service-detail.php?service=monetization">Monetization</a>
             </div>
             <address class="site-footer__contact" id="contact" aria-label="Company contact information">
                 <span class="footer-label">Company information</span>

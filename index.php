@@ -147,27 +147,27 @@ require_once __DIR__ . '/includes/header.php';
             <article class="service-card">
                 <div class="service-card__top"><span class="card-number">01 / GUIDANCE</span><span class="service-card__seal" aria-hidden="true">R</span></div>
                 <h3>Regulatory support</h3>
-                <p>Understand the regulatory considerations that can shape precious-metal activity and transactions.</p>
+                <p>Navigate changing compliance requirements, documentation, and export logistics with guidance for precious-metal and antique transactions.</p>
             </article>
             <article class="service-card">
                 <div class="service-card__top"><span class="card-number">02 / TECHNICAL</span><span class="service-card__seal" aria-hidden="true">A</span></div>
                 <h3>Assaying &amp; assessment</h3>
-                <p>Careful examination and quality assessment help build a clearer picture of the material in question.</p>
+                <p>Professional testing and quality assessment of metals, stones, and antique items, with findings explained clearly.</p>
             </article>
             <article class="service-card" id="acquisition-products">
                 <div class="service-card__top"><span class="card-number">03 / MARKET</span><span class="service-card__seal" aria-hidden="true">A</span></div>
                 <h3>Acquisition</h3>
-                <p>Evaluate acquisition opportunities across precious metals and distinctive antique items.</p>
+                <p>Valuation, negotiation, and completion support to help you find suitable buyers or sellers for precious metals, gemstones, and antiques.</p>
             </article>
             <article class="service-card">
                 <div class="service-card__top"><span class="card-number">04 / EXCHANGE</span><span class="service-card__seal" aria-hidden="true">A</span></div>
                 <h3>Auction services</h3>
-                <p>Prepare metal and antique assets for auction with attention to their qualities and market context.</p>
+                <p>Online, offline, and on-site auctions for antiques, rare materials, collectibles, and consignments, from planning to completion.</p>
             </article>
             <article class="service-card">
                 <div class="service-card__top"><span class="card-number">05 / VALUE</span><span class="service-card__seal" aria-hidden="true">M</span></div>
                 <h3>Monetization</h3>
-                <p>Consider practical routes to realize value from precious-metal holdings and unique assets.</p>
+                <p>Convert precious metals, stones, and antique assets into value through one connected route of assessment, approvals, and sale.</p>
             </article>
         </div>
     </section>

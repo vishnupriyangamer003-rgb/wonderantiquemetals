@@ -44,7 +44,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="service-detail__copy">
                 <p class="eyebrow">Guidance</p>
                 <h2>Regulatory support</h2>
-                <p>Understand the regulatory considerations that can shape precious-metal activity and transactions.</p>
+                <p>Navigate changing compliance requirements, documentation, and export logistics with guidance for precious-metal and antique transactions.</p>
                 <a class="text-link" href="service-detail.php?service=regulatory">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
@@ -53,7 +53,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="service-detail__copy">
                 <p class="eyebrow">Technical</p>
                 <h2>Assaying &amp; assessment</h2>
-                <p>Careful examination and quality assessment help build a clearer picture of the material in question.</p>
+                <p>Professional testing and quality assessment of metals, stones, and antique items, with findings explained clearly.</p>
                 <a class="text-link" href="service-detail.php?service=assaying">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
@@ -62,7 +62,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="service-detail__copy">
                 <p class="eyebrow">Market</p>
                 <h2>Acquisition</h2>
-                <p>Evaluate acquisition opportunities across precious metals and distinctive antique items.</p>
+                <p>Valuation, negotiation, and completion support to help you find suitable buyers or sellers for precious metals, gemstones, and antiques.</p>
                 <a class="text-link" href="service-detail.php?service=acquisition">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
@@ -71,7 +71,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="service-detail__copy">
                 <p class="eyebrow">Exchange</p>
                 <h2>Auction services</h2>
-                <p>Prepare metal and antique assets for auction with attention to their qualities and market context.</p>
+                <p>Online, offline, and on-site auctions for antiques, rare materials, collectibles, and consignments, from planning to completion.</p>
                 <a class="text-link" href="service-detail.php?service=auction">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>
@@ -80,7 +80,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="service-detail__copy">
                 <p class="eyebrow">Value</p>
                 <h2>Monetization</h2>
-                <p>Consider practical routes to realize value from precious-metal holdings and unique assets.</p>
+                <p>Convert precious metals, stones, and antique assets into value through one connected route of assessment, approvals, and sale.</p>
                 <a class="text-link" href="service-detail.php?service=monetization">Read more <span aria-hidden="true">→</span></a>
             </div>
         </article>

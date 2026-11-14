@@ -19,7 +19,6 @@ require_once __DIR__ . '/includes/header.php';
                     <p>A considered approach to antique objects, precious metals, and rare materials.</p>
                     <a class="button button-light" href="#services">Explore our services <span aria-hidden="true">↗</span></a>
                 </div>
-                <a class="home-carousel__credit" href="https://www.pexels.com/photo/choice-of-retro-decor-items-and-jewelry-5865376/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
             </article>
             <article class="home-carousel__slide" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 2 of 3" hidden>
                 <img
@@ -35,7 +34,6 @@ require_once __DIR__ . '/includes/header.php';
                     <p>Careful assessment and clear communication help bring each asset into focus.</p>
                     <a class="button button-light" href="#standards">Our standards <span aria-hidden="true">↗</span></a>
                 </div>
-                <a class="home-carousel__credit" href="https://www.pexels.com/photo/display-of-antique-items-6795489/" target="_blank" rel="noopener noreferrer">Photo by Freitas Junior / Pexels</a>
             </article>
             <article class="home-carousel__slide" data-carousel-slide role="group" aria-roledescription="slide" aria-label="Slide 3 of 3" hidden>
                 <img
@@ -51,7 +49,6 @@ require_once __DIR__ . '/includes/header.php';
                     <p>Explore thoughtful routes for distinctive metal and antique assets.</p>
                     <a class="button button-light" href="#services">See our services <span aria-hidden="true">↗</span></a>
                 </div>
-                <a class="home-carousel__credit" href="https://www.pexels.com/photo/antiques-on-display-in-a-store-5865384/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
             </article>
         </div>
         <div class="home-carousel__controls" role="group" aria-label="Banner slide controls">
@@ -90,11 +87,6 @@ require_once __DIR__ . '/includes/header.php';
                     <span class="hero-banner__eyebrow">Antique metalwork</span>
                     <span class="hero-banner__headline">Value with<br>a history.</span>
                 </figcaption>
-                <a
-                    class="hero-banner__credit"
-                    href="https://www.pexels.com/photo/vintage-clock-in-an-antique-shop-window-16470625/"
-                    target="_blank"
-                    rel="noopener noreferrer">Photo by Ömer Derinyar / Pexels</a>
             </figure>
             <span class="hero-art__side-note" aria-hidden="true">A connected market view</span>
         </div>
@@ -137,9 +129,6 @@ require_once __DIR__ . '/includes/header.php';
                     width="1920"
                     height="1280"
                     loading="lazy">
-                <figcaption>
-                    <a href="https://www.pexels.com/photo/antiques-on-display-in-a-store-5865384/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
-                </figcaption>
             </figure>
         </div>
 

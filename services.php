@@ -19,9 +19,6 @@ require_once __DIR__ . '/includes/header.php';
                 width="1920"
                 height="1280"
                 fetchpriority="high">
-            <figcaption>
-                <a href="https://www.pexels.com/photo/antiques-on-display-in-a-store-5865384/" target="_blank" rel="noopener noreferrer">Photo by Rachel Claire / Pexels</a>
-            </figcaption>
         </figure>
     </section>
 

@@ -41,7 +41,7 @@ The user asked for an editable site, so the Laravel app now has a database and a
 - **Admin**: login at `/ktgadmin`, then Company info (`/ktgadmin/settings`), Banners, Services, Appraisals, Testimonials, Login details. Controllers in `app/Http/Controllers/Admin/` (shared base `ResourceController`), guarded by `App\Http\Middleware\AdminAuth` (session `admin_id`, no-store headers). Login is rate limited (5 tries/min per user+IP). UI assets: `laravel-project/assets/admin/admin.css` and `admin.js`; views in `resources/views/admin/`.
 - **Admin password is stored in plain text by the owner's explicit choice** (so it can be shown with a show/hide eye). Do not "fix" this silently; if asked, switch to `Crypt` (still viewable) or hashing (not viewable).
 - **Uploads**: `App\Support\ImageUploader` allows only JPG/PNG/WEBP, max 2 MB, max 6000 px, verifies the real MIME, re-encodes with GD, stores under `laravel-project/assets/uploads/` with a random name; `assets/uploads/.htaccess` blocks script execution. It never deletes files outside `assets/uploads/`.
-- **Tests**: 51 tests (`SiteTest`, `AdminTest`) run on an in-memory SQLite database seeded by `TestCase`; they never touch MySQL.
+- **Tests**: 59 tests (`SiteTest`, `AdminTest`) run on an in-memory SQLite database seeded by `TestCase`; they never touch MySQL.
 
 Notes:
 

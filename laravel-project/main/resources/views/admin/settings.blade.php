@@ -42,10 +42,8 @@
     <section class="adm-card adm-tint-grey">
         <h2>Google</h2>
         <div class="adm-grid">
-            <div class="adm-field"><label for="f-gmq">Map location</label><input type="text" id="f-gmq" name="google_map_query" value="{{ $v('google_map_query') }}" maxlength="200" placeholder="Karur District, Tamil Nadu, India"><small>Place or address searched on Google Maps. Leave empty to hide the map on the Contact page.</small></div>
+            <div class="adm-field adm-span"><label for="f-gme">Google Map embed code or link</label><textarea id="f-gme" name="google_map_embed" rows="4" maxlength="2000" spellcheck="false" placeholder="&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=...&quot; ...&gt;&lt;/iframe&gt;">{{ $v('google_map_embed') }}</textarea><small>In Google Maps choose Share, then Embed a map, and paste the whole code (or just the link) here. Only the map address is kept. Leave empty to hide the map on the Contact page.</small></div>
             <div class="adm-field"><label for="f-gml">Map heading</label><input type="text" id="f-gml" name="google_map_label" value="{{ $v('google_map_label') }}" maxlength="120" placeholder="Karur District, Tamil Nadu"><small>Shown above the map. Put a comma to split the heading in two lines.</small></div>
-            <div class="adm-field adm-w-sm"><label for="f-gaid">Analytics ID</label><input type="text" id="f-gaid" name="google_analytics_id" value="{{ $v('google_analytics_id') }}" maxlength="30" placeholder="G-XXXXXXXXXX" autocomplete="off" spellcheck="false"><small>Google Analytics 4 measurement ID. Empty = no tracking.</small></div>
-            <div class="adm-field"><label for="f-gsv">Search Console verification code</label><input type="text" id="f-gsv" name="google_site_verification" value="{{ $v('google_site_verification') }}" maxlength="100" placeholder="content value of the google-site-verification tag" autocomplete="off" spellcheck="false"><small>Only the code, not the whole meta tag.</small></div>
         </div>
     </section>
 

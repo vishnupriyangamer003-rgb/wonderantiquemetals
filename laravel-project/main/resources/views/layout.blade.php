@@ -17,24 +17,6 @@
     @if ($metaKeywords !== '')
     <meta name="keywords" content="{{ $metaKeywords }}">
     @endif
-    @php
-        $gaId = trim($site['google_analytics_id'] ?? '');
-        $gaId = preg_match('~^(G|GT|AW|UA)-[A-Z0-9-]{4,20}$~i', $gaId) ? $gaId : '';
-        $gsv = trim($site['google_site_verification'] ?? '');
-        $gsv = preg_match('~^[A-Za-z0-9_-]{20,100}$~', $gsv) ? $gsv : '';
-    @endphp
-    @if ($gsv !== '')
-    <meta name="google-site-verification" content="{{ $gsv }}">
-    @endif
-    @if ($gaId !== '')
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaId }}"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', @json($gaId));
-    </script>
-    @endif
     <meta name="theme-color" content="#f3f0e8">
     <meta name="author" content="Wonder Antique Metals">
     <meta name="robots" content="index, follow">

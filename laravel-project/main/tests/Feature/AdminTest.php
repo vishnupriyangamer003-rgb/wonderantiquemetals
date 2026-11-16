@@ -273,53 +273,89 @@ class AdminTest extends TestCase
         @rmdir($dir);
     }
 
-    // ---------- Google settings ----------
+    // ---------- Google map ----------
 
-    public function test_contact_map_uses_the_default_google_map_location(): void
+    private const SEEDED_EMBED = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62676.83273284569!2d78.04426550516412!3d10.940541113412444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baa2f072495398f%3A0x947cfc7a1f7d9f1b!2sKarur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1794821750632!5m2!1sen!2sin';
+
+    private const OTHER_EMBED = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.4!2d77.59!3d12.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBengaluru!5e0!3m2!1sen!2sin!4v1!5m2!1sen!2sin';
+
+    public function test_contact_page_uses_the_seeded_google_embed_link(): void
     {
         $this->get('/contact')->assertOk()
-            ->assertSee('https://www.google.com/maps?q=Karur+District%2C+Tamil+Nadu%2C+India&amp;output=embed', false)
+            ->assertSee('<iframe', false)
+            ->assertSee('src="'.self::SEEDED_EMBED.'"', false)
             ->assertSee('Open Karur District in Google Maps')
             ->assertDontSee('googletagmanager', false)
             ->assertDontSee('google-site-verification', false);
     }
 
-    public function test_google_settings_save_and_render_on_the_public_site(): void
+    public function test_pasting_the_whole_iframe_code_saves_only_the_embed_address(): void
     {
-        $this->login()->put('/ktgadmin/settings', [
-            'google_map_query' => 'Eiffel Tower, Paris', 'google_map_label' => 'Paris, France',
-            'google_analytics_id' => 'G-ABCD123456', 'google_site_verification' => 'abcDEF_123-ghiJKL4567890xyz',
-        ])->assertSessionHasNoErrors();
+        $code = '<iframe src="'.self::OTHER_EMBED.'" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
 
+        $this->login()->put('/ktgadmin/settings', ['google_map_embed' => $code, 'google_map_label' => 'Bengaluru, India'])
+            ->assertSessionHasNoErrors();
+
+        $this->assertSame(self::OTHER_EMBED, Setting::where('key', 'google_map_embed')->value('value'));
         $this->get('/contact')->assertOk()
-            ->assertSee('https://www.google.com/maps?q=Eiffel+Tower%2C+Paris&amp;output=embed', false)
-            ->assertSee('Paris,', false)->assertSee('France.', false)
-            ->assertSee('Open Paris in Google Maps');
-        $this->get('/')->assertOk()
-            ->assertSee('https://www.googletagmanager.com/gtag/js?id=G-ABCD123456', false)
-            ->assertSee("gtag('config', \"G-ABCD123456\");", false)
-            ->assertSee('<meta name="google-site-verification" content="abcDEF_123-ghiJKL4567890xyz">', false);
+            ->assertSee('src="'.self::OTHER_EMBED.'"', false)
+            ->assertSee('Open Bengaluru in Google Maps');
     }
 
-    public function test_empty_map_location_hides_the_map_section(): void
+    public function test_the_embed_link_can_be_pasted_without_the_iframe(): void
     {
-        $this->login()->put('/ktgadmin/settings', ['google_map_query' => '']);
+        $this->login()->put('/ktgadmin/settings', ['google_map_embed' => self::OTHER_EMBED])->assertSessionHasNoErrors();
+        $this->get('/contact')->assertSee('src="'.self::OTHER_EMBED.'"', false);
+    }
+
+    public function test_the_admin_form_shows_the_embed_field_and_no_analytics_fields(): void
+    {
+        $this->login()->get('/ktgadmin/settings')->assertOk()
+            ->assertSee('Google Map embed code or link')
+            ->assertSee(self::SEEDED_EMBED, false)
+            ->assertDontSee('Analytics ID')
+            ->assertDontSee('Search Console');
+    }
+
+    public function test_only_google_maps_embed_addresses_are_accepted(): void
+    {
+        $this->login();
+        foreach ([
+            'https://evil.example/maps/embed?pb=1',
+            'http://www.google.com/maps/embed?pb=1',
+            'https://www.google.com.evil.com/maps/embed?pb=1',
+            'https://www.google.com/search?q=x',
+            'javascript:alert(1)',
+            '<iframe src="https://evil.example/x"></iframe>',
+            'https://www.google.com/maps/embed?pb=1" onload="alert(1)',
+        ] as $bad) {
+            $this->put('/ktgadmin/settings', ['google_map_embed' => $bad])->assertSessionHasErrors('google_map_embed');
+        }
+        $this->assertSame(self::SEEDED_EMBED, Setting::where('key', 'google_map_embed')->value('value'));
+    }
+
+    public function test_a_bad_value_written_straight_into_the_database_is_never_printed(): void
+    {
+        Setting::where('key', 'google_map_embed')->update(['value' => 'https://evil.example/maps/embed?pb=1']);
+        \App\Support\SiteData::flush();
+
+        $this->get('/contact')->assertOk()->assertDontSee('evil.example', false)->assertDontSee('contact-map__frame', false);
+    }
+
+    public function test_empty_embed_hides_the_map_section(): void
+    {
+        $this->login()->put('/ktgadmin/settings', ['google_map_embed' => '']);
         $this->get('/contact')->assertOk()->assertDontSee('contact-map__frame', false);
     }
 
-    public function test_google_analytics_id_and_verification_reject_injection(): void
+    public function test_old_analytics_settings_are_ignored_by_the_site(): void
     {
-        $this->login()->put('/ktgadmin/settings', [
-            'google_analytics_id' => '"></script><script>alert(1)</script>',
-            'google_site_verification' => '"><script>alert(1)</script>',
-        ])->assertSessionHasErrors(['google_analytics_id', 'google_site_verification']);
-
-        // Even a bad value written straight into the database is never printed.
-        Setting::updateOrCreate(['key' => 'google_analytics_id'], ['value' => '"></script><script>alert(1)</script>']);
+        Setting::create(['key' => 'google_analytics_id', 'value' => 'G-ABCD123456']);
+        Setting::create(['key' => 'google_site_verification', 'value' => 'abcDEF_123-ghiJKL4567890xyz']);
         \App\Support\SiteData::flush();
-        $this->get('/')->assertOk()->assertDontSee('alert(1)', false)->assertDontSee('googletagmanager', false);
-    }
 
+        $this->get('/')->assertOk()->assertDontSee('googletagmanager', false)->assertDontSee('google-site-verification', false);
+    }
     public function test_public_cache_is_flushed_on_admin_save(): void
     {
         $this->get('/');

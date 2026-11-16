@@ -43,11 +43,13 @@
     </section>
 
     @php
-        $mapQuery = trim($site['google_map_query'] ?? '');
-        $mapLabel = trim($site['google_map_label'] ?? '') ?: $mapQuery;
+        // Only a Google Maps embed address is ever printed into the iframe (checked again here).
+        $mapEmbed = trim($site['google_map_embed'] ?? '');
+        $mapEmbed = preg_match('~^https://www\.google\.com/maps(/embed)?\?[^\s"\'<>]+$~', $mapEmbed) ? $mapEmbed : '';
+        $mapLabel = trim($site['google_map_label'] ?? '') ?: 'Our location';
         [$mapA, $mapB] = array_pad(array_map('trim', explode(',', $mapLabel, 2)), 2, '');
     @endphp
-    @if ($mapQuery !== '')
+    @if ($mapEmbed !== '')
     <section class="contact-map" id="contact-map" aria-labelledby="contact-map-title">
         <div class="contact-map__inner section-shell">
             <div class="contact-map__heading">
@@ -59,15 +61,15 @@
             </div>
             <div class="contact-map__frame">
                 <iframe
-                    title="Map showing {{ $mapQuery }}"
-                    src="https://www.google.com/maps?q={{ urlencode($mapQuery) }}&amp;output=embed"
+                    title="Map showing {{ $mapLabel }}"
+                    src="{{ $mapEmbed }}"
                     width="1200"
                     height="450"
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     allowfullscreen></iframe>
             </div>
-            <a class="contact-map__link" href="https://www.google.com/maps/search/?api=1&amp;query={{ urlencode($mapQuery) }}" target="_blank" rel="noopener noreferrer">Open {{ $mapA }} in Google Maps <span aria-hidden="true">↗</span></a>
+            <a class="contact-map__link" href="https://www.google.com/maps/search/?api=1&amp;query={{ urlencode($mapLabel) }}" target="_blank" rel="noopener noreferrer">Open {{ $mapA }} in Google Maps <span aria-hidden="true">↗</span></a>
         </div>
     </section>
     @endif

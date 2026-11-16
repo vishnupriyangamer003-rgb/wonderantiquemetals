@@ -1,0 +1,30 @@
+# Secrets and local config (never commit)
+/main/.env
+/main/.env.*
+!/main/.env.example
+
+# Dependencies and build output
+/main/vendor/
+/main/node_modules/
+
+# Runtime files
+/main/storage/logs/*
+/main/storage/framework/cache/*
+/main/storage/framework/sessions/*
+/main/storage/framework/views/*
+/main/storage/framework/testing/*
+/main/bootstrap/cache/*.php
+*.log
+*.sqlite
+*.sqlite-journal
+.phpunit.result.cache
+
+# Files uploaded through the admin panel (keep only the PHP-blocking .htaccess)
+/assets/uploads/*
+!/assets/uploads/.htaccess
+
+# Backups and OS files
+*.bak
+*.backup
+Thumbs.db
+.DS_Store

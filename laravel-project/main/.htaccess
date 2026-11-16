@@ -1,0 +1,2 @@
+# Private app: never serve anything from here.
+Require all denied

@@ -2,15 +2,13 @@
 
 ## What this is
 
-Small static Core PHP multi-page site (root-level `*.php`, served directly by XAMPP) with a **parallel Laravel 13 app being built in `laravel-app/`** (Phase 1 scaffolded 2026-11). No database, no CI workflows (`.github/` holds only agent instructions and skills). The legacy site is the fallback until cutover is approved.
+Small static Core PHP multi-page site (root-level `*.php`, served directly by XAMPP) with a **parallel Laravel 12 app in `../laravel-project/`** (outside this repo). The legacy site has no database; the Laravel app uses MySQL (see "Dynamic site and admin panel"). No CI workflows (`.github/` holds only agent instructions and skills). The legacy site is the fallback until cutover is approved.
 
 ## Commands
 
-- PHP is **not on PATH**. Use the XAMPP CLI directly: `C:\xampp\php\php.exe`.
-- Composer is not installed globally; a working `composer.phar` lives at `%LOCALAPPDATA%\Temp\opencode\composer.phar` (re-download from `https://getcomposer.org/composer-stable.phar` if missing): `C:\xampp\php\php.exe <phar> <args>`.
-- Local PHP is **8.0.30** (both CLI and Apache). This is below `laravel-app/`'s `php ^8.3` requirement, so **`artisan`, PHPUnit, and Laravel's test runner cannot run locally** — they run on the live host (PHP ≥ 8.3). Local verification = `php -l` + browser checks of the legacy site.
-- Local Composer operations inside `laravel-app/` must pass `--ignore-platform-reqs` (platform check would otherwise fail on PHP 8.0.30). `composer validate` works without it.
-- `.github/instructions/laravel-migration.instructions.md` claims local PHP is 8.2.12 — that is wrong; verified 8.0.30 at runtime.
+- PHP is **not on PATH**. Use the XAMPP CLI directly: `D:\xampp\php\php.exe` (**PHP 8.2.12**).
+- Composer is not installed globally. Download `https://getcomposer.org/composer-stable.phar` to a temp folder (never into the project) and run `D:\xampp\php\php.exe <phar> <args>`.
+- Laravel commands run from `../laravel-project/main/`: `php artisan about`, `route:list`, `test`.
 
 ## Page structure (Core PHP)
 
@@ -19,18 +17,42 @@ Small static Core PHP multi-page site (root-level `*.php`, served directly by XA
 - `service-detail.php?service={slug}` renders from a `$services` array; allowed slugs: `regulatory`, `assaying`, `acquisition`, `auction`, `monetization`. Unknown slugs set `http_response_code(404)` and show an inline not-found section. Keep that validation when editing.
 - Nav links are page-relative (`services.php`, `service-detail.php?service=…`). After touching any page, verify every nav link resolves from each page.
 
-## Laravel migration (Phase 2 done: layout, routes, service data)
+## Laravel migration (reset and restarted; Phases 1–4 done, Phase 5 not started)
 
-- `laravel-app/` holds a Laravel **13.11** scaffold (framework 13.42, `php ^8.3`), created with `--no-scripts` (artisan can't run locally), plus a copy of `assets/` in `public/assets/`. `.env` + `APP_KEY` were generated manually; `vendor/` and `.env` are gitignored. Full spec: `.github/skills/core-php-to-laravel/SKILL.md`.
-- Phase 2 added: shared `resources/views/layout.blade.php` (meta/preloader/announcement/header/nav/footer from `includes/*.php`); `routes/web.php` with the 9 page routes + 9 legacy `.php` compatibility redirects (temporary 302s, controller/view only — no closures, so `route:cache` works); `config/site.php` holding the legacy `$services` array verbatim (single source of truth — the `/services/{slug}` `whereIn` constraint is derived from its keys); `ServiceController` + `LegacyServiceRedirectController` (unknown/missing slug → real 404, mirroring legacy); full `service-detail.blade.php`; styled `errors/404.blade.php`.
-- The 8 non-service pages (`home`, `about`, `services`, `contact`, `appraisals`, `appraisal-terms`, `appraisal-procedure`, `appraisal-fees`) currently hold **placeholder content** ("In migration") with correct titles/descriptions — Phase 3 migrates their real content from the legacy pages. Stock `welcome.blade.php` was deleted.
-- Remaining phases: page content migration (Phase 3), tests (Phase 4, on live-host PHP ≥ 8.3), then a separately approved cutover (Phase 5). Deployment note: set `APP_URL` in `.env` at deploy time — `route()`/`asset()` generate absolute URLs from it.
-- The skeleton ships its own `laravel-app/AGENTS.md`/`CLAUDE.md` (Laravel Boost boilerplate) — they suggest installing PHP 8.5 and `composer require laravel/boost`; **ignore that**, local runtime stays 8.0.30 unless the user approves a change.
+Layout (outside this repo, `D:\xampp\htdocs\vichu\wonderantiquemetals\laravel-project\`):
+
+- `laravel-project/` is the **public web root**: `index.php`, `.htaccess`, `assets/`, `favicon.ico`, `robots.txt`. `index.php` loads the app from `./main` and sets the public path to its own folder.
+- `laravel-project/main/` is the **private Laravel 12.72 app** (`php ^8.2`). `main/.htaccess` is `Require all denied` so `/main/.env` and `/main/vendor/` are blocked. `.env` and `vendor/` are gitignored; `APP_URL=http://wonderantiquemetals.test`.
+
+Phases:
+
+1. **Done**: fresh Laravel 12 scaffold; the previous unrelated app in `laravel-project/main` was wiped (no backup, by the user's choice) and `project/laravel-app/` was removed. Site `assets/` copied to the public root.
+2. **Done**: `resources/views/layout.blade.php` (from `includes/*.php`), `routes/web.php` (8 page routes, `/services/{slug}` constrained to the keys of `config/site.php`, 7 legacy `.php` redirects plus `service-detail.php?service=` — all 302, no closures so `route:cache` works), `ServiceController`, `LegacyServiceRedirectController`, `errors/404.blade.php`. `index.php` has no redirect: the front controller serves it as `/`.
+3. **Done**: the 8 page views in `resources/views/pages/` were converted from the legacy `<main>` blocks; visible text was verified identical to the legacy pages. Links use `route()`, images use `asset()`.
+4. **Done**: `tests/Feature/SiteTest.php` (29 tests with the scaffold's example tests) pass on PHP 8.2.12.
+5. **Not started — needs separate user approval**: Apache vhost with DocumentRoot `laravel-project`, hosts entry `127.0.0.1 wonderantiquemetals.test`, production `.env` (`APP_ENV=production`, `APP_DEBUG=false`). Not yet verified in a browser or through Apache: CSS/JS/images loading, `main.js` behaviour, `/main/.env` being blocked.
+
+### Dynamic site and admin panel (added after Phases 1–4; supersedes "no database / no admin")
+
+The user asked for an editable site, so the Laravel app now has a database and an admin area:
+
+- **Database**: MySQL `wonderantiquemetals` (XAMPP, root without password for local dev; set in `main/.env`). Tables: `admins`, `settings`, `banners`, `services`, `appraisals`, `testimonials`. `config/site.php` was replaced by the `services` table. Seed data lives in `database/seeders/data/site.php` (extracted from the static pages) and `DatabaseSeeder` also creates the first admin from `ADMIN_USERNAME` / `ADMIN_PASSWORD` in `.env`.
+- **Public content**: read through `App\Support\SiteData` (cached with `Cache::rememberForever`, flushed on every admin save). `AppServiceProvider` shares `$site`, `$siteServices`, `$siteAppraisals`, `$siteBanners`, `$siteTestimonials` with the layout and page views. Appraisal pages share one view `pages/appraisal.blade.php` (`/appraisals` plus `/appraisals/{slug}`). In `@section('x', $value)` never pass a value that can be `null`: Blade then opens a section buffer instead of setting it.
+- **Admin**: login at `/ktgadmin`, then Company info (`/ktgadmin/settings`), Banners, Services, Appraisals, Testimonials, Login details. Controllers in `app/Http/Controllers/Admin/` (shared base `ResourceController`), guarded by `App\Http\Middleware\AdminAuth` (session `admin_id`, no-store headers). Login is rate limited (5 tries/min per user+IP). UI assets: `laravel-project/assets/admin/admin.css` and `admin.js`; views in `resources/views/admin/`.
+- **Admin password is stored in plain text by the owner's explicit choice** (so it can be shown with a show/hide eye). Do not "fix" this silently; if asked, switch to `Crypt` (still viewable) or hashing (not viewable).
+- **Uploads**: `App\Support\ImageUploader` allows only JPG/PNG/WEBP, max 2 MB, max 6000 px, verifies the real MIME, re-encodes with GD, stores under `laravel-project/assets/uploads/` with a random name; `assets/uploads/.htaccess` blocks script execution. It never deletes files outside `assets/uploads/`.
+- **Tests**: 51 tests (`SiteTest`, `AdminTest`) run on an in-memory SQLite database seeded by `TestCase`; they never touch MySQL.
+
+Notes:
+
+- Laravel 12 security fixes end 2027-02-24. Laravel 13 needs PHP 8.3, which is not installed.
+- The scaffold ships its own `AGENTS.md`/`CLAUDE.md` guidance in some versions; ignore suggestions to install other PHP versions or `laravel/boost`.
+- `git status` in this repo still shows the deleted `laravel-app/` tree. Do not commit, switch branches, or push without the user's direction.
 - Keep the root Core PHP site working and unchanged until cutover is explicitly approved.
 
 ## Git
 
-- Default branch is `main`. Current checkout is `feature/core-php-to-laravel` (migration work lives here, ahead of `main`); confirm with the user before switching branches or merging.
+- Default branch is `main`. Current checkout is `feature/core-php-to-laravel`; confirm with the user before switching branches or merging.
 - Commit only completed, validated changes; never force-push or amend; if the remote has advanced or a conflict blocks a safe push, stop and explain. Source: `.github/instructions/git-workflow.instructions.md`.
 
 ## Content rules (from `.github/instructions/`)

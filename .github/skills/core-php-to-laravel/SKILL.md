@@ -5,14 +5,13 @@ description: Safely migrate Wonder Antique Metals from its existing Core PHP pag
 
 # Core PHP to Laravel migration skill
 
-## Current state and stop gate
+## Current state
 
-- Work is requested on branch `feature/core-php-to-laravel`, based on the current `main`.
-- The existing site is a small, static Core PHP site: root-level page scripts, shared `includes/header.php` and `includes/footer.php`, CSS/JS/images under `assets/`, and no database or contact form.
-- The requested layout is a parallel app at `laravel-app/`; leave the current Core PHP site and assets intact as the fallback.
-- Migration is currently paused until the user confirms the target hosting PHP version. Local CLI PHP is 8.2.12; Composer is not installed; no Laravel app, `composer.json`, or `composer.lock` has been created.
-- Before scaffolding or installing anything, check both the local web-server PHP runtime and the target host PHP version. If either is unknown, stop and ask.
-- Laravel 13 requires PHP 8.3+. Laravel 12 supports PHP 8.2, but security fixes end February 24, 2027. Prefer a supported Laravel version with a compatible confirmed runtime; ask before using Laravel 12 for a new production deployment or changing/upgrading any PHP runtime.
+- Work is on branch `feature/core-php-to-laravel`, based on `main`.
+- The existing site is a small, static Core PHP site: root-level page scripts, shared `includes/header.php` and `includes/footer.php`, CSS/JS/images under `assets/`, and no database or contact form. It stays intact as the fallback.
+- The migration was **reset and restarted from Phase 1**. The parallel app now lives outside this repo at `../laravel-project/`: that folder is the public web root, and `../laravel-project/main/` is the private Laravel 12 app. The old `laravel-app/` was removed.
+- Local PHP is 8.2.12 (`D:\xampp\php\php.exe`), so Laravel 12 was chosen (Laravel 13 needs PHP 8.3). Laravel 12 security fixes end 2027-02-24. Ask before changing any PHP runtime or using Laravel 12 for a new production deployment.
+- **Phases 1–4 are done. Phase 5 (cutover) is not started and needs explicit user approval.** See the sequence below.
 
 ## Goals and constraints
 
@@ -25,21 +24,15 @@ description: Safely migrate Wonder Antique Metals from its existing Core PHP pag
 
 ## Migration sequence
 
-### 1. Preflight
+### Phase 1 — Fresh scaffold (done)
 
-- Confirm target PHP and extensions on both XAMPP/Apache and the deployment host.
-- Confirm Composer availability/version and the intended deployment document root.
-- Select the Laravel major only after confirming runtime compatibility and support lifetime.
-- Do not install Composer globally or upgrade PHP without approval. Use an approved Composer installation method after the Laravel manifest/scaffold is in scope.
+- Laravel 12.72 created in `../laravel-project/main/`; `../laravel-project/` holds `index.php` (loads `./main`, sets the public path), `.htaccess`, `favicon.ico`, `robots.txt`, and a copy of `assets/`.
+- `main/.htaccess` is `Require all denied`. `.env` and `vendor/` stay untracked. `APP_URL=http://wonderantiquemetals.test`.
+- Do not install optional starter kits or third-party packages. Do not install Composer globally; use a temporary `composer.phar`.
 
-### 2. Scaffold in parallel
+### Phases 2–3 — Layout, routes, data, content (done)
 
-- Create a standard Laravel app under `laravel-app/`, never over the current project root.
-- Use the Laravel native starter structure only. Do not install optional starter kits or third-party packages.
-- Keep `.env`, generated keys, secrets, and `vendor/` untracked; commit the dependency manifest and lock file.
-- Copy the existing `assets/` to `laravel-app/public/assets/` without editing the legacy originals.
-
-### 3. Map pages, routes, and shared layout
+Shared layout `resources/views/layout.blade.php`, routes in `routes/web.php`, service data in `config/site.php`, the 8 pages in `resources/views/pages/` (text verified identical to the legacy pages), `errors/404.blade.php`, `ServiceController`, `LegacyServiceRedirectController`. Pages map as follows:
 
 Create a shared Blade layout for document metadata, preloader, announcement, header/navigation, footer, styles, and scripts. Migrate each page's existing content into focused views:
 
@@ -61,17 +54,19 @@ The allowed service slugs are `regulatory`, `assaying`, `acquisition`, `auction`
 
 - Preserve titles, descriptions, text, alt text, image dimensions, links, and semantic structure while converting PHP templates to Blade.
 - Let Blade escape dynamic output. Keep route input constrained to the known service keys.
-- No database, migrations, authentication, or form handling are needed for the current site.
+- Update: the user later approved a MySQL database and an admin panel at `/ktgadmin` (banners, services, appraisals, testimonials, company settings, login details). See AGENTS.md. Public contact form processing and email are still not built.
 - Contact details on the existing page are explicitly sample information. Do not publish them as verified business details.
 - Testimonials are explicitly illustrative; retain their disclaimer or wait for approved client quotes.
 - Do not create contact form processing, mail delivery, or upload handling until the user defines the required behavior.
 
-### 5. Verify, then plan cutover separately
+### Phase 4 — Tests (done)
 
-- Run `composer validate`, dependency installation from the committed lock file, PHP lint, and the scaffold's Laravel test runner.
-- Add focused tests for every route, service slug and unknown-slug 404, metadata/content essentials, legacy URL redirects, and any request validation actually introduced.
-- Check asset requests, desktop/mobile layout, keyboard navigation, reduced-motion behavior, and no horizontal overflow in a browser.
-- Confirm Apache/rewrite support and set the target document root to `laravel-app/public` only in an approved deployment change.
+- `tests/Feature/SiteTest.php` covers every page, service slug, unknown-slug 404, legacy redirects, titles, and internal links. 29 tests pass with `php artisan test` on PHP 8.2.12.
+
+### Phase 5 — Cutover (not started, needs approval)
+
+- Still to check in a browser: asset requests, `main.js` behaviour, desktop/mobile layout, keyboard navigation, reduced-motion behavior, no horizontal overflow, and that `/main/.env` is blocked by Apache.
+- Confirm Apache/rewrite support, then set the vhost DocumentRoot to `laravel-project` (not `main`) only in an approved deployment change, with the hosts entry and production `.env` (`APP_DEBUG=false`).
 - Stage the new app beside the working Core PHP site. Do not remove legacy pages or cut over until route/browser checks pass and the user approves. Keep a rollback path to the legacy site.
 
 ## Completion report

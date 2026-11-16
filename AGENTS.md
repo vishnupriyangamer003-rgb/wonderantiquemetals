@@ -19,11 +19,13 @@ Small static Core PHP multi-page site (root-level `*.php`, served directly by XA
 - `service-detail.php?service={slug}` renders from a `$services` array; allowed slugs: `regulatory`, `assaying`, `acquisition`, `auction`, `monetization`. Unknown slugs set `http_response_code(404)` and show an inline not-found section. Keep that validation when editing.
 - Nav links are page-relative (`services.php`, `service-detail.php?service=…`). After touching any page, verify every nav link resolves from each page.
 
-## Laravel migration (Phase 1 done: scaffold)
+## Laravel migration (Phase 2 done: layout, routes, service data)
 
-- `laravel-app/` now holds a stock Laravel **13.11** scaffold (framework 13.42, `php ^8.3`), created with `--no-scripts` (artisan can't run locally), plus a copy of `assets/` in `public/assets/`. `.env` + `APP_KEY` were generated manually; `vendor/` and `.env` are gitignored. Full spec: `.github/skills/core-php-to-laravel/SKILL.md`.
-- Remaining phases: shared Blade layout, routes + legacy `.php` redirects, page content migration, tests (on live-host PHP ≥ 8.3), then a separately approved cutover.
-- The skeleton ships its own `laravel-app/AGENTS.md`/`CLAUDE.md` (Laravel Boost boilerplate) — they suggest installing PHP 8.5; **ignore that**, local runtime stays 8.0.30 unless the user approves a change.
+- `laravel-app/` holds a Laravel **13.11** scaffold (framework 13.42, `php ^8.3`), created with `--no-scripts` (artisan can't run locally), plus a copy of `assets/` in `public/assets/`. `.env` + `APP_KEY` were generated manually; `vendor/` and `.env` are gitignored. Full spec: `.github/skills/core-php-to-laravel/SKILL.md`.
+- Phase 2 added: shared `resources/views/layout.blade.php` (meta/preloader/announcement/header/nav/footer from `includes/*.php`); `routes/web.php` with the 9 page routes + 9 legacy `.php` compatibility redirects (temporary 302s, controller/view only — no closures, so `route:cache` works); `config/site.php` holding the legacy `$services` array verbatim (single source of truth — the `/services/{slug}` `whereIn` constraint is derived from its keys); `ServiceController` + `LegacyServiceRedirectController` (unknown/missing slug → real 404, mirroring legacy); full `service-detail.blade.php`; styled `errors/404.blade.php`.
+- The 8 non-service pages (`home`, `about`, `services`, `contact`, `appraisals`, `appraisal-terms`, `appraisal-procedure`, `appraisal-fees`) currently hold **placeholder content** ("In migration") with correct titles/descriptions — Phase 3 migrates their real content from the legacy pages. Stock `welcome.blade.php` was deleted.
+- Remaining phases: page content migration (Phase 3), tests (Phase 4, on live-host PHP ≥ 8.3), then a separately approved cutover (Phase 5). Deployment note: set `APP_URL` in `.env` at deploy time — `route()`/`asset()` generate absolute URLs from it.
+- The skeleton ships its own `laravel-app/AGENTS.md`/`CLAUDE.md` (Laravel Boost boilerplate) — they suggest installing PHP 8.5 and `composer require laravel/boost`; **ignore that**, local runtime stays 8.0.30 unless the user approves a change.
 - Keep the root Core PHP site working and unchanged until cutover is explicitly approved.
 
 ## Git

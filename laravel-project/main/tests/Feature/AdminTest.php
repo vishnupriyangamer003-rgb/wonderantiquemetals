@@ -126,6 +126,18 @@ class AdminTest extends TestCase
             ->assertSessionHasErrors(['email', 'facebook']);
     }
 
+    public function test_settings_allow_multiple_email_addresses(): void
+    {
+        $this->login()->put('/ktgadmin/settings', [
+            'email' => 'info@wonderantiquemetals.com, Rajesh@wonderantiquemetals.com, Satish@wonderantiquemetals.com',
+        ])->assertSessionHasNoErrors();
+
+        $this->get('/contact')->assertOk()
+            ->assertSee('mailto:info@wonderantiquemetals.com', false)
+            ->assertSee('mailto:Rajesh@wonderantiquemetals.com', false)
+            ->assertSee('mailto:Satish@wonderantiquemetals.com', false);
+    }
+
     // ---------- account ----------
 
     public function test_account_shows_password_and_updates_without_confirmation(): void

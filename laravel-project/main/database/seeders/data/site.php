@@ -48,25 +48,23 @@ next move.',
       'slug' => 'appraisals',
       'nav_label' => 'Antique Appraisals',
       'meta_title' => 'Antique Appraisals | Wonder Antique Metals',
-      'meta_description' => 'Learn about the appraisal approach for antique objects, precious metals, and rare materials.',
+      'meta_description' => 'Antique appraisals and valuation services by skilled and expert appraisers at our designated place and on site.',
       'eyebrow' => 'Appraisals · Antique assets',
       'heading' => 'Antique',
       'heading_em' => 'appraisals.',
-      'lead' => 'A considered appraisal starts with a careful examination and a clear understanding of what you need to know about an item.',
+      'lead' => 'If you are possessing any antique item and you are looking for its appraisals and value, your search ends now, as we have skilled and expert appraisers. For your entire appraisal needs you can contact us. We do appraisals at our designated place and also on site.',
       'sections' => 
       array (
         0 => 
         array (
-          'heading' => 'What we consider',
-          'text' => 'We consider an item\'s materials, construction, visible condition, provenance information supplied, and relevant market context. The assessment depends on the item and the information available.',
-        ),
-        1 => 
-        array (
-          'heading' => 'Scope & limitations',
-          'text' => 'An appraisal is an informed opinion based on the agreed purpose, examination, and available information at the time. It is not a guarantee of future sale proceeds. The scope and any deliverables are discussed before work begins.',
+          'heading' => 'Please note',
+          'text' => '- Appraisal requests are generally completed within 3-4 business days.
+- Requests received over the weekend are opened on Mondays in order of receipts.
+- We will notify you if there is going to be any delay beyond 72 hours, or require additional information from your end.
+- If you have any questions regarding your appraisal or need to send us addition images please contact us',
         ),
       ),
-      'button_label' => 'Discuss an appraisal',
+      'button_label' => 'Contact us for appraisals',
       'sort_order' => 1,
     ),
     1 => 
@@ -74,27 +72,122 @@ next move.',
       'slug' => 'terms',
       'nav_label' => 'Terms & Conditions',
       'meta_title' => 'Appraisal Terms & Conditions | Wonder Antique Metals',
-      'meta_description' => 'Review the general information about appraisal terms before arranging an appraisal.',
+      'meta_description' => 'Review the operational terms and conditions for testing, custody, and appraisals before arranging an assignment.',
       'eyebrow' => 'Appraisals · Terms',
       'heading' => 'Terms &',
       'heading_em' => 'conditions.',
-      'lead' => 'The terms for each appraisal are discussed and agreed with you before any assessment begins.',
+      'lead' => 'Please review our operational terms and conditions before scheduling any appraisal or testing assignment.',
       'sections' => 
       array (
         0 => 
         array (
-          'heading' => 'Before work begins',
-          'text' => 'We discuss the item or items, the purpose and scope of the appraisal, inspection and handling arrangements, expected timing, deliverables, and any applicable charges.',
+          'heading' => '1. Assignment Date & Fee',
+          'text' => 'The assignment date is agreed for a specific date and the amount paid towards the assignment of this particular date only, and it is non-refundable.',
         ),
         1 => 
         array (
-          'heading' => 'Information & findings',
-          'text' => 'An assessment is based on the agreed scope, examination, and information available at the time. Any limits or assumptions should be discussed as part of the appraisal.',
+          'heading' => '2. Testing Spot Road & Access',
+          'text' => 'The testing spot should be for a specific location, and should not be in forest area, and the approach road to the testing spot should be by a tar road, and 30 meters wide so that four wheeler can be moved on easily, and distance should not me more than 20 feet from vehicle parking spot to testing and delivery spot.',
         ),
         2 => 
         array (
-          'heading' => 'Current terms',
-          'text' => 'This page is a general guide, not a complete engagement contract. Request and review the specific terms for your appraisal before deciding to proceed.',
+          'heading' => '3. Spot Structure & High Tension Clearance',
+          'text' => 'The location of the testing spot should be exactly the same as per the given address details in Invitation Memo and location map to the company while inviting the company and the roofing of the testing spot should be concrete mould or cemented sheets, and at a distance of minimum 500 meters from HT electricity wires, transformer or Tower.',
+        ),
+        3 => 
+        array (
+          'heading' => '4. Material Delivery Timeline & Disqualification',
+          'text' => 'If an identifier/custodian fails to produce the material within the stipulated time i.e. by 08.00 am and or maximum by 09.00 am, and during the course of testing if the material is found as duplicate or dummy in nature, and if the custodian is having any pending criminal case or FIR in any court or police station in a country, or if number of people increased to four at the spot from custodian side, or the atmosphere at the spot is not peaceful, then the assignment will be aborted and cancelled and the fee/charges paid towards the assignment would be forfeited.',
+        ),
+        4 => 
+        array (
+          'heading' => '5. Positive Testing & Joint Custody',
+          'text' => 'If testing report is positive and the final test means 3rd test has been confirmed by 12.30 pm, then the material will be placed in the joint custody at the testing spot itself, and two persons from company side will sit in joint custody at the same spot.',
+        ),
+        5 => 
+        array (
+          'heading' => '6. Custodian Declaration & Signal',
+          'text' => 'Then the custodian has to sign the declaration form and agreement and provide his photographs, ID proof and address proof of the location. While in joint custody, once the company persons feel the peaceful and safe atmosphere at the testing and delivery spot of the material, they will send the required positive signal to the company.',
+        ),
+        6 => 
+        array (
+          'heading' => '7. Gift Money Delivery Schedule',
+          'text' => 'On receipt of the required positive signal sent by the company persons (which should be with in 01.00 pm on the testing day), the gift money will be delivered at the location within per-agreed time on the same day itself if no breach of the clauses B & D is committed as mentioned herein above.',
+        ),
+        7 => 
+        array (
+          'heading' => '8. Financial Bond & Next Banking Day',
+          'text' => 'If the test confirmation is done after 01.00 pm then the issued financial bond will be closed and the agreed gift amount money will be paid only on next working/banking day subject to the payment of financial bond opening charges.',
+        ),
+        8 => 
+        array (
+          'heading' => '9. Safe Joint Custody & Security Deployment',
+          'text' => 'After delivering the agreed gift amount money at testing spot, the joint custody of the material will be at agreed safe place with two persons from company side and two from custodian side, and also 4 security persons till the legal registration is obtained from the regulatory authority.',
+        ),
+        9 => 
+        array (
+          'heading' => '10. Payment Disbursement Schedule',
+          'text' => 'The payment disbursement shall be as per the agreed payment disbursement schedule, and the business will be completed in 45 working days.',
+        ),
+        10 => 
+        array (
+          'heading' => '11. Proof of Funds Conditions',
+          'text' => 'The proof of funds can be provided only after the joint custody, or after obtaining regulatory consent and registration from the regulatory body of the radioactive source, or it can be provided on payment of the 5% of the total amount of funds you wish to see prior to the testing.',
+        ),
+        11 => 
+        array (
+          'heading' => '12. Address & Identity Verification',
+          'text' => 'The custodian must possess his local proof of address and identity card issued by the local government, so as to enable us to obtain regulatory approvals.',
+        ),
+        12 => 
+        array (
+          'heading' => '13. Legal Compliance & Penalties',
+          'text' => 'If any criminal case or a complaint is found pending in the court or police station against the custodian, then the assignment is liable to be cancelled at once and charges paid towards the same will be forfeited and any money paid will be recovered from the custodian with suitable penalty.',
+        ),
+        13 => 
+        array (
+          'heading' => '14. Auction House Consignment Fee',
+          'text' => 'The source radioactive material can be put in our auction house directly for auction, provided the seller has obtained and possessing regulatory approvals and subject to the payment of USD 1000 Million as an auction arrangement fee. The source material must be placed in our bonded warehouse.',
+        ),
+        14 => 
+        array (
+          'heading' => '15. Payment Beneficiary & Cash Verification',
+          'text' => 'All payments should be made in favor of “WONDER ANTIQUE METALS”, and for cash payment made to our authorized representative shall be confirmed and verification would be provided by the same representative on our website for having received the cash by the company for the proposed assignment.',
+        ),
+        15 => 
+        array (
+          'heading' => '16. Representative Password Verification',
+          'text' => 'We strongly advise to cross check with us to corroborate the identity and existence of our representative, if he/she is not referred by us, and our representative can also arrange the identity verification through his/her individual password on our website.',
+        ),
+        16 => 
+        array (
+          'heading' => '17. Five Days Advance Engagement',
+          'text' => 'For any business proposal & invitation the company must be engaged at least 5 working days well in advance of the proposed business assignment to be scheduled by paying the full movement charges.',
+        ),
+        17 => 
+        array (
+          'heading' => '18. Consulting Fee',
+          'text' => 'Our consulting fee is USD 200 for each session of half an hour, and if you are consulting us without test sample or lab report of test sample then it would be waste of time.',
+        ),
+        18 => 
+        array (
+          'heading' => '19. License Showing Charges',
+          'text' => 'Our license and documents can be shown on the payment of USD 10,000 prior to the testing.',
+        ),
+        19 => 
+        array (
+          'heading' => '20. Document Photocopy Issuance',
+          'text' => 'The photocopies of our license and documents can be provided on payment of USD 10 million.',
+        ),
+        20 => 
+        array (
+          'heading' => '21. Document Official Verification',
+          'text' => 'The verification of our license and documents can be arranged & confirmed on payment of USD 50 Million prior to the testing.',
+        ),
+        21 => 
+        array (
+          'heading' => '22. On-Site & Designated Testing Charges',
+          'text' => 'We do testing/appraising at our designated place and also on-site, but for on-site visit testing/appraising charges will be extra.',
         ),
       ),
       'button_label' => 'Request current terms',
@@ -105,32 +198,124 @@ next move.',
       'slug' => 'procedure',
       'nav_label' => 'Procedure',
       'meta_title' => 'Appraisal Procedure | Wonder Antique Metals',
-      'meta_description' => 'See the general steps for discussing and arranging an appraisal.',
+      'meta_description' => 'Step-by-step procedure for testing, packing, regulatory approvals, and sale-purchase assignments.',
       'eyebrow' => 'Appraisals · Procedure',
       'heading' => 'Appraisal',
       'heading_em' => 'procedure.',
-      'lead' => 'Each appraisal begins with a conversation about the item and the information you need.',
+      'lead' => 'The company initiates and performs the task as per the agreed and accepted “Invitation & Assignment Memo” (Unpacking, Testing, Packing, and Regulatory Approvals & Legal Sale-Purchase).',
       'sections' => 
       array (
         0 => 
         array (
-          'heading' => '1. Initial enquiry',
-          'text' => 'Tell us about the item, its known history, and the purpose of the appraisal. Clear photographs and any available documentation can help us understand your request.',
+          'heading' => '1. Advance Arrangement Fee',
+          'text' => 'The company should be engaged by paying requisite arrangement fee 5 days in advance, which is a part payment of our movement charges, and upon receipt of the same the company will make all the necessary arrangements.',
         ),
         1 => 
         array (
-          'heading' => '2. Agree the scope',
-          'text' => 'We discuss the examination needed, arrangements for viewing or handling the item, expected timing, deliverables, and applicable fees before work begins.',
+          'heading' => '2. Issuance of Demand Note',
+          'text' => 'The company after making all necessary arrangements shall issue the demand note to make the balance amount of movement charges within the stipulated period.',
         ),
         2 => 
         array (
-          'heading' => '3. Examination',
-          'text' => 'The item is considered in line with the agreed scope. Material, workmanship, condition, provenance information, and relevant market context may inform the assessment.',
+          'heading' => '3. Date & Time Confirmation',
+          'text' => 'The company after receipt of the agreed total onsite assignment charges shall confirm its task commencement date & time 3 days in advance.',
         ),
         3 => 
         array (
-          'heading' => '4. Findings & next steps',
-          'text' => 'We explain the findings and any limitations. If you are interested in another service, such as assaying, acquisition, or auction, that can be discussed separately.',
+          'heading' => '4. Expert Team Spot Visit',
+          'text' => 'The company expert team shall visit the testing spot on the committed date to test and pack the material as per safety norms and guidelines issued by the competent authority.',
+        ),
+        4 => 
+        array (
+          'heading' => '5. Motor-able Road Access',
+          'text' => 'The testing spot should be easily accessible by motor-able road, if the testing spot is changed without intimating the company then company reserve the right to refuse the testing of the material on the given date and time and the testing charges paid would be forfeited.',
+        ),
+        5 => 
+        array (
+          'heading' => '6. Testing Protocols',
+          'text' => 'On scheduled date and time our metallurgist/appraiser will test the material manually or with the radiation monitor/detector device depending on the payment made.',
+        ),
+        6 => 
+        array (
+          'heading' => '7. Spot Hospitality Rules',
+          'text' => 'The company official will not be offered with any food or beverages items at the testing spot.',
+        ),
+        7 => 
+        array (
+          'heading' => '8. Packing & Anti-Radiation Materials',
+          'text' => 'The company metallurgist/appraiser after having found it a genuine material, shall pack it with the same packing material or with its new anti-radiation material (if the charges for the same is paid in advance to the company) so as to ensure the complete safety of men and material.',
+        ),
+        8 => 
+        array (
+          'heading' => '9. Master Appraiser & Scientific Valuation',
+          'text' => 'On the 3rd day after the test, the company Sr. Appraiser shall visit and test the material with radiation monitor/detector device and on the same day company hired internationally recognized master appraiser shall also test the material, valuation will be assessed scientifically and after that the material shall be packed carefully by preparing a complete record of the packing details along with diagram of the same.',
+        ),
+        9 => 
+        array (
+          'heading' => '10. Custodian Declaration Form',
+          'text' => 'The declaration form has to be signed by the identifier/custodian by giving the exact address in the declaration/application form so as to register the material with the competent regulatory authority.',
+        ),
+        10 => 
+        array (
+          'heading' => '11. Regulatory Consent & Submission',
+          'text' => 'The company official shall approach the competent authority with the record file containing all the requisite details for the regulatory consent and approval and the custodian has to extend his full cooperation in obtaining the regulatory approval process.',
+        ),
+        11 => 
+        array (
+          'heading' => '12. Joint Custody Transition',
+          'text' => 'Once the detailed record file of the material is prepared, and moved towards the regulatory authority for the approvals, the material shall be placed under the joint custody at the given address in the record file to be registered with the regulatory authority.',
+        ),
+        12 => 
+        array (
+          'heading' => '13. Registered Custody Address',
+          'text' => 'The joint custody would be an individual house, or a star hotel or resort and it may be noted that the same place and address of the joint custody is required to be registered with the competent regulatory authority and shall be the same till the final completion of the business.',
+        ),
+        13 => 
+        array (
+          'heading' => '14. Change of Joint Custody Address',
+          'text' => 'For any valid reason if the joint custody registered address is required to be changed, then it can be done after obtaining the requisite approval from the regulatory authority.',
+        ),
+        14 => 
+        array (
+          'heading' => '15. Government Security & Funds Mobilization',
+          'text' => 'After obtaining the regulatory consent and legal registration of the material from the competent regulatory authority, security personals will be deployed at the joint custody site from the government side as well, and the company mobilizes funds through BGs and LCs and also from Global Capital market and reputed corporate house under its private invitation to selective alliance partners, and the funds will be arranged and parked outside India.',
+        ),
+        15 => 
+        array (
+          'heading' => '16. Purchase Order & Govt Payment',
+          'text' => 'The purchase order will be issued in favor of the competent authority as per the prescribe format and a considerable amount of payment shall be made to the account officer of the concerned government department.',
+        ),
+        16 => 
+        array (
+          'heading' => '17. Staged Payment Disbursement',
+          'text' => 'The Company starts paying the mutually agreed amount as per the agreed schedule.',
+        ),
+        17 => 
+        array (
+          'heading' => '18. Stage-by-Stage Clearances',
+          'text' => 'The Company also approaches all the concern departments for obtaining the necessary regulatory consent and approvals stage by stage.',
+        ),
+        18 => 
+        array (
+          'heading' => '19. Full Settlement within 45 Days',
+          'text' => 'Within 45 working days the company shall complete the business and make the full and final payment to the custodian and beneficiaries involved and the bank account transfer funds shall be duly super tax paid.',
+        ),
+        19 => 
+        array (
+          'heading' => '20. Custodian No-Claim Letter',
+          'text' => 'After obtaining the no claim letter from the custodian/identifier, company takes the material to its place.',
+        ),
+        20 => 
+        array (
+          'heading' => '21. Export, Road & RBI Clearances',
+          'text' => 'After obtaining the necessary road transportation permission, the port clearance, and also the export clearance, the material will be exported, and after the export RBI clearance will be obtained.',
+        ),
+        21 => 
+        array (
+          'heading' => 'Important Conditions',
+          'text' => '** Arrangement fee is payable minimum 5 days in advance to engage us so as to make all necessary arrangements by us, and also to see our License and radiation monitoring instruments. The complete movement charges are required to be paid 3 days in advance.
+
+* Company ready and willing to bear these charges if the sale-purchase assignment is entrusted to the company.',
         ),
       ),
       'button_label' => 'Start an enquiry',
@@ -141,23 +326,13 @@ next move.',
       'slug' => 'fees',
       'nav_label' => 'Fee Structure',
       'meta_title' => 'Appraisal Fee Structure | Wonder Antique Metals',
-      'meta_description' => 'Request current appraisal fees based on the scope of the work required.',
+      'meta_description' => 'Comprehensive schedule of appraisal, testing, packing, security, and regulatory fees.',
       'eyebrow' => 'Appraisals · Fees',
-      'heading' => 'Fee',
+      'heading' => 'Fee’s',
       'heading_em' => 'structure.',
-      'lead' => 'Appraisal fees are discussed with you before work begins. No fixed fee figures are published on this page.',
+      'lead' => 'Review our standard schedule of charges for arrangement, licensing, testing, packing, radiation safety, security, and regulatory compliance.',
       'sections' => 
       array (
-        0 => 
-        array (
-          'heading' => 'Based on the scope',
-          'text' => 'The fee depends on the agreed appraisal scope and the examination required. If additional testing or specialist work may be useful, it is discussed with you before proceeding.',
-        ),
-        1 => 
-        array (
-          'heading' => 'Request a quote',
-          'text' => 'Share a description of the item, photographs, and any known history. We can then discuss the proposed scope and applicable charges with you before you decide whether to proceed.',
-        ),
       ),
       'button_label' => 'Request an appraisal quote',
       'sort_order' => 4,
@@ -286,10 +461,9 @@ next move.',
   array (
     'phone' => '+91 00000 00000',
     'whatsapp' => '',
-    'email' => 'hello@example.com',
-    'address' => '12 Example Street
-Karur, Tamil Nadu 639001
-India',
+    'email' => 'info@wonderantiquemetals.com, Rajesh@wonderantiquemetals.com, Satish@wonderantiquemetals.com',
+    'address' => 'Head Office :- Level 16, Centrepoint South, Mid Valley City, Lingkaran Syed Putra, 59200 Kuala Lumpur, Malaysia.
+Corporate Office :- Level 11, Canberra, UB City, 24, Vittal Mallya Rd, KG Halli, D\' Souza Layout, Ashok Nagar, Bengaluru, Karnataka 560001',
     'hours_weekday_label' => 'Monday–Saturday',
     'hours_weekday' => '10:00 AM–6:00 PM',
     'hours_sunday_label' => 'Sunday',

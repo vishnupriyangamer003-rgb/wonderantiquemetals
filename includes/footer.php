@@ -21,14 +21,48 @@
             </div>
             <address class="site-footer__contact" id="contact" aria-label="Company contact information">
                 <span class="footer-label">Company information</span>
-                <span>Phone: +91 00000 00000</span>
-                <a href="mailto:hello@example.com">Email: hello@example.com</a>
-                <span>12 Example Street, Karur, Tamil Nadu 639001, India</span>
+
+                <div class="footer-contact-sec">
+                    <span class="footer-contact-heading">Direct contact</span>
+                    <div class="footer-contact-item">
+                        <span>Phone:</span>
+                        <a href="tel:+919655192569">+91 9655192569</a>
+                    </div>
+                </div>
+
+                <div class="footer-contact-sec">
+                    <span class="footer-contact-heading">Email inquiries</span>
+                    <div class="footer-contact-item">
+                        <a href="mailto:info@wonderantiquemetals.com">info@wonderantiquemetals.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <a href="mailto:Rajesh@wonderantiquemetals.com">Rajesh@wonderantiquemetals.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <a href="mailto:Satish@wonderantiquemetals.com">Satish@wonderantiquemetals.com</a>
+                    </div>
+                </div>
+
                 <a class="back-to-top" href="#main" aria-label="Back to top" title="Back to top">
                     <span aria-hidden="true">↑</span>
                 </a>
             </address>
         </div>
+
+        <div class="site-footer__locations" aria-label="Office locations">
+            <span class="footer-label">Locations</span>
+            <div class="footer-offices-grid has-multiple">
+                <div class="footer-office-card">
+                    <strong>Head Office</strong>
+                    <span>Level 16, Centrepoint South, Mid Valley City, Lingkaran Syed Putra, 59200 Kuala Lumpur, Malaysia.</span>
+                </div>
+                <div class="footer-office-card">
+                    <strong>Corporate Office</strong>
+                    <span>Level 11, Canberra, UB City, 24, Vittal Mallya Rd, KG Halli, D' Souza Layout, Ashok Nagar, Bengaluru, Karnataka 560001</span>
+                </div>
+            </div>
+        </div>
+
         <div class="site-footer__bottom">
             <span>© <?php echo date('Y'); ?> Wonder Antique Metals</span>
             <span>Integrity · Professionalism · Expertise</span>

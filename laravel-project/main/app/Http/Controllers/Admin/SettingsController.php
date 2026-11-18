@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class SettingsController extends Controller
 {
     private const TEXT = [
-        'phone' => 60, 'whatsapp' => 60, 'email' => 150, 'address' => 400,
+        'phone' => 60, 'whatsapp' => 60, 'email' => 300, 'address' => 400,
         'hours_weekday_label' => 60, 'hours_weekday' => 60, 'hours_sunday_label' => 60, 'hours_sunday' => 60,
         'meta_title' => 200, 'meta_description' => 400, 'meta_keywords' => 300,
         'google_map_embed' => 2000, 'google_map_label' => 120,
@@ -41,7 +41,19 @@ class SettingsController extends Controller
         $rules = [
             'logo' => ImageUploader::rules(false),
             'favicon' => ImageUploader::rules(false),
-            'email' => ['nullable', 'email', 'max:150'],
+            'email' => [
+                'nullable',
+                'string',
+                'max:300',
+                function (string $attribute, mixed $value, \Closure $fail) {
+                    $parts = array_filter(array_map('trim', preg_split('~[\r\n,]+~', (string) $value)));
+                    foreach ($parts as $part) {
+                        if (!filter_var($part, FILTER_VALIDATE_EMAIL)) {
+                            $fail('The email address "'.$part.'" is not valid.');
+                        }
+                    }
+                },
+            ],
             'google_map_embed' => ['nullable', 'string', 'max:2000', 'regex:'.self::MAP_EMBED_PATTERN],
         ];
         foreach (self::TEXT as $key => $max) {

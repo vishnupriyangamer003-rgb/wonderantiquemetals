@@ -14,7 +14,7 @@
         </div>
         <figure class="services-page-hero__visual">
             <img
-                src="{{ asset('assets/images/antique-display-slide.jpg') }}"
+                src="{{ asset('assets/images/services-hero.jpg') }}"
                 alt="Vintage and antique jewelry and decorative objects arranged together"
                 width="1920"
                 height="1280"

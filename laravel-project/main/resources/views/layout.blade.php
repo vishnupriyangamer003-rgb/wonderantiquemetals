@@ -107,26 +107,97 @@
             </div>
             <address class="site-footer__contact" id="contact" aria-label="Company contact information">
                 <span class="footer-label">Company information</span>
-                @if (!empty($site['phone']))
-                    <span>Phone: {{ $site['phone'] }}</span>
+
+                @if (!empty($site['phone']) || $waNumber !== '')
+                <div class="footer-contact-sec">
+                    <span class="footer-contact-heading">Direct contact</span>
+                    @if (!empty($site['phone']))
+                        <div class="footer-contact-item">
+                            <span>Phone:</span>
+                            <a href="tel:{{ preg_replace('~[^\d+]~', '', $site['phone']) }}">{{ $site['phone'] }}</a>
+                        </div>
+                    @endif
+                    @if ($waNumber !== '')
+                        <div class="footer-contact-item">
+                            <span>WhatsApp:</span>
+                            <a href="https://wa.me/{{ $waNumber }}" target="_blank" rel="noopener noreferrer">{{ $site['whatsapp'] }}</a>
+                        </div>
+                    @endif
+                </div>
                 @endif
-                @if ($waNumber !== '')
-                    <a href="https://wa.me/{{ $waNumber }}" target="_blank" rel="noopener noreferrer">WhatsApp: {{ $site['whatsapp'] }}</a>
+
+                @php
+                    $footerEmails = array_values(array_filter(array_map('trim', preg_split('~[\r\n,]+~', $site['email'] ?? ''))));
+                @endphp
+                @if (!empty($footerEmails))
+                <div class="footer-contact-sec">
+                    <span class="footer-contact-heading">Email inquiries</span>
+                    @foreach ($footerEmails as $fEmail)
+                        <div class="footer-contact-item">
+                            <a href="mailto:{{ $fEmail }}">{{ $fEmail }}</a>
+                        </div>
+                    @endforeach
+                </div>
                 @endif
-                @if (!empty($site['email']))
-                    <a href="mailto:{{ $site['email'] }}">Email: {{ $site['email'] }}</a>
-                @endif
-                @if ($addressLines)
-                    <span>{{ implode(', ', $addressLines) }}</span>
-                @endif
+
+                @php
+                    $rawAddress = trim($site['address'] ?? '');
+                    $officeCards = [];
+                    if (preg_match('~(Head Office|Corporate Office)~i', $rawAddress)) {
+                        $parts = preg_split('~(?=(?:Head|Corporate)\s+Office)~i', $rawAddress, -1, PREG_SPLIT_NO_EMPTY);
+                        foreach ($parts as $part) {
+                            $pTrim = trim($part);
+                            if ($pTrim === '') continue;
+                            if (preg_match('~^([^:\-\n\r]+(?::\-|:|-))\s*(.*)$~is', $pTrim, $m)) {
+                                $cardTitle = trim(preg_replace('~[:\-\s]+$~', '', $m[1]));
+                                $cardBody = trim($m[2]);
+                            } else {
+                                $cardTitle = '';
+                                $cardBody = $pTrim;
+                            }
+                            $cLines = array_values(array_filter(array_map('trim', preg_split('~\R~', $cardBody))));
+                            $officeCards[] = [
+                                'title' => $cardTitle,
+                                'text' => implode(', ', $cLines),
+                            ];
+                        }
+                    } else {
+                        $cLines = array_values(array_filter(array_map('trim', preg_split('~\R~', $rawAddress))));
+                        if (!empty($cLines)) {
+                            $officeCards[] = [
+                                'title' => '',
+                                'text' => implode(', ', $cLines),
+                            ];
+                        }
+                    }
+                @endphp
+
                 @foreach ($socials as $label => $url)
                     <a href="{{ $url }}" target="_blank" rel="noopener noreferrer">{{ $label }}</a>
                 @endforeach
+
                 <a class="back-to-top" href="#main" aria-label="Back to top" title="Back to top">
                     <span aria-hidden="true">↑</span>
                 </a>
             </address>
         </div>
+
+        @if (!empty($officeCards))
+        <div class="site-footer__locations" aria-label="Office locations">
+            <span class="footer-label">{{ count($officeCards) > 1 ? 'Locations' : 'Location' }}</span>
+            <div class="footer-offices-grid{{ count($officeCards) > 1 ? ' has-multiple' : '' }}">
+                @foreach ($officeCards as $card)
+                    <div class="footer-office-card">
+                        @if (!empty($card['title']))
+                            <strong>{{ $card['title'] }}</strong>
+                        @endif
+                        <span>{{ $card['text'] }}</span>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
         <div class="site-footer__bottom">
             <span>© {{ date('Y') }} Wonder Antique Metals</span>
             <span>Integrity · Professionalism · Expertise</span>

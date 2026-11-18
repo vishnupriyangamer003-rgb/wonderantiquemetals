@@ -1,13 +1,13 @@
 <?php
 $pageTitle = 'Contact | Wonder Antique Metals';
-$pageDescription = 'Contact Wonder Antique Metals in Karur District, Tamil Nadu. Sample address, phone, email, and opening hours are shown for layout preview.';
+$pageDescription = 'Contact Wonder Antique Metals. Sample address, phone, email, and opening hours are shown for layout preview.';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
 <main id="main">
     <section class="contact-hero section-shell" aria-labelledby="contact-title">
         <div class="contact-hero__heading">
-            <p class="eyebrow">Contact · Karur District</p>
+            <p class="eyebrow">Contact</p>
             <h1 id="contact-title">Let’s<br><em>connect.</em></h1>
         </div>
         <div class="contact-hero__copy">
@@ -26,7 +26,11 @@ require_once __DIR__ . '/includes/header.php';
                 <span class="card-number">02 / REACH OUT</span>
                 <h3>Phone &amp; email</h3>
                 <p><span>Phone</span><br>+91 00000 00000</p>
-                <p><span>Email</span><br><a href="mailto:hello@example.com">hello@example.com</a></p>
+                <p><span>Email</span><br>
+                    <a href="mailto:info@wonderantiquemetals.com">info@wonderantiquemetals.com</a><br>
+                    <a href="mailto:Rajesh@wonderantiquemetals.com">Rajesh@wonderantiquemetals.com</a><br>
+                    <a href="mailto:Satish@wonderantiquemetals.com">Satish@wonderantiquemetals.com</a>
+                </p>
             </article>
             <article class="contact-card">
                 <span class="card-number">03 / VISITING HOURS</span>

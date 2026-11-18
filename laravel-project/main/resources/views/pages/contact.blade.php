@@ -1,13 +1,13 @@
 @extends('layout')
 
 @section('title', 'Contact | Wonder Antique Metals')
-@section('description', 'Contact Wonder Antique Metals in Karur District, Tamil Nadu. Sample address, phone, email, and opening hours are shown for layout preview.')
+@section('description', 'Contact Wonder Antique Metals. Sample address, phone, email, and opening hours are shown for layout preview.')
 
 @section('content')
 <main id="main">
     <section class="contact-hero section-shell" aria-labelledby="contact-title">
         <div class="contact-hero__heading">
-            <p class="eyebrow">Contact · Karur District</p>
+            <p class="eyebrow">Contact</p>
             <h1 id="contact-title">Let’s<br><em>connect.</em></h1>
         </div>
         <div class="contact-hero__copy">
@@ -29,7 +29,16 @@
                 @if (!empty($site['whatsapp']))
                 <p><span>WhatsApp</span><br><a href="https://wa.me/{{ preg_replace('~\D+~', '', $site['whatsapp']) }}" target="_blank" rel="noopener noreferrer">{{ $site['whatsapp'] }}</a></p>
                 @endif
-                <p><span>Email</span><br><a href="mailto:{{ $site['email'] ?? '' }}">{{ $site['email'] ?? '' }}</a></p>
+                @php
+                    $contactEmails = array_values(array_filter(array_map('trim', preg_split('~[\r\n,]+~', $site['email'] ?? ''))));
+                @endphp
+                @if (!empty($contactEmails))
+                <p><span>Email</span><br>
+                    @foreach ($contactEmails as $cEmail)
+                        <a href="mailto:{{ $cEmail }}">{{ $cEmail }}</a>@if (!$loop->last)<br>@endif
+                    @endforeach
+                </p>
+                @endif
             </article>
             <article class="contact-card">
                 <span class="card-number">03 / VISITING HOURS</span>

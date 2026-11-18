@@ -15,7 +15,7 @@
         <div class="adm-grid">
             <div class="adm-field adm-w-sm"><label for="f-phone">Phone</label><input type="text" id="f-phone" name="phone" value="{{ $v('phone') }}" maxlength="60" inputmode="tel"></div>
             <div class="adm-field adm-w-sm"><label for="f-whatsapp">WhatsApp number</label><input type="text" id="f-whatsapp" name="whatsapp" value="{{ $v('whatsapp') }}" maxlength="60" inputmode="tel" placeholder="+91 98765 43210"><small>Used for the wa.me link. Include the country code.</small></div>
-            <div class="adm-field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" value="{{ $v('email') }}" maxlength="150"></div>
+            <div class="adm-field"><label for="f-email">Email</label><input type="text" id="f-email" name="email" value="{{ $v('email') }}" maxlength="300" placeholder="e.g. info@domain.com, contact@domain.com"><small>Separate multiple email addresses with a comma.</small></div>
             <div class="adm-field adm-span"><label for="f-address">Address</label><textarea id="f-address" name="address" rows="3" maxlength="400">{{ $v('address') }}</textarea><small>One line per row.</small></div>
         </div>
     </section>

@@ -1,6 +1,6 @@
 <?php
 $pageTitle = 'Antique Appraisals | Wonder Antique Metals';
-$pageDescription = 'Learn about the appraisal approach for antique objects, precious metals, and rare materials.';
+$pageDescription = 'Antique appraisals and valuation services by skilled and expert appraisers at our designated place and on site.';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -9,22 +9,24 @@ require_once __DIR__ . '/includes/header.php';
         <div class="appraisal-page__inner">
             <p class="eyebrow">Appraisals · Antique assets</p>
             <h1 id="appraisal-title">Antique<br><em>appraisals.</em></h1>
-            <p class="appraisal-page__lead">A considered appraisal starts with a careful examination and a clear understanding of what you need to know about an item.</p>
+            <p class="appraisal-page__lead">If you are possessing any antique item and you are looking for its appraisals and value, your search ends now, as we have skilled and expert appraisers. For your entire appraisal needs you can contact us. We do appraisals at our designated place and also on site.</p>
+            <figure class="appraisal-page__visual">
+                <img src="assets/images/antique-appraisals.jpg" alt="Antique Appraisals" width="1200" height="600">
+            </figure>
             <div class="appraisal-page__content">
-                <section class="appraisal-page__section" aria-labelledby="appraisal-consider-title">
-                    <h2 id="appraisal-consider-title">What we consider</h2>
+                <section class="appraisal-page__section" aria-labelledby="appraisal-notes-title">
+                    <h2 id="appraisal-notes-title">Please note</h2>
                     <div>
-                        <p>We consider an item's materials, construction, visible condition, provenance information supplied, and relevant market context. The assessment depends on the item and the information available.</p>
-                    </div>
-                </section>
-                <section class="appraisal-page__section" aria-labelledby="appraisal-scope-title">
-                    <h2 id="appraisal-scope-title">Scope &amp; limitations</h2>
-                    <div>
-                        <p>An appraisal is an informed opinion based on the agreed purpose, examination, and available information at the time. It is not a guarantee of future sale proceeds. The scope and any deliverables are discussed before work begins.</p>
+                        <ul class="appraisal-list">
+                            <li>Appraisal requests are generally completed within 3-4 business days.</li>
+                            <li>Requests received over the weekend are opened on Mondays in order of receipts.</li>
+                            <li>We will notify you if there is going to be any delay beyond 72 hours, or require additional information from your end.</li>
+                            <li>If you have any questions regarding your appraisal or need to send us addition images please contact us.</li>
+                        </ul>
                     </div>
                 </section>
             </div>
-            <a class="button button-dark appraisal-page__action" href="contact.php">Discuss an appraisal <span aria-hidden="true">↗</span></a>
+            <a class="button button-dark appraisal-page__action" href="contact.php">Contact us for appraisals <span aria-hidden="true">↗</span></a>
         </div>
     </section>
 </main>

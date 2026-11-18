@@ -12,7 +12,7 @@ class SiteTest extends TestCase
     {
         return [
             'home' => ['/', 'Precious'],
-            'about' => ['/about', 'A clearer'],
+            'about' => ['/about', 'Welcome'],
             'services' => ['/services', 'Our'],
             'contact' => ['/contact', 'Let’s'],
             'appraisals' => ['/appraisals', 'Appraisal'],

@@ -7,9 +7,9 @@
 <main id="main">
     <section class="about-hero section-shell" aria-labelledby="about-title">
         <div class="about-hero__copy">
-            <p class="eyebrow">About Wonder Antique Metals</p>
-            <h1 id="about-title">A clearer<br><em>perspective.</em></h1>
-            <p class="about-hero__intro">We bring market context and technical understanding to precious metals, antique items, and rare materials—helping clients understand an asset and consider informed next steps.</p>
+            <p class="eyebrow">About WONDER ANTIQUE METALS</p>
+            <h1 id="about-title">Welcome To<br><em>WONDER ANTIQUE METALS</em></h1>
+            <p class="about-hero__intro">WONDER is a worldwide company and have a strong network and ratifying its business activities in USA, UK, Germany, France and India in particular and also we do other part of the world like Romania, Russia, Poland, Korea, Israel, Singapore, Canada and Australia in general.</p>
         </div>
         <figure class="about-hero__visual">
             <img
@@ -24,18 +24,18 @@
     <section class="about-perspective" id="approach" aria-labelledby="about-perspective-title">
         <div class="about-perspective__inner section-shell">
             <div class="about-perspective__copy">
-                <p class="eyebrow eyebrow--light">Our perspective</p>
-                <h2 id="about-perspective-title">Value is part of a larger story.</h2>
-                <p>Investment, production, refining, fabrication, research, and end use each bring a different perspective to a material. We consider how technical quality and market context connect, rather than looking at an asset in isolation.</p>
+                <p class="eyebrow eyebrow--light">Our commitment</p>
+                <h2 id="about-perspective-title">Integrity, Professionalism &amp; Expertise</h2>
+                <p>WONDER ANTIQUE METALS is committed to serve its customers with Integrity, Professionalism and the Expertise and dedicated to promote advance technology for the global excellence and abundance.</p>
             </div>
-            <ul class="about-perspective__list" aria-label="Perspectives that inform our work">
-                <li><span>01</span>Investment</li>
-                <li><span>02</span>Production</li>
-                <li><span>03</span>Refining</li>
-                <li><span>04</span>Fabrication</li>
-                <li><span>05</span>Metallurgy</li>
-                <li><span>06</span>Research</li>
-                <li><span>07</span>End use</li>
+            <ul class="about-perspective__list" aria-label="Key activities and sectors">
+                <li><span>01</span>Regulatory</li>
+                <li><span>02</span>Assaying</li>
+                <li><span>03</span>Acquisition</li>
+                <li><span>04</span>Auctioning</li>
+                <li><span>05</span>Precious Metals</li>
+                <li><span>06</span>Antique Items</li>
+                <li><span>07</span>Rare Metals</li>
             </ul>
         </div>
     </section>
@@ -43,26 +43,26 @@
     <section class="about-principles section-shell" id="principles" aria-labelledby="about-principles-title">
         <div class="section-heading">
             <div>
-                <p class="eyebrow">What guides us</p>
-                <h2 id="about-principles-title">A considered way<br><em>of working.</em></h2>
+                <p class="eyebrow">Our syndicate &amp; solutions</p>
+                <h2 id="about-principles-title">A global syndicate<br><em>of professionals.</em></h2>
             </div>
-            <p class="section-heading__copy">Integrity, professionalism, and expertise guide how we assess opportunities and communicate throughout the process.</p>
+            <p class="section-heading__copy">WONDER ANTIQUE METALS is a syndicate and a group of reputed (investors, producers, refiners, fabricators, metallurgists, scientists, users, and financial institutions) professional that supports regulatory, assaying, acquisition and auctioning of precious metals, antique items and also super natural rare metals in the international markets. WONDER ANTIQUE METALS team is dedicated and focused to provide custom field solutions and expert in quality assessment and technical examining services.</p>
         </div>
         <div class="standards-grid">
             <article class="standard-card">
-                <span class="card-number">01 / PRINCIPLE</span>
-                <h3>Integrity</h3>
-                <p>Clear communication and considered handling help build trust at every stage.</p>
+                <span class="card-number">01 / REPUTED GROUP</span>
+                <h3>Diverse Syndicate</h3>
+                <p>Investors, producers, refiners, fabricators, metallurgists, scientists, users, and financial institutions.</p>
             </article>
             <article class="standard-card">
-                <span class="card-number">02 / PRACTICE</span>
-                <h3>Professionalism</h3>
-                <p>Careful coordination and respect for agreed timelines keep work moving clearly.</p>
+                <span class="card-number">02 / CORE SERVICES</span>
+                <h3>Comprehensive Support</h3>
+                <p>Regulatory, assaying, acquisition, and auctioning of precious metals, antiques, and super natural rare metals.</p>
             </article>
             <article class="standard-card">
-                <span class="card-number">03 / KNOW-HOW</span>
-                <h3>Expertise</h3>
-                <p>Technical assessment and market understanding come together in one view.</p>
+                <span class="card-number">03 / FIELD EXPERTISE</span>
+                <h3>Custom Solutions</h3>
+                <p>Dedicated team providing tailored field solutions, quality assessment, and technical examining services.</p>
             </article>
         </div>
     </section>
@@ -71,10 +71,10 @@
         <div class="section-shell">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">Illustrative testimonials</p>
+                    <p class="eyebrow">Client feedback</p>
                     <h2 id="about-testimonials-title">A considered experience.</h2>
                 </div>
-                <p class="section-heading__copy">Fictional example quotes and India-based names—replace these with verified client feedback before publishing.</p>
+                <p class="section-heading__copy">Client experiences reflecting our commitment to integrity, professionalism, and expertise.</p>
             </div>
             <div class="about-testimonials__viewport" data-testimonial-carousel role="group" aria-roledescription="carousel" aria-label="Client testimonials; focus or hover to pause" tabindex="0">
                 <div class="about-testimonials__track">

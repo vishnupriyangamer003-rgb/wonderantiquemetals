@@ -12,6 +12,9 @@ class AppraisalController extends Controller
         $appraisal = SiteData::appraisals()->firstWhere('slug', $slug);
         abort_unless($appraisal, 404);
 
-        return view('pages.appraisal', ['appraisal' => $appraisal]);
+        return view('pages.appraisal', [
+            'appraisal' => $appraisal,
+            'feeItems' => $slug === 'fees' ? SiteData::feeItems() : collect(),
+        ]);
     }
 }

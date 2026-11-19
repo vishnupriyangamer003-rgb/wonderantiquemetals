@@ -50,6 +50,7 @@ Route::prefix('ktgadmin')->name('admin.')->group(function () {
             'services' => Admin\ServiceController::class,
             'appraisals' => Admin\AppraisalController::class,
             'team' => Admin\TeamMemberController::class,
+            'fees' => Admin\FeeItemController::class,
         ];
         foreach ($resources as $key => $controller) {
             Route::patch("$key/{id}/toggle", [$controller, 'toggle'])->whereNumber('id')->name("$key.toggle");

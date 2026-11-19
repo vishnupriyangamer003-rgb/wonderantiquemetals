@@ -46,7 +46,7 @@ class AdminTest extends TestCase
 
     public function test_guests_are_redirected_from_every_admin_page(): void
     {
-        foreach (['settings', 'account', 'banners', 'services', 'appraisals', 'team', 'banners/create', 'team/create'] as $path) {
+        foreach (['settings', 'account', 'banners', 'services', 'appraisals', 'team', 'fees', 'banners/create', 'team/create', 'fees/create'] as $path) {
             $this->get("/ktgadmin/$path")->assertRedirect('/ktgadmin');
         }
         $this->put('/ktgadmin/settings', [])->assertRedirect('/ktgadmin');
@@ -198,6 +198,15 @@ class AdminTest extends TestCase
         $this->assertCount(1, $page->sections);
         $this->get('/appraisals/insurance')->assertOk()->assertSee('Alpha text')->assertSee('valuations.');
         $this->get('/appraisals/appraisals')->assertNotFound();
+    }
+
+    public function test_fee_rows_appear_on_fees_page_and_can_be_hidden(): void
+    {
+        $this->login()->post('/ktgadmin/fees', ['item' => 'Zed Test Charge', 'qty' => '', 'amount' => '99,999.00', 'active' => 1])->assertSessionHasNoErrors();
+        $this->get('/appraisals/fees')->assertOk()->assertSee('Zed Test Charge')->assertSee('99,999.00')->assertSee('Arrangement Fee');
+
+        $this->patch('/ktgadmin/fees/'.\App\Models\FeeItem::where('item', 'Zed Test Charge')->value('id').'/toggle');
+        $this->get('/appraisals/fees')->assertDontSee('Zed Test Charge');
     }
 
     public function test_team_members_appear_on_about_and_can_be_hidden(): void

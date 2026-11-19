@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Admin;
 use App\Models\Appraisal;
 use App\Models\Banner;
+use App\Models\FeeItem;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\TeamMember;
@@ -44,7 +45,15 @@ class DatabaseSeeder extends Seeder
         }
         if (! Appraisal::exists()) {
             foreach ($data['appraisals'] as $a) {
+                if ($a['slug'] === 'fees' && empty($a['sections'])) {
+                    $a['sections'] = (require __DIR__.'/data/fees.php')['sections'];
+                }
                 Appraisal::create($a);
+            }
+        }
+        if (! FeeItem::exists()) {
+            foreach ((require __DIR__.'/data/fees.php')['items'] as $f) {
+                FeeItem::create($f);
             }
         }
         if (! TeamMember::exists()) {

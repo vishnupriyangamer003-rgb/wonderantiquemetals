@@ -4,6 +4,7 @@ namespace App\Support;
 
 use App\Models\Appraisal;
 use App\Models\Banner;
+use App\Models\FeeItem;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\TeamMember;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Cache;
  */
 class SiteData
 {
-    private const KEYS = ['site.settings', 'site.banners', 'site.services', 'site.appraisals', 'site.team'];
+    private const KEYS = ['site.settings', 'site.banners', 'site.services', 'site.appraisals', 'site.team', 'site.fees'];
 
     public static function settings(): array
     {
@@ -43,6 +44,11 @@ class SiteData
     public static function appraisals(): Collection
     {
         return Cache::rememberForever('site.appraisals', fn () => Appraisal::where('active', true)->orderBy('sort_order')->orderBy('id')->get());
+    }
+
+    public static function feeItems(): Collection
+    {
+        return Cache::rememberForever('site.fees', fn () => FeeItem::where('active', true)->orderBy('sort_order')->orderBy('id')->get());
     }
 
     public static function team(): Collection

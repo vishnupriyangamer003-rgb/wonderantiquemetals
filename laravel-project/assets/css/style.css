@@ -1717,23 +1717,20 @@ p {
     background: var(--paper);
 }
 
-.team-card__photo {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    margin-bottom: 20px;
-    object-fit: cover;
-}
-
-.team-card__photo--initials {
+.team-card__avatar {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--paper-deep);
+    width: 84px;
+    height: 84px;
+    margin-bottom: 20px;
     border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--paper-deep);
     color: var(--rust);
     font-family: var(--serif);
-    font-size: 56px;
+    font-size: 40px;
+    line-height: 1;
 }
 
 .team-card h3 {

@@ -212,7 +212,7 @@ class AdminTest extends TestCase
     public function test_team_members_appear_on_about_and_can_be_hidden(): void
     {
         $this->login()->post('/ktgadmin/team', ['name' => 'Zed Tester', 'role' => 'Assayer', 'bio' => 'Sample bio.', 'active' => 1]);
-        $this->get('/about')->assertSee('Zed Tester')->assertSee('Assayer')->assertDontSee('Client feedback');
+        $this->get('/about')->assertSee('Zed Tester')->assertSee('Assayer')->assertSee('team-card__avatar', false)->assertDontSee('Client feedback');
 
         $this->patch('/ktgadmin/team/'.TeamMember::where('name', 'Zed Tester')->value('id').'/toggle');
         $this->get('/about')->assertDontSee('Zed Tester');

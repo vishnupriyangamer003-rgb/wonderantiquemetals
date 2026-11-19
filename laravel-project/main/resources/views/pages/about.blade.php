@@ -80,11 +80,7 @@
             <div class="team-grid">
                 @foreach ($siteTeam as $m)
                 <article class="team-card">
-                    @if ($m->image)
-                    <img class="team-card__photo" src="{{ asset($m->image) }}" alt="Portrait of {{ $m->name }}, {{ $m->role }}" width="400" height="400" loading="lazy">
-                    @else
-                    <span class="team-card__photo team-card__photo--initials" aria-hidden="true">{{ \Illuminate\Support\Str::of($m->name)->explode(' ')->filter()->take(2)->map(fn ($w) => \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($w, 0, 1)))->implode('') }}</span>
-                    @endif
+                    <span class="team-card__avatar" aria-hidden="true">{{ mb_strtoupper(mb_substr(trim($m->name), 0, 1)) }}</span>
                     <h3>{{ $m->name }}</h3>
                     <span class="team-card__role">{{ $m->role }}</span>
                     @if ($m->bio)<p>{{ $m->bio }}</p>@endif

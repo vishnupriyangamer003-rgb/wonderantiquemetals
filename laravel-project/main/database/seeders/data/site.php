@@ -338,35 +338,28 @@ next move.',
       'sort_order' => 4,
     ),
   ),
-  'testimonials' => 
+  'team' =>
   array (
-    0 => 
+    0 =>
     array (
-      'quote' => 'I appreciated how clearly the assessment process was explained and how easy it was to understand the next steps.',
-      'name' => 'Ananya Iyer',
-      'location' => 'Chennai, Tamil Nadu',
+      'name' => 'Team Member One',
+      'role' => 'Regulatory Specialist',
+      'bio' => 'Sample profile. Replace with real team details from the admin panel.',
       'sort_order' => 1,
     ),
-    1 => 
+    1 =>
     array (
-      'quote' => 'The communication was organized, and the team took time to understand the history of the pieces I brought in.',
-      'name' => 'Rohan Mehta',
-      'location' => 'Mumbai, Maharashtra',
+      'name' => 'Team Member Two',
+      'role' => 'Assaying Expert',
+      'bio' => 'Sample profile. Replace with real team details from the admin panel.',
       'sort_order' => 2,
     ),
-    2 => 
+    2 =>
     array (
-      'quote' => 'I received clear guidance on the available options, which helped me decide what to do next.',
-      'name' => 'Kavita Rao',
-      'location' => 'Bengaluru, Karnataka',
+      'name' => 'Team Member Three',
+      'role' => 'Acquisition Advisor',
+      'bio' => 'Sample profile. Replace with real team details from the admin panel.',
       'sort_order' => 3,
-    ),
-    3 => 
-    array (
-      'quote' => 'The team explained each step clearly and answered my questions, making it easier to consider the options.',
-      'name' => 'Priya Nair',
-      'location' => 'Kochi, Kerala',
-      'sort_order' => 4,
     ),
   ),
   'services' => 

@@ -7,7 +7,7 @@ use App\Models\Appraisal;
 use App\Models\Banner;
 use App\Models\Service;
 use App\Models\Setting;
-use App\Models\Testimonial;
+use App\Models\TeamMember;
 use App\Support\ImageUploader;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
@@ -46,7 +46,7 @@ class AdminTest extends TestCase
 
     public function test_guests_are_redirected_from_every_admin_page(): void
     {
-        foreach (['settings', 'account', 'banners', 'services', 'appraisals', 'testimonials', 'banners/create'] as $path) {
+        foreach (['settings', 'account', 'banners', 'services', 'appraisals', 'team', 'banners/create', 'team/create'] as $path) {
             $this->get("/ktgadmin/$path")->assertRedirect('/ktgadmin');
         }
         $this->put('/ktgadmin/settings', [])->assertRedirect('/ktgadmin');
@@ -200,12 +200,12 @@ class AdminTest extends TestCase
         $this->get('/appraisals/appraisals')->assertNotFound();
     }
 
-    public function test_testimonials_appear_on_about_and_can_be_hidden(): void
+    public function test_team_members_appear_on_about_and_can_be_hidden(): void
     {
-        $this->login()->post('/ktgadmin/testimonials', ['name' => 'Zed Tester', 'location' => 'Goa', 'quote' => 'Wonderful service.', 'active' => 1]);
-        $this->get('/about')->assertSee('Zed Tester');
+        $this->login()->post('/ktgadmin/team', ['name' => 'Zed Tester', 'role' => 'Assayer', 'bio' => 'Sample bio.', 'active' => 1]);
+        $this->get('/about')->assertSee('Zed Tester')->assertSee('Assayer')->assertDontSee('Client feedback');
 
-        $this->patch('/ktgadmin/testimonials/'.Testimonial::where('name', 'Zed Tester')->value('id').'/toggle');
+        $this->patch('/ktgadmin/team/'.TeamMember::where('name', 'Zed Tester')->value('id').'/toggle');
         $this->get('/about')->assertDontSee('Zed Tester');
     }
 

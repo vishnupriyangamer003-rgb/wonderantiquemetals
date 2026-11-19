@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Testimonial extends Model
+class TeamMember extends Model
 {
-    protected $fillable = ['name', 'location', 'quote', 'sort_order', 'active'];
+    protected $fillable = ['name', 'role', 'bio', 'image', 'sort_order', 'active'];
 
     protected function casts(): array
     {

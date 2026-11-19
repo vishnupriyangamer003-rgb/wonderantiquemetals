@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
                 'siteServices' => SiteData::services(),
                 'siteAppraisals' => SiteData::appraisals(),
                 'siteBanners' => SiteData::banners(),
-                'siteTestimonials' => SiteData::testimonials(),
+                'siteTeam' => SiteData::team(),
             ]);
         });
     }

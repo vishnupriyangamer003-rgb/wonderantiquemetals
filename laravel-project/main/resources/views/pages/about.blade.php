@@ -67,32 +67,33 @@
         </div>
     </section>
 
-    <section class="about-testimonials" id="testimonials" aria-labelledby="about-testimonials-title">
+    @if ($siteTeam->isNotEmpty())
+    <section class="about-team" id="team" aria-labelledby="about-team-title">
         <div class="section-shell">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">Client feedback</p>
-                    <h2 id="about-testimonials-title">A considered experience.</h2>
+                    <p class="eyebrow">Our team</p>
+                    <h2 id="about-team-title">The people behind<br><em>the work.</em></h2>
                 </div>
-                <p class="section-heading__copy">Client experiences reflecting our commitment to integrity, professionalism, and expertise.</p>
+                <p class="section-heading__copy">A dedicated team providing field solutions, quality assessment, and technical examining services.</p>
             </div>
-            <div class="about-testimonials__viewport" data-testimonial-carousel role="group" aria-roledescription="carousel" aria-label="Client testimonials; focus or hover to pause" tabindex="0">
-                <div class="about-testimonials__track">
-                    @foreach ($siteTestimonials as $t)
-                    <article class="about-testimonial" role="group" aria-roledescription="slide" aria-label="Testimonial {{ $loop->iteration }} of {{ $siteTestimonials->count() }}">
-                        <blockquote>
-                            <p>{{ $t->quote }}</p>
-                        </blockquote>
-                        <div class="about-testimonial__author">
-                            <strong>{{ $t->name }}</strong>
-                            <span>{{ $t->location }}</span>
-                        </div>
-                    </article>
-                    @endforeach
-                </div>
+            <div class="team-grid">
+                @foreach ($siteTeam as $m)
+                <article class="team-card">
+                    @if ($m->image)
+                    <img class="team-card__photo" src="{{ asset($m->image) }}" alt="Portrait of {{ $m->name }}, {{ $m->role }}" width="400" height="400" loading="lazy">
+                    @else
+                    <span class="team-card__photo team-card__photo--initials" aria-hidden="true">{{ \Illuminate\Support\Str::of($m->name)->explode(' ')->filter()->take(2)->map(fn ($w) => \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($w, 0, 1)))->implode('') }}</span>
+                    @endif
+                    <h3>{{ $m->name }}</h3>
+                    <span class="team-card__role">{{ $m->role }}</span>
+                    @if ($m->bio)<p>{{ $m->bio }}</p>@endif
+                </article>
+                @endforeach
             </div>
         </div>
     </section>
+    @endif
 
 </main>
 @endsection

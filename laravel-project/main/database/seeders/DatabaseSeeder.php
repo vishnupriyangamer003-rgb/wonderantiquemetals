@@ -7,7 +7,7 @@ use App\Models\Appraisal;
 use App\Models\Banner;
 use App\Models\Service;
 use App\Models\Setting;
-use App\Models\Testimonial;
+use App\Models\TeamMember;
 use App\Support\SiteData;
 use Illuminate\Database\Seeder;
 
@@ -47,9 +47,9 @@ class DatabaseSeeder extends Seeder
                 Appraisal::create($a);
             }
         }
-        if (! Testimonial::exists()) {
-            foreach ($data['testimonials'] as $t) {
-                Testimonial::create($t);
+        if (! TeamMember::exists()) {
+            foreach ($data['team'] as $m) {
+                TeamMember::create($m);
             }
         }
 

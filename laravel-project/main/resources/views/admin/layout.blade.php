@@ -17,7 +17,7 @@
         ['admin.banners.index', 'Banners', 'image', 'admin.banners*'],
         ['admin.services.index', 'Services', 'grid', 'admin.services*'],
         ['admin.appraisals.index', 'Appraisals', 'clipboard', 'admin.appraisals*'],
-        ['admin.testimonials.index', 'Testimonials', 'quote', 'admin.testimonials*'],
+        ['admin.team.index', 'Team members', 'user', 'admin.team*'],
         ['admin.account', 'Login details', 'user', 'admin.account*'],
     ];
 @endphp

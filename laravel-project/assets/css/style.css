@@ -23,7 +23,6 @@ html {
 #about,
 #approach,
 #principles,
-#testimonials,
 #services,
 #service-index,
 #service-regulatory,
@@ -1697,66 +1696,66 @@ p {
     padding-bottom: 96px;
 }
 
-.about-testimonials {
+.about-team {
     padding: 85px 0 92px;
     background: var(--paper-deep);
 }
 
-.about-testimonials__viewport {
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
     max-width: 1100px;
-    overflow: hidden;
     margin: 42px auto 0;
 }
 
-.about-testimonials__viewport:focus-visible {
-    outline: 2px solid var(--rust);
-    outline-offset: 4px;
-}
-
-.about-testimonials__track {
+.team-card {
     display: flex;
-    gap: 18px;
-    transition: transform 600ms ease;
-}
-
-.about-testimonial {
-    display: flex;
-    flex: 0 0 calc((100% - 36px) / 3);
     flex-direction: column;
-    min-height: 255px;
     padding: 24px;
     border: 1px solid var(--line);
     background: var(--paper);
 }
 
-.about-testimonial blockquote {
-    margin: 0 0 26px;
+.team-card__photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 20px;
+    object-fit: cover;
 }
 
-.about-testimonial blockquote p {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: 23px;
-    line-height: 1.5;
-}
-
-.about-testimonial__author {
+.team-card__photo--initials {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
+    align-items: center;
+    justify-content: center;
+    background: var(--paper-deep);
+    border: 1px solid var(--line);
+    color: var(--rust);
+    font-family: var(--serif);
+    font-size: 56px;
 }
 
-.about-testimonial__author strong {
-    font-size: 16px;
+.team-card h3 {
+    margin: 0 0 4px;
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.team-card__role {
+    color: var(--rust);
+    font-size: 15px;
     font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
-.about-testimonial__author span {
+.team-card p {
+    margin: 14px 0 0;
     color: #615b52;
     font-size: 16px;
+    line-height: 1.6;
 }
 
 .site-footer {
@@ -2144,10 +2143,6 @@ p {
         gap: 40px;
     }
 
-    .about-testimonial {
-        flex-basis: calc((100% - 18px) / 2);
-    }
-
     .services-overview {
         grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
         gap: 30px;
@@ -2387,17 +2382,12 @@ p {
         padding-bottom: 80px;
     }
 
-    .about-testimonials {
+    .about-team {
         padding: 70px 0 76px;
     }
 
-    .about-testimonials__viewport {
+    .team-grid {
         margin-top: 30px;
-    }
-
-    .about-testimonial {
-        flex-basis: 100%;
-        min-height: 0;
     }
 
     .hero-art__side-note {

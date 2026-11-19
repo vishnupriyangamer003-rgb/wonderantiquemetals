@@ -930,10 +930,10 @@ p {
 .next-step h2 {
     margin-bottom: 0;
     font-family: var(--serif);
-    font-size: clamp(42px, 5.5vw, 72px);
-    font-weight: 400;
-    letter-spacing: -0.055em;
-    line-height: 0.98;
+    font-size: clamp(32px, 3.8vw, 48px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
 }
 
 .section-heading__copy {
@@ -1590,13 +1590,13 @@ p {
 }
 
 .about-hero__copy h1 {
-    margin-bottom: 25px;
+    margin-bottom: 22px;
     font-family: var(--serif);
-    font-size: clamp(56px, 6.6vw, 88px);
-    font-weight: 400;
-    letter-spacing: -0.07em;
-    line-height: 0.88;
-    text-transform: uppercase;
+    font-size: clamp(34px, 4vw, 50px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    text-transform: none;
 }
 
 .about-hero__copy h1 em {
@@ -1650,12 +1650,12 @@ p {
 
 .about-perspective__copy h2 {
     max-width: 660px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
     font-family: var(--serif);
-    font-size: clamp(44px, 5.2vw, 70px);
-    font-weight: 400;
-    letter-spacing: -0.055em;
-    line-height: 0.98;
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .about-perspective__copy > p:last-child {
@@ -1734,25 +1734,26 @@ p {
 }
 
 .team-card h3 {
-    margin: 0 0 4px;
+    margin: 0 0 6px;
     font-family: var(--serif);
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 500;
 }
 
 .team-card__role {
     color: var(--rust);
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    line-height: 1.4;
 }
 
 .team-card p {
-    margin: 14px 0 0;
+    margin: 10px 0 0;
     color: #615b52;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 14.5px;
+    line-height: 1.55;
 }
 
 .site-footer {
@@ -2133,7 +2134,7 @@ p {
     }
 
     .about-hero__copy h1 {
-        font-size: clamp(50px, 7vw, 68px);
+        font-size: clamp(30px, 4.2vw, 42px);
     }
 
     .about-perspective__inner {
@@ -2358,7 +2359,7 @@ p {
     }
 
     .about-hero__copy h1 {
-        font-size: clamp(48px, 12vw, 66px);
+        font-size: clamp(26px, 6vw, 36px);
     }
 
     .about-perspective {
@@ -2371,7 +2372,7 @@ p {
     }
 
     .about-perspective__copy h2 {
-        font-size: clamp(42px, 11vw, 60px);
+        font-size: clamp(24px, 5.5vw, 34px);
     }
 
     .about-principles {
@@ -2411,7 +2412,7 @@ p {
     .section-heading h2,
     .standards h2,
     .next-step h2 {
-        font-size: clamp(43px, 11vw, 64px);
+        font-size: clamp(26px, 6vw, 36px);
     }
 
     .section-heading__copy {

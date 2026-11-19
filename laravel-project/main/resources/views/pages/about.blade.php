@@ -7,8 +7,8 @@
 <main id="main">
     <section class="about-hero section-shell" aria-labelledby="about-title">
         <div class="about-hero__copy">
-            <p class="eyebrow">About WONDER ANTIQUE METALS</p>
-            <h1 id="about-title">Welcome To<br><em>WONDER ANTIQUE METALS</em></h1>
+            <p class="eyebrow">About Wonder Antique Metals</p>
+            <h1 id="about-title">Welcome to<br><em>Wonder Antique Metals</em></h1>
             <p class="about-hero__intro">WONDER is a worldwide company and have a strong network and ratifying its business activities in USA, UK, Germany, France and India in particular and also we do other part of the world like Romania, Russia, Poland, Korea, Israel, Singapore, Canada and Australia in general.</p>
         </div>
         <figure class="about-hero__visual">

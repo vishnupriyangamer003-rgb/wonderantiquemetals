@@ -8,6 +8,7 @@
     @case('user')<circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.6 3-6 7-6s7 2.4 7 6"/>@break
     @case('currency')<circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.6-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.8 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.4-.5-3-1.5M12 6v2M12 16v2"/>@break
     @case('users')<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 1.6 4.5 4"/>@break
+    @case('activity')<path d="M3 12h4l3-8 4 16 3-8h4"/>@break
     @case('clock')<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>@break
     @case('key')<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/>@break
     @case('globe')<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>@break

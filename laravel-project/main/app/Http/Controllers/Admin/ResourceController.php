@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Support\ActivityLog;
 use App\Support\ImageUploader;
 use App\Support\SiteData;
 use Illuminate\Contracts\View\View;
@@ -57,7 +58,8 @@ abstract class ResourceController extends Controller
     {
         $model = $this->model();
         $data = $this->save($request, null);
-        $model::create($data);
+        $created = $model::create($data);
+        ActivityLog::record('created', $this->label().': '.ActivityLog::itemName($created));
         SiteData::flush();
 
         return redirect()->route('admin.'.$this->key().'.index')->with('status', $this->label().' added.');
@@ -77,6 +79,7 @@ abstract class ResourceController extends Controller
         $old = $this->imageField() ? $item->{$this->imageField()} : null;
         $data = $this->save($request, $item);
         $item->update($data);
+        ActivityLog::record('updated', $this->label().': '.ActivityLog::itemName($item));
         if ($this->imageField() && $old && $old !== $item->{$this->imageField()}) {
             ImageUploader::delete($old);
         }
@@ -90,6 +93,7 @@ abstract class ResourceController extends Controller
         $model = $this->model();
         $item = $model::findOrFail($id);
         $item->update(['active' => ! $item->active]);
+        ActivityLog::record($item->active ? 'shown' : 'hidden', $this->label().': '.ActivityLog::itemName($item));
         SiteData::flush();
 
         return back()->with('status', $this->label().($item->active ? ' is now visible.' : ' is now hidden.'));
@@ -102,6 +106,7 @@ abstract class ResourceController extends Controller
         if ($this->imageField()) {
             ImageUploader::delete($item->{$this->imageField()});
         }
+        ActivityLog::record('deleted', $this->label().': '.ActivityLog::itemName($item));
         $item->delete();
         SiteData::flush();
 

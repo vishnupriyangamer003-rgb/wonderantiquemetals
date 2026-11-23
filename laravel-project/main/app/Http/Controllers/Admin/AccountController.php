@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Support\ActivityLog;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class AccountController extends Controller
         ]);
         $admin->update($data);
         $request->session()->regenerate();
+        ActivityLog::record('account', 'Updated login details', $admin);
 
         return back()->with('status', 'Login details saved.');
     }

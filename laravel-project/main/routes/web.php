@@ -60,6 +60,7 @@ Route::prefix('ktgadmin')->name('admin.')->group(function () {
         Route::put('account', [Admin\AccountController::class, 'update'])->name('account.update');
         Route::get('user-logins', [Admin\UserLoginController::class, 'index'])->name('userlogins.index');
         Route::post('user-logins/reset-sessions', [Admin\UserLoginController::class, 'resetSessions'])->name('userlogins.reset');
+        Route::get('activity', [Admin\ActivityController::class, 'index'])->name('activity.index');
 
         $resources = [
             'banners' => Admin\BannerController::class,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\AdminAuth;
 use App\Models\Admin;
+use App\Support\ActivityLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -51,12 +52,14 @@ class AuthController extends Controller
         RateLimiter::clear($key);
         $request->session()->regenerate();
         $request->session()->put('admin_id', $admin->id);
+        ActivityLog::record('login', 'Signed in', $admin);
 
         return AdminAuth::noStore(redirect()->route('admin.settings'));
     }
 
     public function logout(Request $request): RedirectResponse
     {
+        ActivityLog::record('logout', 'Signed out');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

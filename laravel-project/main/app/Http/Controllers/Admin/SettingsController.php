@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Support\ActivityLog;
 use App\Support\ImageUploader;
 use App\Support\SiteData;
 use Illuminate\Contracts\View\View;
@@ -77,6 +78,7 @@ class SettingsController extends Controller
             }
         }
         SiteData::flush();
+        ActivityLog::record('settings', 'Updated company information');
 
         return back()->with('status', 'Company information saved.');
     }

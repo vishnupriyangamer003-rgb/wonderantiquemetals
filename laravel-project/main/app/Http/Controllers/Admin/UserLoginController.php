@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\UserLogin;
+use App\Support\ActivityLog;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,8 @@ class UserLoginController extends Controller
             ['key' => 'site_session_epoch'],
             ['value' => now()->getTimestamp().random_int(1000, 9999)],
         );
+
+        ActivityLog::record('sessions', 'Reset all website sessions');
 
         return redirect()->route('admin.userlogins.index')
             ->with('status', 'All website sessions were reset. Every visitor must sign in again.');

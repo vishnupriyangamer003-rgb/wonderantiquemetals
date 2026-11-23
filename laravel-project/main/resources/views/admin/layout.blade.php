@@ -19,6 +19,7 @@
         ['admin.fees.index', 'Fee structure', 'currency', 'admin.fees*'],
         ['admin.team.index', 'Team members', 'users', 'admin.team*'],
         ['admin.userlogins.index', 'User logins', 'clock', 'admin.userlogins*'],
+        ['admin.activity.index', 'Activity log', 'activity', 'admin.activity*'],
         ['admin.account', 'Login details', 'key', 'admin.account*'],
     ];
 @endphp

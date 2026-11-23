@@ -20,7 +20,6 @@
         <div class="adm-field"><label for="f-nav">Menu name <span class="req">*</span></label><input type="text" id="f-nav" name="nav_label" value="{{ $v('nav_label') }}" maxlength="80" required></div>
         <div class="adm-field adm-w-sm"><label for="f-slug">Slug <span class="req">*</span></label><input type="text" id="f-slug" name="slug" value="{{ $v('slug') }}" maxlength="80" pattern="[a-z0-9]+(-[a-z0-9]+)*" required><small>Lowercase letters, numbers and dashes.</small></div>
         <div class="adm-field adm-span"><label for="f-mt">Browser title <span class="req">*</span></label><input type="text" id="f-mt" name="meta_title" value="{{ $v('meta_title') }}" maxlength="200" required></div>
-        <div class="adm-field adm-span"><label for="f-md">Meta description</label><textarea id="f-md" name="meta_description" rows="2" maxlength="400">{{ $v('meta_description') }}</textarea></div>
         <div class="adm-field adm-span"><label for="f-eb">Small heading</label><input type="text" id="f-eb" name="eyebrow" value="{{ $v('eyebrow') }}" maxlength="150"></div>
         <div class="adm-field"><label for="f-h">Heading <span class="req">*</span></label><input type="text" id="f-h" name="heading" value="{{ $v('heading') }}" maxlength="120" required></div>
         <div class="adm-field"><label for="f-hem">Heading (italic part)</label><input type="text" id="f-hem" name="heading_em" value="{{ $v('heading_em') }}" maxlength="120"></div>

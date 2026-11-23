@@ -30,7 +30,6 @@ class AppraisalController extends ResourceController
             'slug' => ['required', 'string', 'max:80', 'regex:~^[a-z0-9]+(?:-[a-z0-9]+)*$~', Rule::unique('appraisals', 'slug')->ignore($item?->id)],
             'nav_label' => ['required', 'string', 'max:80'],
             'meta_title' => ['required', 'string', 'max:200'],
-            'meta_description' => ['nullable', 'string', 'max:400'],
             'eyebrow' => ['nullable', 'string', 'max:150'],
             'heading' => ['required', 'string', 'max:120'],
             'heading_em' => ['nullable', 'string', 'max:120'],

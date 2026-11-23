@@ -2,32 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Testimonial;
+use App\Models\TeamMember;
 use Illuminate\Database\Eloquent\Model;
 
-class TestimonialController extends ResourceController
+class TeamMemberController extends ResourceController
 {
     protected function model(): string
     {
-        return Testimonial::class;
+        return TeamMember::class;
     }
 
     protected function key(): string
     {
-        return 'testimonials';
+        return 'team';
     }
 
     protected function label(): string
     {
-        return 'Testimonial';
+        return 'Team member';
     }
 
     protected function rules(?Model $item): array
     {
         return [
             'name' => ['required', 'string', 'max:100'],
-            'location' => ['nullable', 'string', 'max:100'],
-            'quote' => ['required', 'string', 'max:800'],
+            'role' => ['required', 'string', 'max:100'],
+            'bio' => ['nullable', 'string', 'max:500'],
             'sort_order' => ['nullable', 'integer', 'min:0', 'max:9999'],
         ];
     }

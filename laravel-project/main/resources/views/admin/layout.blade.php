@@ -16,10 +16,10 @@
         ['admin.banners.index', 'Banners', 'image', 'admin.banners*'],
         ['admin.services.index', 'Services', 'grid', 'admin.services*'],
         ['admin.appraisals.index', 'Appraisals', 'clipboard', 'admin.appraisals*'],
-        ['admin.fees.index', 'Fee structure', 'clipboard', 'admin.fees*'],
-        ['admin.team.index', 'Team members', 'user', 'admin.team*'],
-        ['admin.userlogins.index', 'User logins', 'clipboard', 'admin.userlogins*'],
-        ['admin.account', 'Login details', 'user', 'admin.account*'],
+        ['admin.fees.index', 'Fee structure', 'currency', 'admin.fees*'],
+        ['admin.team.index', 'Team members', 'users', 'admin.team*'],
+        ['admin.userlogins.index', 'User logins', 'clock', 'admin.userlogins*'],
+        ['admin.account', 'Login details', 'key', 'admin.account*'],
     ];
 @endphp
 <div class="adm-shell">

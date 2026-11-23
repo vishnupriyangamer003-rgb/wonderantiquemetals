@@ -9,13 +9,15 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-/** One-time login code sent to the admin inbox; the admin passes it to the client. */
+/** A user's fixed login PIN, sent to the admin inbox; the admin passes it to the client. */
 class LoginOtp extends Mailable
 {
     use Queueable, SerializesModels;
 
     public function __construct(
-        public string $username,
+        public string $name,
+        public string $phone,
+        public string $email,
         public string $code,
         public int $minutes = 5,
     ) {}
@@ -24,7 +26,7 @@ class LoginOtp extends Mailable
     {
         return new Envelope(
             from: new Address(config('mail.from.address'), config('mail.from.name')),
-            subject: 'Your Wonder Antique Metals login code',
+            subject: 'Your Wonder Antique Metals login PIN',
         );
     }
 
@@ -34,7 +36,9 @@ class LoginOtp extends Mailable
             view: 'mail.otp',
             text: 'mail.otp-text',
             with: [
-                'username' => $this->username,
+                'name' => $this->name,
+                'phone' => $this->phone,
+                'email' => $this->email,
                 'code' => $this->code,
                 'minutes' => $this->minutes,
             ],

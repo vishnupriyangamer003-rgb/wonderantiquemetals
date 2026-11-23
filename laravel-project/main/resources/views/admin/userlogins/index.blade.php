@@ -2,7 +2,7 @@
 
 @section('title', 'User logins')
 @section('heading', 'User logins')
-@section('sub', 'Every successful sign-in to the website, with the username and the date and time of the login.')
+@section('sub', 'Every successful sign-in to the website, with the name, phone, email and the date and time of the login.')
 @section('actions')
 <form method="post" action="{{ route('admin.userlogins.reset') }}" data-confirm="Every website visitor will be signed out and must log in again." data-confirm-label="Yes, reset all">
     @csrf
@@ -20,7 +20,9 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Date</th>
                         <th scope="col">Time</th>
                     </tr>
@@ -30,6 +32,8 @@
                         <tr>
                             <td>{{ $items->firstItem() + $loop->index }}</td>
                             <td class="adm-table__user">{{ $item->username }}</td>
+                            <td>{{ $item->phone ?: '—' }}</td>
+                            <td>{{ $item->email ?: '—' }}</td>
                             <td>{{ $item->login_at->format('d M Y') }}</td>
                             <td>{{ $item->login_at->format('h:i:s A') }} IST</td>
                         </tr>

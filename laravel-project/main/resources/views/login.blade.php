@@ -30,6 +30,7 @@
             border: 1px solid var(--line, rgba(41, 38, 33, .18)); border-radius: 3px;
         }
         .gate__field input:focus { outline: 2px solid var(--rust, #a64c38); outline-offset: 1px; border-color: transparent; }
+        .gate__fielderr { font-size: 13px; color: #b3261e; }
         .gate__code { text-align: center; font-size: 34px; letter-spacing: .42em; text-transform: uppercase; font-weight: 700; }
         .gate__btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -71,25 +72,38 @@
             <div class="gate__status" role="status">{{ session('status') }}</div>
         @endif
 
-        @if ($step === 'username')
+        @if ($step === 'details')
             <p class="gate__eyebrow">Members area</p>
             <h1 id="gate-title">Sign in</h1>
-            <p class="gate__lead">Enter your username and we'll send a one-time login code.</p>
+            <p class="gate__lead">Enter your details and we'll send your PIN to the admin.</p>
 
-            <form method="post" action="{{ route('login.send') }}" autocomplete="on">
+            <form method="post" action="{{ route('login.send') }}" autocomplete="on" novalidate>
                 @csrf
                 <div class="gate__field">
-                    <label for="f-username">Username</label>
-                    <input type="text" id="f-username" name="username" value="{{ old('username') }}"
-                           autocomplete="username" maxlength="100" required autofocus>
+                    <label for="f-name">Name</label>
+                    <input type="text" id="f-name" name="name" value="{{ old('name') }}"
+                           autocomplete="name" minlength="2" maxlength="100" required autofocus>
+                    @error('name')<span class="gate__fielderr">{{ $message }}</span>@enderror
                 </div>
-                <button class="gate__btn" type="submit">Send login code</button>
+                <div class="gate__field">
+                    <label for="f-phone">Phone number</label>
+                    <input type="tel" id="f-phone" name="phone" value="{{ old('phone') }}"
+                           autocomplete="tel" inputmode="tel" maxlength="20" placeholder="+91 98765 43210" required>
+                    @error('phone')<span class="gate__fielderr">{{ $message }}</span>@enderror
+                </div>
+                <div class="gate__field">
+                    <label for="f-email">Email</label>
+                    <input type="email" id="f-email" name="email" value="{{ old('email') }}"
+                           autocomplete="email" maxlength="150" required>
+                    @error('email')<span class="gate__fielderr">{{ $message }}</span>@enderror
+                </div>
+                <button class="gate__btn" type="submit">Send PIN to admin</button>
             </form>
         @else
             <p class="gate__eyebrow">Step 2 of 2</p>
-            <h1 id="gate-title">Enter your code</h1>
+            <h1 id="gate-title">Enter your PIN</h1>
             <p class="gate__lead">
-                Enter the 4-digit code for <strong>{{ $username }}</strong>.
+                Enter the 4-digit PIN for <strong>{{ $username }}</strong>.
                 @if ($expiresIn > 0)
                     It expires in <span data-countdown="{{ $expiresIn }}">{{ intdiv($expiresIn, 60) }}:{{ str_pad((string) ($expiresIn % 60), 2, '0', STR_PAD_LEFT) }}</span>.
                 @else
@@ -100,7 +114,7 @@
             <form method="post" action="{{ route('login.verify') }}" autocomplete="one-time-code">
                 @csrf
                 <div class="gate__field">
-                    <label for="f-code">Login code</label>
+                    <label for="f-code">PIN</label>
                     <input type="text" inputmode="numeric" pattern="[0-9]{4}" id="f-code" name="code"
                            class="gate__code" value="{{ old('code') }}"
                            autocomplete="one-time-code" maxlength="4" required autofocus>
@@ -109,11 +123,11 @@
             </form>
 
             <p class="gate__meta">
-                <a href="{{ route('login') }}">← Use a different username</a>
+                <a href="{{ route('login', ['change' => 1]) }}">← Use different details</a>
             </p>
             <form method="post" action="{{ route('login.resend') }}">
                 @csrf
-                <button class="gate__btn gate__btn--ghost" type="submit" style="margin-top:10px;">Resend code</button>
+                <button class="gate__btn gate__btn--ghost" type="submit" style="margin-top:10px;">Send PIN to admin again</button>
             </form>
         @endif
 

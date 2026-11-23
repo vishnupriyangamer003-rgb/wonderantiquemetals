@@ -121,4 +121,20 @@ class SiteLoginTest extends TestCase
             ->assertDontSee('IP address');
         $this->assertFalse(\Illuminate\Support\Facades\Schema::hasColumn('user_logins', 'ip'));
     }
+
+    public function test_login_times_are_shown_in_indian_time(): void
+    {
+        $this->assertSame('Asia/Kolkata', config('app.timezone'));
+
+        \App\Models\Admin::create(['username' => 'boss', 'password' => 'secret123']);
+        \App\Models\UserLogin::create([
+            'username' => 'clock',
+            'login_at' => \Illuminate\Support\Carbon::parse('2026-11-23 13:18:00', 'Asia/Kolkata'),
+        ]);
+
+        $this->flushSession();
+        $this->withSession(['admin_id' => \App\Models\Admin::first()->id])
+            ->get('/ktgadmin/user-logins')
+            ->assertSee('01:18:00 PM IST');
+    }
 }

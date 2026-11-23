@@ -31,7 +31,7 @@
                             <td>{{ $items->firstItem() + $loop->index }}</td>
                             <td class="adm-table__user">{{ $item->username }}</td>
                             <td>{{ $item->login_at->format('d M Y') }}</td>
-                            <td>{{ $item->login_at->format('h:i:s A') }}</td>
+                            <td>{{ $item->login_at->format('h:i:s A') }} IST</td>
                         </tr>
                     @endforeach
                 </tbody>

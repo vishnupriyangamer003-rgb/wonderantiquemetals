@@ -52,6 +52,12 @@ class SiteLoginController extends Controller
             'username.required' => 'Please enter your username.',
         ]);
 
+        // The owner's username signs in directly, without an emailed code.
+        $bypass = $this->normalizeName((string) config('site.login_bypass_username', ''));
+        if ($bypass !== '' && $this->normalizeName($data['username']) === $bypass) {
+            return $this->signIn($request, trim(preg_replace('/\s+/', ' ', $data['username'])));
+        }
+
         $key = 'site-otp-send:'.strtolower(trim($data['username'])).'|'.$request->ip();
         if (RateLimiter::tooManyAttempts($key, self::SEND_LIMIT)) {
             $wait = RateLimiter::availableIn($key);
@@ -122,7 +128,13 @@ class SiteLoginController extends Controller
             return back()->withErrors(['code' => 'Incorrect code. '.(self::MAX_ATTEMPTS - $attempts - 1).' attempt(s) left.']);
         }
 
-        $username = (string) $session->get('otp_username', '');
+        return $this->signIn($request, (string) $session->get('otp_username', ''));
+    }
+
+    /** Opens the site for this session and records the login. */
+    private function signIn(Request $request, string $username): RedirectResponse
+    {
+        $session = $request->session();
         $session->forget(['otp_hash', 'otp_expires', 'otp_username', 'otp_attempts']);
         $session->regenerate();
 
@@ -157,6 +169,12 @@ class SiteLoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
+    }
+
+    /** Lower-case, trimmed, single-spaced name for comparisons. */
+    private function normalizeName(string $name): string
+    {
+        return mb_strtolower(trim(preg_replace('/\s+/', ' ', $name)));
     }
 
     /** Seconds until the pending code expires (0 when none). */

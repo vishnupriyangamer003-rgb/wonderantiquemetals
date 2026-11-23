@@ -55,4 +55,27 @@ class SiteLoginTest extends TestCase
         $this->withSession(['site_login' => true, 'site_login_at' => time() - 11 * 3600])
             ->get('/')->assertOk();
     }
+
+    public function test_bypass_username_signs_in_without_otp(): void
+    {
+        Mail::fake();
+        $this->flushSession();
+
+        $this->post('/login', ['username' => '  saravanan   NAMAKKAL '])->assertRedirect('/');
+
+        Mail::assertNothingSent();
+        $this->assertDatabaseHas('user_logins', ['username' => 'saravanan NAMAKKAL']);
+        $this->get('/')->assertOk();
+    }
+
+    public function test_other_usernames_still_need_otp(): void
+    {
+        Mail::fake();
+        $this->flushSession();
+
+        $this->post('/login', ['username' => 'someone'])->assertRedirect('/login');
+
+        Mail::assertSent(LoginOtp::class);
+        $this->get('/')->assertRedirect('/login');
+    }
 }

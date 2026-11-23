@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-/** A user's fixed login PIN, sent to the admin inbox; the admin passes it to the client. */
+/** A registered user's fixed PIN, sent to the admin inbox only; the admin passes it to the user. */
 class LoginOtp extends Mailable
 {
     use Queueable, SerializesModels;
@@ -19,14 +19,13 @@ class LoginOtp extends Mailable
         public string $phone,
         public string $email,
         public string $code,
-        public int $minutes = 5,
     ) {}
 
     public function envelope(): Envelope
     {
         return new Envelope(
             from: new Address(config('mail.from.address'), config('mail.from.name')),
-            subject: 'Your Wonder Antique Metals login PIN',
+            subject: 'New registration - pincode for '.$this->name,
         );
     }
 
@@ -40,7 +39,6 @@ class LoginOtp extends Mailable
                 'phone' => $this->phone,
                 'email' => $this->email,
                 'code' => $this->code,
-                'minutes' => $this->minutes,
             ],
         );
     }

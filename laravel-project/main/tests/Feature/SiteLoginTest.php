@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\SiteUser;
 use App\Models\UserLogin;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,7 @@ use Tests\TestCase;
 
 class SiteLoginTest extends TestCase
 {
-    /** A valid details payload; override single fields per test. */
+    /** A valid registration payload; override single fields per test. */
     private function details(array $override = []): array
     {
         return array_merge([
@@ -24,10 +25,10 @@ class SiteLoginTest extends TestCase
         ], $override);
     }
 
-    /** Submits the details form and returns the PIN that was mailed to the admin. */
-    private function requestPin(array $override = []): string
+    /** Registers a user and returns the PIN that was mailed to the admin. */
+    private function register(array $override = []): string
     {
-        $this->post('/login', $this->details($override))->assertRedirect('/login');
+        $this->post('/register', $this->details($override))->assertRedirect('/login');
 
         $pin = null;
         Mail::assertSent(LoginOtp::class, function (LoginOtp $m) use (&$pin) {
@@ -39,13 +40,41 @@ class SiteLoginTest extends TestCase
         return $pin;
     }
 
-    // ---------- details form validation ----------
+    // ---------- login page ----------
 
-    public function test_form_requires_name_phone_and_email(): void
+    public function test_login_page_has_only_the_pin_field_and_a_register_link(): void
     {
         $this->flushSession();
 
-        $this->post('/login', [])->assertSessionHasErrors(['name', 'phone', 'email']);
+        $this->get('/login')
+            ->assertOk()
+            ->assertSee('Enter pincode')
+            ->assertSee('name="pin"', false)
+            ->assertDontSee('name="name"', false)
+            ->assertDontSee('name="email"', false)
+            ->assertDontSee('name="phone"', false)
+            ->assertDontSee('name="username"', false)
+            ->assertSee('/register', false);
+    }
+
+    public function test_register_page_has_name_phone_and_email(): void
+    {
+        $this->flushSession();
+
+        $this->get('/register')
+            ->assertOk()
+            ->assertSee('name="name"', false)
+            ->assertSee('name="phone"', false)
+            ->assertSee('name="email"', false);
+    }
+
+    // ---------- registration ----------
+
+    public function test_registration_requires_name_phone_and_email(): void
+    {
+        $this->flushSession();
+
+        $this->post('/register', [])->assertSessionHasErrors(['name', 'phone', 'email']);
     }
 
     public function test_name_phone_and_email_are_validated(): void
@@ -53,11 +82,11 @@ class SiteLoginTest extends TestCase
         Mail::fake();
         $this->flushSession();
 
-        $this->post('/login', $this->details(['name' => 'R']))->assertSessionHasErrors('name');
-        $this->post('/login', $this->details(['name' => 'Ravi 123 <b>']))->assertSessionHasErrors('name');
-        $this->post('/login', $this->details(['phone' => '12345']))->assertSessionHasErrors('phone');
-        $this->post('/login', $this->details(['phone' => 'abcdefghij']))->assertSessionHasErrors('phone');
-        $this->post('/login', $this->details(['email' => 'not-an-email']))->assertSessionHasErrors('email');
+        $this->post('/register', $this->details(['name' => 'R']))->assertSessionHasErrors('name');
+        $this->post('/register', $this->details(['name' => 'Ravi 123 <b>']))->assertSessionHasErrors('name');
+        $this->post('/register', $this->details(['phone' => '12345']))->assertSessionHasErrors('phone');
+        $this->post('/register', $this->details(['phone' => 'abcdefghij']))->assertSessionHasErrors('phone');
+        $this->post('/register', $this->details(['email' => 'not-an-email']))->assertSessionHasErrors('email');
 
         Mail::assertNothingSent();
         $this->assertSame(0, SiteUser::count());
@@ -68,87 +97,82 @@ class SiteLoginTest extends TestCase
         Mail::fake();
         $this->flushSession();
 
-        $this->post('/login', $this->details(['phone' => '(+91) 98765-43210']))->assertSessionHasNoErrors();
+        $this->post('/register', $this->details(['phone' => '(+91) 98765-43210']))->assertSessionHasNoErrors();
 
         $this->assertSame('+919876543210', SiteUser::first()->phone);
     }
 
-    // ---------- one user, one PIN ----------
-
-    public function test_new_user_gets_a_four_digit_pin_mailed_to_admin(): void
+    public function test_registering_mails_the_pin_to_the_admin_and_never_shows_it(): void
     {
         Mail::fake();
         $this->flushSession();
 
-        $pin = $this->requestPin();
+        $response = $this->post('/register', $this->details());
+        $pin = SiteUser::first()->pin;
 
+        $response->assertRedirect('/login')
+            ->assertSessionHas('status', 'Thank you for registering. Kindly contact the admin and get your pincode.');
         $this->assertMatchesRegularExpression('/^[0-9]{4}$/', $pin);
-        $user = SiteUser::first();
-        $this->assertSame('ravi@example.com', $user->email);
-        $this->assertSame($pin, $user->pin);
-        Mail::assertSent(LoginOtp::class, fn (LoginOtp $m) => $m->name === 'Ravi Kumar'
+        Mail::assertSent(LoginOtp::class, fn (LoginOtp $m) => $m->code === $pin
+            && $m->name === 'Ravi Kumar'
             && $m->phone === '+919876543210'
             && $m->email === 'ravi@example.com'
             && $m->hasTo(config('mail.from.address')));
+
+        $page = $this->get('/login')->assertOk()->assertSee('Kindly contact the admin and get your pincode');
+        $this->assertStringNotContainsString('value="'.$pin.'"', $page->getContent());
+        $this->assertStringNotContainsString('>'.$pin.'<', $page->getContent());
     }
 
-    public function test_the_same_user_always_gets_the_same_pin(): void
+    public function test_registering_again_with_the_same_email_keeps_one_user_and_the_same_pin(): void
     {
         Mail::fake();
         $this->flushSession();
-        $first = $this->requestPin();
+        $first = $this->register();
 
-        // Signing in again later (new session, new name spelling) keeps the same PIN and one user row.
         $this->flushSession();
-        RateLimiter::clear('site-otp-send:ravi@example.com|127.0.0.1');
-        $second = $this->requestPin(['name' => 'Ravi K']);
+        RateLimiter::clear('site-register:127.0.0.1');
+        $second = $this->register(['name' => 'Ravi K']);
 
         $this->assertSame($first, $second);
         $this->assertSame(1, SiteUser::count());
         $this->assertSame('Ravi K', SiteUser::first()->name);
     }
 
-    public function test_different_emails_are_different_users(): void
+    public function test_every_user_gets_a_different_pin(): void
     {
         Mail::fake();
         $this->flushSession();
 
-        $this->requestPin();
-        $this->flushSession();
-        $this->post('/login', $this->details(['email' => 'other@example.com']));
+        foreach (range(1, 25) as $i) {
+            RateLimiter::clear('site-register:127.0.0.1');
+            $this->post('/register', $this->details(['email' => "user{$i}@example.com"]));
+        }
 
-        $this->assertSame(2, SiteUser::count());
+        $this->assertSame(25, SiteUser::count());
+        $this->assertSame(25, SiteUser::distinct()->count('pin_hash'));
     }
 
     public function test_pin_is_not_stored_in_plain_text(): void
     {
         Mail::fake();
         $this->flushSession();
-        $pin = $this->requestPin();
+        $this->post('/register', $this->details());
+        $pin = SiteUser::first()->pin;
 
-        $raw = \DB::table('site_users')->value('pin');
-        $this->assertNotSame($pin, $raw);
+        $this->assertNotSame($pin, DB::table('site_users')->value('pin'));
+        $this->assertNotSame($pin, DB::table('site_users')->value('pin_hash'));
     }
 
-    // ---------- verifying the PIN ----------
-
-    public function test_pin_must_be_exactly_four_digits(): void
-    {
-        Mail::fake();
-        $this->flushSession();
-        $this->requestPin();
-
-        $this->post('/login/verify', ['code' => '123456'])->assertSessionHasErrors('code');
-        $this->post('/login/verify', ['code' => '12'])->assertSessionHasErrors('code');
-    }
+    // ---------- signing in with the pin ----------
 
     public function test_correct_pin_signs_in_and_logs_the_user(): void
     {
         Mail::fake();
         $this->flushSession();
-        $pin = $this->requestPin();
+        $pin = $this->register();
 
-        $this->post('/login/verify', ['code' => $pin])->assertRedirect('/');
+        $this->post('/login', ['pin' => $pin])->assertRedirect('/');
         $this->get('/')->assertOk();
 
         $this->assertDatabaseHas('user_logins', [
@@ -158,98 +182,56 @@ class SiteLoginTest extends TestCase
         ]);
     }
 
+    public function test_pin_must_be_four_digits(): void
+    {
+        $this->flushSession();
+
+        $this->post('/login', ['pin' => '123456'])->assertSessionHasErrors('pin');
+        $this->post('/login', ['pin' => '12'])->assertSessionHasErrors('pin');
+        $this->post('/login', ['pin' => 'abcd'])->assertSessionHasErrors('pin');
+        $this->post('/login', [])->assertSessionHasErrors('pin');
+    }
+
     public function test_wrong_pin_is_rejected(): void
     {
         Mail::fake();
         $this->flushSession();
-        $pin = $this->requestPin();
+        $pin = $this->register();
         $wrong = $pin === '0000' ? '1111' : '0000';
 
-        $this->post('/login/verify', ['code' => $wrong])->assertSessionHasErrors('code');
+        $this->post('/login', ['pin' => $wrong])->assertSessionHasErrors('pin');
         $this->get('/')->assertRedirect('/login');
         $this->assertSame(0, UserLogin::count());
     }
 
-    public function test_user_is_locked_out_after_too_many_wrong_pins(): void
+    public function test_an_ip_is_locked_out_after_five_wrong_pins(): void
     {
         Mail::fake();
         $this->flushSession();
-        $pin = $this->requestPin();
+        $pin = $this->register();
         $wrong = $pin === '0000' ? '1111' : '0000';
 
-        // Each new session gets 5 tries; 10 wrong PINs across sessions lock the user.
-        for ($i = 0; $i < 10; $i++) {
-            if ($i === 5) {
-                $this->flushSession();
-                RateLimiter::clear('site-otp-send:ravi@example.com|127.0.0.1');
-                $this->requestPin();
-            }
-            $this->post('/login/verify', ['code' => $wrong]);
+        foreach (range(1, 5) as $i) {
+            $this->post('/login', ['pin' => $wrong]);
         }
 
-        $this->flushSession();
-        RateLimiter::clear('site-otp-send:ravi@example.com|127.0.0.1');
-        $this->requestPin();
-        $this->post('/login/verify', ['code' => $pin])
-            ->assertRedirect('/login')
-            ->assertSessionHasErrors('code');
+        // Even the right PIN is refused while locked out.
+        $this->post('/login', ['pin' => $pin])->assertSessionHasErrors('pin');
         $this->get('/')->assertRedirect('/login');
     }
 
-    public function test_resend_sends_the_same_pin_again(): void
+    public function test_everyone_is_locked_out_after_thirty_wrong_pins_overall(): void
     {
         Mail::fake();
         $this->flushSession();
-        $pin = $this->requestPin();
+        $pin = $this->register();
 
-        $this->post('/login/resend')->assertRedirect('/login');
+        // Simulates many different IPs that each stayed under their own limit.
+        for ($i = 0; $i < 30; $i++) {
+            RateLimiter::hit('site-pin-all', 900);
+        }
 
-        Mail::assertSent(LoginOtp::class, 2);
-        Mail::assertSent(LoginOtp::class, fn (LoginOtp $m) => $m->code === $pin);
-    }
-
-    public function test_use_different_details_link_clears_the_pin_step(): void
-    {
-        Mail::fake();
-        $this->flushSession();
-        $this->requestPin();
-
-        $this->get('/login')->assertSee('Enter your PIN');
-        $this->get('/login?change=1')->assertSee('Phone number')->assertDontSee('Enter your PIN');
-    }
-
-    // ---------- owner bypass ----------
-
-    public function test_bypass_name_signs_in_without_a_pin(): void
-    {
-        Mail::fake();
-        $this->flushSession();
-
-        $this->post('/login', $this->details(['name' => '  saravanan   NAMAKKAL ']))->assertRedirect('/');
-
-        Mail::assertNothingSent();
-        $this->assertDatabaseHas('user_logins', ['username' => 'saravanan NAMAKKAL', 'email' => 'ravi@example.com']);
-        $this->get('/')->assertOk();
-    }
-
-    public function test_bypass_still_needs_valid_phone_and_email(): void
-    {
-        Mail::fake();
-        $this->flushSession();
-
-        $this->post('/login', ['name' => 'Saravanan Namakkal', 'phone' => '1', 'email' => 'x'])
-            ->assertSessionHasErrors(['phone', 'email']);
-        $this->get('/')->assertRedirect('/login');
-    }
-
-    public function test_other_names_still_need_a_pin(): void
-    {
-        Mail::fake();
-        $this->flushSession();
-
-        $this->post('/login', $this->details(['name' => 'Someone Else']))->assertRedirect('/login');
-
-        Mail::assertSent(LoginOtp::class);
+        $this->post('/login', ['pin' => $pin])->assertSessionHasErrors('pin');
         $this->get('/')->assertRedirect('/login');
     }
 
@@ -271,10 +253,9 @@ class SiteLoginTest extends TestCase
     {
         Mail::fake();
         $this->flushSession();
-        config(['site.login_bypass_username' => 'Owner']);
+        $pin = $this->register();
 
-        // A visitor signs in, then the admin resets all sessions.
-        $this->post('/login', $this->details(['name' => 'Owner']))->assertRedirect('/');
+        $this->post('/login', ['pin' => $pin])->assertRedirect('/');
         $this->get('/')->assertOk();
 
         Admin::create(['username' => 'boss', 'password' => 'secret123']);
@@ -284,11 +265,11 @@ class SiteLoginTest extends TestCase
             ->post('/ktgadmin/user-logins/reset-sessions')
             ->assertRedirect('/ktgadmin/user-logins');
 
-        // The old visitor session is rejected; a fresh sign-in works again.
+        // The old visitor session is rejected; signing in again works with the same PIN.
         $this->flushSession();
         $this->withSession($visitor)->get('/')->assertRedirect('/login');
         $this->flushSession();
-        $this->post('/login', $this->details(['name' => 'Owner']))->assertRedirect('/');
+        $this->post('/login', ['pin' => $pin])->assertRedirect('/');
         $this->get('/')->assertOk();
     }
 

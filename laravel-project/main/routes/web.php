@@ -9,13 +9,13 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SiteLoginController;
 use Illuminate\Support\Facades\Route;
 
-// OTP login for the public site. The code is emailed to the admin inbox;
-// the admin passes it to the client. These stay public (SiteLoginController
-// sends an already-signed-in visitor back to the home page).
+// PIN login for the public site. New users register; their PIN is emailed to the
+// admin inbox only, and the admin passes it on. These stay public
+// (SiteLoginController sends an already-signed-in visitor back to the home page).
 Route::get('/login', [SiteLoginController::class, 'show'])->name('login');
-Route::post('/login', [SiteLoginController::class, 'sendOtp'])->name('login.send');
-Route::post('/login/verify', [SiteLoginController::class, 'verify'])->name('login.verify');
-Route::post('/login/resend', [SiteLoginController::class, 'resend'])->name('login.resend');
+Route::post('/login', [SiteLoginController::class, 'login'])->name('login.attempt');
+Route::get('/register', [SiteLoginController::class, 'showRegister'])->name('register');
+Route::post('/register', [SiteLoginController::class, 'register'])->name('register.store');
 Route::post('/logout', [SiteLoginController::class, 'logout'])->name('login.logout');
 
 // Public pages. Content comes from the database via App\Support\SiteData (cached).

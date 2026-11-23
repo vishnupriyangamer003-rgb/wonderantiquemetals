@@ -3,9 +3,6 @@
 // Single source of truth for services (ported verbatim from legacy service-detail.php).
 // The /services/{slug} route constraint is derived from these keys.
 return [
-    // Username that signs in to the public site without an emailed code.
-    'login_bypass_username' => env('SITE_BYPASS_USERNAME', 'Saravanan Namakkal'),
-
     'services' => [
     'regulatory' => [
         'number' => '01',

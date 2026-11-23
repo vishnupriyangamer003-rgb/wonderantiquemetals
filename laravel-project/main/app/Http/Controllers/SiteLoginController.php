@@ -10,55 +10,86 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Public site login: name + phone + email → the user's one fixed 4-digit PIN is emailed to the
- * admin inbox (the admin passes it to the client) → PIN verified → site unlocked.
+ * Public site login: one field, the user's fixed 4-digit PIN. New people register with
+ * name, phone and email; their PIN is emailed to the admin only, who passes it on.
  */
 class SiteLoginController extends Controller
 {
-    /** Minutes the PIN step stays open. */
-    private const TTL_MINUTES = 5;
-
     /** Hours a signed-in visitor stays logged in (absolute, counted from login). */
     public const SESSION_HOURS = 12;
 
-    /** Wrong-PIN attempts allowed per PIN step. */
-    private const MAX_ATTEMPTS = 5;
+    /** Wrong PINs allowed per IP per window. */
+    private const IP_ATTEMPTS = 5;
 
-    /** Wrong PINs allowed per user (email) per lockout window, across all sessions. */
-    private const LOCKOUT_ATTEMPTS = 10;
+    /** Wrong PINs allowed across all visitors per window (a PIN only has 10,000 values). */
+    private const GLOBAL_ATTEMPTS = 30;
 
-    /** Seconds a user stays locked out after too many wrong PINs. */
-    private const LOCKOUT_SECONDS = 900;
+    /** Lockout window in seconds. */
+    private const WINDOW_SECONDS = 900;
 
-    /** PIN requests allowed per user and IP per window. */
-    private const SEND_LIMIT = 3;
+    /** Registrations allowed per IP per window. */
+    private const REGISTER_LIMIT = 3;
 
-    private const SESSION_KEYS = ['otp_user_id', 'otp_name', 'otp_expires', 'otp_attempts'];
-
-    /** Login page (details step, or PIN step when one is pending). */
+    /** Login page: just the PIN field. */
     public function show(Request $request): Response
     {
         if ($request->session()->get('site_login')) {
             return redirect()->route('home');
         }
 
-        if ($request->boolean('change')) {
-            $request->session()->forget(self::SESSION_KEYS);
-        }
-
-        return $this->noStore(response()->view('login', [
-            'step' => $request->session()->has('otp_user_id') ? 'otp' : 'details',
-            'username' => $request->session()->get('otp_name', ''),
-            'expiresIn' => $this->secondsLeft($request),
-        ]));
+        return $this->noStore(response()->view('login'));
     }
 
-    /** Step 1: validate the details and email the user's PIN to the admin inbox. */
-    public function sendOtp(Request $request): RedirectResponse
+    /** Checks the PIN and opens the site. */
+    public function login(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'pin' => ['required', 'string', 'regex:/^[0-9]{4}$/'],
+        ], [
+            'pin.required' => 'Please enter your pincode.',
+            'pin.regex' => 'The pincode is 4 digits.',
+        ]);
+
+        $ipKey = 'site-pin-ip:'.$request->ip();
+        $globalKey = 'site-pin-all';
+
+        if (RateLimiter::tooManyAttempts($ipKey, self::IP_ATTEMPTS)) {
+            $minutes = (int) ceil(RateLimiter::availableIn($ipKey) / 60);
+
+            return back()->withErrors(['pin' => "Too many wrong attempts. Try again in {$minutes} minute(s)."]);
+        }
+        if (RateLimiter::tooManyAttempts($globalKey, self::GLOBAL_ATTEMPTS)) {
+            return back()->withErrors(['pin' => 'Too many wrong attempts. Please try again later.']);
+        }
+
+        $user = SiteUser::where('pin_hash', SiteUser::hashPin($data['pin']))->first();
+
+        if (! $user) {
+            RateLimiter::hit($ipKey, self::WINDOW_SECONDS);
+            RateLimiter::hit($globalKey, self::WINDOW_SECONDS);
+
+            return back()->withErrors(['pin' => 'Incorrect pincode. New here? Register and ask the admin for your pincode.']);
+        }
+
+        RateLimiter::clear($ipKey);
+
+        return $this->signIn($request, $user->name, $user->phone, $user->email);
+    }
+
+    public function showRegister(Request $request): Response
+    {
+        if ($request->session()->get('site_login')) {
+            return redirect()->route('home');
+        }
+
+        return $this->noStore(response()->view('register'));
+    }
+
+    /** Saves the user and emails their PIN to the admin only; the user is told to ask the admin. */
+    public function register(Request $request): RedirectResponse
     {
         $request->merge([
             'name' => preg_replace('/\s+/', ' ', trim((string) $request->input('name'))),
@@ -80,112 +111,38 @@ class SiteLoginController extends Controller
             'email.email' => 'Enter a valid email address.',
         ]);
 
-        // The owner's name signs in directly, without a PIN.
-        $bypass = $this->normalizeName((string) config('site.login_bypass_username', ''));
-        if ($bypass !== '' && $this->normalizeName($data['name']) === $bypass) {
-            return $this->signIn($request, $data['name'], $data['phone'], $data['email']);
-        }
-
-        $key = 'site-otp-send:'.$data['email'].'|'.$request->ip();
-        if (RateLimiter::tooManyAttempts($key, self::SEND_LIMIT)) {
+        $key = 'site-register:'.$request->ip();
+        if (RateLimiter::tooManyAttempts($key, self::REGISTER_LIMIT)) {
             $wait = RateLimiter::availableIn($key);
 
-            return back()->withInput()->withErrors([
-                'email' => "Too many requests. Try again in {$wait} seconds.",
-            ]);
+            return back()->withInput()->withErrors(['email' => "Too many requests. Try again in {$wait} seconds."]);
         }
 
-        // One user, one PIN: created once for a new email, reused on every later login.
+        // One user, one PIN: a known email keeps its PIN (the admin gets it again).
         $user = SiteUser::where('email', $data['email'])->first();
         if ($user) {
             $user->update(['name' => $data['name'], 'phone' => $data['phone']]);
         } else {
-            $user = SiteUser::create([
-                'name' => $data['name'],
-                'phone' => $data['phone'],
-                'email' => $data['email'],
-                'pin' => Str::padLeft((string) random_int(0, 9999), 4, '0'),
-            ]);
+            $user = SiteUser::register($data['name'], $data['phone'], $data['email']);
         }
 
-        $request->session()->put([
-            'otp_user_id' => $user->id,
-            'otp_name' => $user->name,
-            'otp_expires' => now()->addMinutes(self::TTL_MINUTES)->getTimestamp(),
-            'otp_attempts' => 0,
-        ]);
-
         try {
-            Mail::to(config('mail.from.address'))->send(
-                new LoginOtp($user->name, $user->phone, $user->email, $user->pin, self::TTL_MINUTES)
-            );
+            Mail::to(config('mail.from.address'))->send(new LoginOtp($user->name, $user->phone, $user->email, $user->pin));
         } catch (\Throwable $e) {
-            $request->session()->forget(self::SESSION_KEYS);
-
             report($e);
 
-            return back()->withInput()->withErrors([
-                'email' => 'We could not send the PIN right now. Please try again later.',
-            ]);
+            return back()->withInput()->withErrors(['email' => 'We could not complete the registration right now. Please try again later.']);
         }
 
         RateLimiter::hit($key, 300);
 
-        return redirect()->route('login')->with('status', 'The PIN was sent to the admin email. Please check the inbox.');
-    }
-
-    /** Step 2: check the PIN the admin passed on, then open the site. */
-    public function verify(Request $request): RedirectResponse
-    {
-        $data = $request->validate([
-            'code' => ['required', 'string', 'size:4', 'regex:/^[0-9]{4}$/'],
-        ], [
-            'code.regex' => 'Enter the 4-digit PIN.',
-            'code.size' => 'Enter the 4-digit PIN.',
-        ]);
-
-        $session = $request->session();
-        $user = $session->has('otp_user_id') ? SiteUser::find($session->get('otp_user_id')) : null;
-
-        if (! $user || $this->secondsLeft($request) <= 0) {
-            $session->forget(self::SESSION_KEYS);
-
-            return redirect()->route('login')->withErrors(['code' => 'This step has expired. Please enter your details again.']);
-        }
-
-        $lockKey = 'site-pin:'.$user->email;
-        if (RateLimiter::tooManyAttempts($lockKey, self::LOCKOUT_ATTEMPTS)) {
-            $wait = (int) ceil(RateLimiter::availableIn($lockKey) / 60);
-            $session->forget(self::SESSION_KEYS);
-
-            return redirect()->route('login')->withErrors(['code' => "Too many wrong PINs. Try again in {$wait} minute(s)."]);
-        }
-
-        $attempts = (int) $session->get('otp_attempts', 0);
-        if ($attempts >= self::MAX_ATTEMPTS) {
-            $session->forget(self::SESSION_KEYS);
-
-            return redirect()->route('login')->withErrors(['code' => 'Too many wrong PINs. Please enter your details again.']);
-        }
-
-        // Constant-time comparison.
-        if (! hash_equals((string) $user->pin, $data['code'])) {
-            $session->put('otp_attempts', $attempts + 1);
-            RateLimiter::hit($lockKey, self::LOCKOUT_SECONDS);
-
-            return back()->withErrors(['code' => 'Incorrect PIN. '.(self::MAX_ATTEMPTS - $attempts - 1).' attempt(s) left.']);
-        }
-
-        RateLimiter::clear($lockKey);
-
-        return $this->signIn($request, $user->name, $user->phone, $user->email);
+        return redirect()->route('login')->with('status', 'Thank you for registering. Kindly contact the admin and get your pincode.');
     }
 
     /** Opens the site for this session and records the login. */
     private function signIn(Request $request, string $name, string $phone, string $email): RedirectResponse
     {
         $session = $request->session();
-        $session->forget(self::SESSION_KEYS);
         $session->regenerate();
 
         UserLogin::create([
@@ -203,22 +160,6 @@ class SiteLoginController extends Controller
         return redirect()->route('home')->with('status', 'Signed in. Welcome, '.$name.'.');
     }
 
-    /** Send the same PIN to the admin again (same rate limit as the first send). */
-    public function resend(Request $request): RedirectResponse
-    {
-        $user = $request->session()->has('otp_user_id') ? SiteUser::find($request->session()->get('otp_user_id')) : null;
-
-        if (! $user) {
-            return redirect()->route('login');
-        }
-
-        return $this->sendOtp($request->merge([
-            'name' => $user->name,
-            'phone' => $user->phone,
-            'email' => $user->email,
-        ]));
-    }
-
     public function logout(Request $request): RedirectResponse
     {
         $request->session()->invalidate();
@@ -231,20 +172,6 @@ class SiteLoginController extends Controller
     public static function sessionEpoch(): string
     {
         return (string) (Setting::where('key', 'site_session_epoch')->value('value') ?? '0');
-    }
-
-    /** Lower-case, trimmed, single-spaced name for comparisons. */
-    private function normalizeName(string $name): string
-    {
-        return mb_strtolower(trim(preg_replace('/\s+/', ' ', $name)));
-    }
-
-    /** Seconds until the pending PIN step expires (0 when none). */
-    private function secondsLeft(Request $request): int
-    {
-        $expires = (int) $request->session()->get('otp_expires', 0);
-
-        return max(0, $expires - time());
     }
 
     /** Same protections the admin panel uses: never cache login responses. */

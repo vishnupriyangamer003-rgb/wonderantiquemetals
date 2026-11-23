@@ -23,7 +23,6 @@
                         <th scope="col">Username</th>
                         <th scope="col">Date</th>
                         <th scope="col">Time</th>
-                        <th scope="col">IP address</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,7 +32,6 @@
                             <td class="adm-table__user">{{ $item->username }}</td>
                             <td>{{ $item->login_at->format('d M Y') }}</td>
                             <td>{{ $item->login_at->format('h:i:s A') }}</td>
-                            <td class="adm-muted">{{ $item->ip ?: '—' }}</td>
                         </tr>
                     @endforeach
                 </tbody>

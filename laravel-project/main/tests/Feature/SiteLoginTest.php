@@ -112,12 +112,13 @@ class SiteLoginTest extends TestCase
     public function test_user_logins_table_has_no_ip_column(): void
     {
         \App\Models\Admin::create(['username' => 'boss', 'password' => 'secret123']);
-        \App\Models\UserLogin::create(['username' => 'client', 'login_at' => now(), 'ip' => '203.0.113.9']);
+        \App\Models\UserLogin::create(['username' => 'client', 'login_at' => now()]);
 
         $this->flushSession();
         $this->withSession(['admin_id' => \App\Models\Admin::first()->id])
             ->get('/ktgadmin/user-logins')
             ->assertOk()->assertSee('client')
-            ->assertDontSee('IP address')->assertDontSee('203.0.113.9');
+            ->assertDontSee('IP address');
+        $this->assertFalse(\Illuminate\Support\Facades\Schema::hasColumn('user_logins', 'ip'));
     }
 }

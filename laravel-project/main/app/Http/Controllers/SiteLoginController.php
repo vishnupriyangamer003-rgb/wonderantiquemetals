@@ -142,7 +142,6 @@ class SiteLoginController extends Controller
         UserLogin::create([
             'username' => $username,
             'login_at' => now(),
-            'ip' => $request->ip(),
         ]);
 
         $session->put('site_login', true);

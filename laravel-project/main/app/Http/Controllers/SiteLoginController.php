@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\LoginOtp;
+use App\Models\Setting;
 use App\Models\UserLogin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -146,6 +147,7 @@ class SiteLoginController extends Controller
 
         $session->put('site_login', true);
         $session->put('site_login_at', now()->getTimestamp());
+        $session->put('site_login_epoch', self::sessionEpoch());
         $session->put('site_login_name', $username);
 
         return redirect()->route('home')->with('status', 'Signed in. Welcome, '.$username.'.');
@@ -169,6 +171,12 @@ class SiteLoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
+    }
+
+    /** Current session epoch; the admin's reset button changes it to sign everyone out. */
+    public static function sessionEpoch(): string
+    {
+        return (string) (Setting::where('key', 'site_session_epoch')->value('value') ?? '0');
     }
 
     /** Lower-case, trimmed, single-spaced name for comparisons. */

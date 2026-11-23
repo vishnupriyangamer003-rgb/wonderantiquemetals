@@ -3,6 +3,12 @@
 @section('title', 'User logins')
 @section('heading', 'User logins')
 @section('sub', 'Every successful sign-in to the website, with the username and the date and time of the login.')
+@section('actions')
+<form method="post" action="{{ route('admin.userlogins.reset') }}" data-confirm="Every website visitor will be signed out and must log in again." data-confirm-label="Yes, reset all">
+    @csrf
+    <button class="adm-btn adm-btn--primary" type="submit">Reset all sessions</button>
+</form>
+@endsection
 
 @section('content')
 <div class="adm-card">

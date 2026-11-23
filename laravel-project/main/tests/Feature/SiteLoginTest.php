@@ -78,4 +78,34 @@ class SiteLoginTest extends TestCase
         Mail::assertSent(LoginOtp::class);
         $this->get('/')->assertRedirect('/login');
     }
+
+    public function test_admin_reset_signs_every_visitor_out(): void
+    {
+        Mail::fake();
+        $this->flushSession();
+        config(['site.login_bypass_username' => 'Owner']);
+
+        // A visitor signs in, then the admin resets all sessions.
+        $this->post('/login', ['username' => 'Owner'])->assertRedirect('/');
+        $this->get('/')->assertOk();
+
+        \App\Models\Admin::create(['username' => 'boss', 'password' => 'secret123']);
+        $visitor = session()->all();
+        $this->flushSession();
+        $this->withSession(['admin_id' => \App\Models\Admin::first()->id])
+            ->post('/ktgadmin/user-logins/reset-sessions')
+            ->assertRedirect('/ktgadmin/user-logins');
+
+        // The old visitor session is rejected; a fresh sign-in works again.
+        $this->flushSession();
+        $this->withSession($visitor)->get('/')->assertRedirect('/login');
+        $this->flushSession();
+        $this->post('/login', ['username' => 'Owner'])->assertRedirect('/');
+        $this->get('/')->assertOk();
+    }
+
+    public function test_guests_cannot_reset_sessions(): void
+    {
+        $this->post('/ktgadmin/user-logins/reset-sessions')->assertRedirect('/ktgadmin');
+    }
 }

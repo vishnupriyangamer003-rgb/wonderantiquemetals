@@ -10,3 +10,10 @@
 *~
 backup/
 backups/
+
+# Local editor/scratch files and reference assets
+.vscode/
+scratch_css.php
+project/
+theme img/
+replace img/

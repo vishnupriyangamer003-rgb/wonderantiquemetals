@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('title', 'Contact | Wonder Antique Metals')
-@section('description', 'Contact Wonder Antique Metals. Sample address, phone, email, and opening hours are shown for layout preview.')
 
 @section('content')
 <main id="main">
@@ -18,12 +17,12 @@
     <section class="contact-details section-shell" id="contact-details" aria-label="Contact information">
         <div class="contact-details__grid">
             <article class="contact-card">
-                <span class="card-number">01 / ADDRESS</span>
+                <span class="card-number">ADDRESS</span>
                 <h3>Visit us</h3>
                 <address>{!! implode('<br>', array_map('e', array_values(array_filter(array_map('trim', preg_split('~\R~', $site['address'] ?? '')))))) !!}</address>
             </article>
             <article class="contact-card">
-                <span class="card-number">02 / REACH OUT</span>
+                <span class="card-number">REACH OUT</span>
                 <h3>Phone &amp; email</h3>
                 <p><span>Phone</span><br>{{ $site['phone'] ?? '' }}</p>
                 @if (!empty($site['whatsapp']))
@@ -41,7 +40,7 @@
                 @endif
             </article>
             <article class="contact-card">
-                <span class="card-number">03 / VISITING HOURS</span>
+                <span class="card-number">VISITING HOURS</span>
                 <h3>Opening hours</h3>
                 <dl class="contact-hours">
                     <div><dt>{{ $site['hours_weekday_label'] ?? '' }}</dt><dd>{{ $site['hours_weekday'] ?? '' }}</dd></div>

@@ -1,7 +1,5 @@
 @php
-    $metaTitle = trim($__env->yieldContent('title')) ?: ($site['meta_title'] ?? '') ?: 'Wonder Antique Metals — Precious Metals & Market Services';
-    $metaDescription = trim($__env->yieldContent('description')) ?: ($site['meta_description'] ?? '') ?: 'Explore technical and market support for precious metals, antique items, and rare materials.';
-    $metaKeywords = $site['meta_keywords'] ?? '';
+    $metaTitle = trim($__env->yieldContent('title')) ?: ($site['meta_title'] ?? '') ?: 'Wonder Antique Metals';
     $logo = ($site['logo'] ?? '') ?: 'assets/images/logo.png';
     $favicon = ($site['favicon'] ?? '') ?: 'assets/images/favicon.png';
     $addressLines = array_values(array_filter(array_map('trim', preg_split('~\R~', $site['address'] ?? ''))));
@@ -13,20 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $metaDescription }}">
-    @if ($metaKeywords !== '')
-    <meta name="keywords" content="{{ $metaKeywords }}">
-    @endif
     <meta name="theme-color" content="#f3f0e8">
-    <meta name="author" content="Wonder Antique Metals">
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Wonder Antique Metals">
-    <meta property="og:title" content="{{ $metaTitle }}">
-    <meta property="og:description" content="{{ $metaDescription }}">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ $metaTitle }}">
-    <meta name="twitter:description" content="{{ $metaDescription }}">
     <title>{{ $metaTitle }}</title>
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset($favicon) }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">

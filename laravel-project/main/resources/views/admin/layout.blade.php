@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
     <title>@yield('title', 'Admin') · Wonder Antique Metals</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/admin.css') }}?v={{ @filemtime(public_path('assets/admin/admin.css')) }}">
@@ -17,7 +16,9 @@
         ['admin.banners.index', 'Banners', 'image', 'admin.banners*'],
         ['admin.services.index', 'Services', 'grid', 'admin.services*'],
         ['admin.appraisals.index', 'Appraisals', 'clipboard', 'admin.appraisals*'],
-        ['admin.testimonials.index', 'Testimonials', 'quote', 'admin.testimonials*'],
+        ['admin.fees.index', 'Fee structure', 'clipboard', 'admin.fees*'],
+        ['admin.team.index', 'Team members', 'user', 'admin.team*'],
+        ['admin.userlogins.index', 'User logins', 'clipboard', 'admin.userlogins*'],
         ['admin.account', 'Login details', 'user', 'admin.account*'],
     ];
 @endphp

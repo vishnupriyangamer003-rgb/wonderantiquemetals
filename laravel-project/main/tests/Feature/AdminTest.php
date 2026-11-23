@@ -7,7 +7,7 @@ use App\Models\Appraisal;
 use App\Models\Banner;
 use App\Models\Service;
 use App\Models\Setting;
-use App\Models\Testimonial;
+use App\Models\TeamMember;
 use App\Support\ImageUploader;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
@@ -46,7 +46,7 @@ class AdminTest extends TestCase
 
     public function test_guests_are_redirected_from_every_admin_page(): void
     {
-        foreach (['settings', 'account', 'banners', 'services', 'appraisals', 'testimonials', 'banners/create'] as $path) {
+        foreach (['settings', 'account', 'banners', 'services', 'appraisals', 'team', 'fees', 'banners/create', 'team/create', 'fees/create'] as $path) {
             $this->get("/ktgadmin/$path")->assertRedirect('/ktgadmin');
         }
         $this->put('/ktgadmin/settings', [])->assertRedirect('/ktgadmin');
@@ -117,7 +117,7 @@ class AdminTest extends TestCase
         $this->get('/')->assertOk()
             ->assertSee('+91 99999 11111')->assertSee('info@wonder.test')
             ->assertSee('https://wa.me/919876543210', false)->assertSee('https://facebook.com/wonder', false)
-            ->assertSee('1 Test Road, Karur')->assertSee('<meta name="keywords" content="a, b">', false);
+            ->assertSee('1 Test Road, Karur');
     }
 
     public function test_settings_reject_bad_email_and_non_http_social_links(): void
@@ -200,12 +200,21 @@ class AdminTest extends TestCase
         $this->get('/appraisals/appraisals')->assertNotFound();
     }
 
-    public function test_testimonials_appear_on_about_and_can_be_hidden(): void
+    public function test_fee_rows_appear_on_fees_page_and_can_be_hidden(): void
     {
-        $this->login()->post('/ktgadmin/testimonials', ['name' => 'Zed Tester', 'location' => 'Goa', 'quote' => 'Wonderful service.', 'active' => 1]);
-        $this->get('/about')->assertSee('Zed Tester');
+        $this->login()->post('/ktgadmin/fees', ['item' => 'Zed Test Charge', 'qty' => '', 'amount' => '99,999.00', 'active' => 1])->assertSessionHasNoErrors();
+        $this->get('/appraisals/fees')->assertOk()->assertSee('Zed Test Charge')->assertSee('99,999.00')->assertSee('Arrangement Fee');
 
-        $this->patch('/ktgadmin/testimonials/'.Testimonial::where('name', 'Zed Tester')->value('id').'/toggle');
+        $this->patch('/ktgadmin/fees/'.\App\Models\FeeItem::where('item', 'Zed Test Charge')->value('id').'/toggle');
+        $this->get('/appraisals/fees')->assertDontSee('Zed Test Charge');
+    }
+
+    public function test_team_members_appear_on_about_and_can_be_hidden(): void
+    {
+        $this->login()->post('/ktgadmin/team', ['name' => 'Zed Tester', 'role' => 'Assayer', 'bio' => 'Sample bio.', 'active' => 1]);
+        $this->get('/about')->assertSee('Zed Tester')->assertSee('Assayer')->assertSee('team-card__avatar', false)->assertDontSee('Client feedback');
+
+        $this->patch('/ktgadmin/team/'.TeamMember::where('name', 'Zed Tester')->value('id').'/toggle');
         $this->get('/about')->assertDontSee('Zed Tester');
     }
 

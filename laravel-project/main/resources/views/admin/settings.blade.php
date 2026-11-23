@@ -2,7 +2,7 @@
 
 @section('title', 'Company info')
 @section('heading', 'Company information')
-@section('sub', 'Contact details, search meta and social links shown across the website.')
+@section('sub', 'Contact details, browser title and social links shown across the website.')
 
 @section('content')
 @php $v = fn ($k, $d = '') => old($k, $s[$k] ?? $d); @endphp
@@ -31,11 +31,9 @@
     </section>
 
     <section class="adm-card adm-tint-purple">
-        <h2>Search meta</h2>
+        <h2>Browser title</h2>
         <div class="adm-grid">
-            <div class="adm-field adm-span"><label for="f-mt">Meta title</label><input type="text" id="f-mt" name="meta_title" value="{{ $v('meta_title') }}" maxlength="200"></div>
-            <div class="adm-field adm-span"><label for="f-md">Meta description</label><textarea id="f-md" name="meta_description" rows="3" maxlength="400">{{ $v('meta_description') }}</textarea></div>
-            <div class="adm-field adm-span"><label for="f-mk">Meta keywords</label><input type="text" id="f-mk" name="meta_keywords" value="{{ $v('meta_keywords') }}" maxlength="300" placeholder="antiques, precious metals, assaying"></div>
+            <div class="adm-field adm-span"><label for="f-mt">Meta title</label><input type="text" id="f-mt" name="meta_title" value="{{ $v('meta_title') }}" maxlength="200"><small>Shown in the browser tab on pages without their own title.</small></div>
         </div>
     </section>
 

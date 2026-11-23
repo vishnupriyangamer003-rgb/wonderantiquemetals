@@ -1,15 +1,14 @@
 @extends('layout')
 
 @section('title', 'About Wonder Antique Metals | A Connected Market Perspective')
-@section('description', 'Learn how Wonder Antique Metals brings technical assessment and market context to precious metals, antique items, and rare materials.')
 
 @section('content')
 <main id="main">
     <section class="about-hero section-shell" aria-labelledby="about-title">
         <div class="about-hero__copy">
-            <p class="eyebrow">About WONDER ANTIQUE METALS</p>
-            <h1 id="about-title">Welcome To<br><em>WONDER ANTIQUE METALS</em></h1>
-            <p class="about-hero__intro">WONDER is a worldwide company and have a strong network and ratifying its business activities in USA, UK, Germany, France and India in particular and also we do other part of the world like Romania, Russia, Poland, Korea, Israel, Singapore, Canada and Australia in general.</p>
+            <p class="eyebrow">About Wonder Antique Metals</p>
+            <h1 id="about-title">Welcome to<br><em>Wonder Antique Metals</em></h1>
+            <p class="about-hero__intro">WONDER is a worldwide company and have a strong network and ratifying its business activities in USA, UK, Germany, France, Malaysia and India in particular and also we do other part of the world like Romania, Russia, Poland, Korea, Israel, Singapore, Canada and Australia in general.</p>
         </div>
         <figure class="about-hero__visual">
             <img
@@ -67,32 +66,29 @@
         </div>
     </section>
 
-    <section class="about-testimonials" id="testimonials" aria-labelledby="about-testimonials-title">
+    @if ($siteTeam->isNotEmpty())
+    <section class="about-team" id="team" aria-labelledby="about-team-title">
         <div class="section-shell">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">Client feedback</p>
-                    <h2 id="about-testimonials-title">A considered experience.</h2>
+                    <p class="eyebrow">Our team</p>
+                    <h2 id="about-team-title">The people behind<br><em>the work.</em></h2>
                 </div>
-                <p class="section-heading__copy">Client experiences reflecting our commitment to integrity, professionalism, and expertise.</p>
+                <p class="section-heading__copy">A dedicated team providing field solutions, quality assessment, and technical examining services.</p>
             </div>
-            <div class="about-testimonials__viewport" data-testimonial-carousel role="group" aria-roledescription="carousel" aria-label="Client testimonials; focus or hover to pause" tabindex="0">
-                <div class="about-testimonials__track">
-                    @foreach ($siteTestimonials as $t)
-                    <article class="about-testimonial" role="group" aria-roledescription="slide" aria-label="Testimonial {{ $loop->iteration }} of {{ $siteTestimonials->count() }}">
-                        <blockquote>
-                            <p>{{ $t->quote }}</p>
-                        </blockquote>
-                        <div class="about-testimonial__author">
-                            <strong>{{ $t->name }}</strong>
-                            <span>{{ $t->location }}</span>
-                        </div>
-                    </article>
-                    @endforeach
-                </div>
+            <div class="team-grid">
+                @foreach ($siteTeam as $m)
+                <article class="team-card">
+                    <span class="team-card__avatar" aria-hidden="true">{{ mb_strtoupper(mb_substr(trim($m->name), 0, 1)) }}</span>
+                    <h3>{{ $m->name }}</h3>
+                    <span class="team-card__role">{{ $m->role }}</span>
+                    @if ($m->bio)<p>{{ $m->bio }}</p>@endif
+                </article>
+                @endforeach
             </div>
         </div>
     </section>
+    @endif
 
 </main>
 @endsection

@@ -71,7 +71,7 @@
             <p class="eyebrow eyebrow--light">About WONDER ANTIQUE METALS</p>
             <h2 id="about-title">Welcome To<br><em>WONDER ANTIQUE METALS</em></h2>
             <div class="story__bottom">
-                <p>WONDER is a worldwide company and have a strong network and ratifying its business activities in USA, UK, Germany, France and India in particular and also we do other part of the world like Romania, Russia, Poland, Korea, Israel, Singapore, Canada and Australia in general.</p>
+                <p>WONDER is a worldwide company and have a strong network and ratifying its business activities in USA, UK, Germany, France, Malaysia and India in particular and also we do other part of the world like Romania, Russia, Poland, Korea, Israel, Singapore, Canada and Australia in general.</p>
                 <p>WONDER ANTIQUE METALS is committed to serve its customers with Integrity, Professionalism and the Expertise and dedicated to promote advance technology for the global excellence and abundance.</p>
                 <p>WONDER ANTIQUE METALS is a syndicate and a group of reputed (investors, producers, refiners, fabricators, metallurgists, scientists, users, and financial institutions) professional that supports regulatory, assaying, acquisition and auctioning of precious metals, antique items and also super natural rare metals in the international markets. WONDER ANTIQUE METALS team is dedicated and focused to provide custom field solutions and expert in quality assessment and technical examining services.</p>
             </div>

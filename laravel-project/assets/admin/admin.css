@@ -222,6 +222,33 @@ input:focus, textarea:focus { border-color: #8a7be0; box-shadow: 0 0 0 4px rgba(
 .adm-icon-btn--danger { background: #fde4e2; color: var(--err); }
 .adm-section { display: grid; gap: 12px; padding: 16px; border: 1.5px solid var(--line); border-radius: 18px; background: #fbfbfd; }
 
+/* ---------- data table (user logins) ---------- */
+.adm-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.adm-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.adm-table th, .adm-table td { padding: 13px 14px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.adm-table thead th {
+    background: #fbfbfd; color: var(--muted); font-size: 12px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; border-bottom: 2px solid var(--line);
+}
+.adm-table tbody tr:last-child td { border-bottom: 0; }
+.adm-table tbody tr:nth-child(even) { background: #fbfbfd; }
+.adm-table tbody tr:hover { background: var(--yellow); }
+.adm-table__user { font-weight: 600; color: var(--navy); }
+.adm-table .adm-muted { color: var(--muted); }
+.adm-table-wrap + .adm-pager, .adm-card > .adm-pager { margin-top: 16px; }
+.adm-pager { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.adm-pager__link {
+    display: inline-flex; align-items: center; min-height: 38px; padding: 0 16px;
+    border: 1.5px solid var(--line); border-radius: 999px; background: var(--white);
+    font-size: 13.5px; font-weight: 600; text-decoration: none; transition: background .15s, border-color .15s;
+}
+.adm-pager__link:hover { background: var(--grey); border-color: var(--muted); }
+.adm-pager__link.is-off { opacity: .45; pointer-events: none; }
+.adm-pager__info { color: var(--muted); font-size: 13.5px; }
+@media (max-width: 640px) {
+    .adm-table th, .adm-table td { padding: 10px 10px; font-size: 13.5px; }
+}
+
 /* ---------- flash ---------- */
 .adm-flash { margin-bottom: 18px; padding: 14px 18px; border-radius: 16px; font-weight: 600; }
 .adm-flash ul { margin: 6px 0 0; padding-left: 20px; font-weight: 400; }

@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('title', 'Services | Wonder Antique Metals')
-@section('description', 'Explore regulatory support, assaying and assessment, acquisition, auction services, and monetization at Wonder Antique Metals.')
 
 @section('content')
 <main id="main">

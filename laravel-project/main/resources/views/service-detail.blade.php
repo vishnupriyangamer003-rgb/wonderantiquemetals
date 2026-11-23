@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('title', $service->title.' | Wonder Antique Metals')
-@section('description', $service->summary)
 
 @section('content')
 <main id="main">

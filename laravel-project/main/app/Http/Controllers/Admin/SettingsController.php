@@ -15,7 +15,7 @@ class SettingsController extends Controller
     private const TEXT = [
         'phone' => 60, 'whatsapp' => 60, 'email' => 300, 'address' => 400,
         'hours_weekday_label' => 60, 'hours_weekday' => 60, 'hours_sunday_label' => 60, 'hours_sunday' => 60,
-        'meta_title' => 200, 'meta_description' => 400, 'meta_keywords' => 300,
+        'meta_title' => 200,
         'google_map_embed' => 2000, 'google_map_label' => 120,
     ];
 

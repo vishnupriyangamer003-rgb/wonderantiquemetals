@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('title', 'Page not found | Wonder Antique Metals')
-@section('description', 'The requested page could not be found. Explore all Wonder Antique Metals services.')
 
 @section('content')
 <main id="main">

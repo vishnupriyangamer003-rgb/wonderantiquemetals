@@ -55,6 +55,112 @@
         });
     });
 
+    // Table password cell show / hide
+    document.querySelectorAll('[data-pass-cell]').forEach(function (wrap) {
+        var btn = wrap.querySelector('[data-pass-cell-toggle]');
+        var dots = wrap.querySelector('[data-pass-dots]');
+        var plain = wrap.querySelector('[data-pass-plain]');
+        var on = wrap.querySelector('[data-eye-on]');
+        var off = wrap.querySelector('[data-eye-off]');
+        if (!btn || !dots || !plain) { return; }
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var show = plain.hidden;
+            plain.hidden = !show;
+            dots.hidden = show;
+            btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+            btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+            btn.setAttribute('title', show ? 'Hide password' : 'Show password');
+            if (on && off) {
+                on.hidden = show;
+                off.hidden = !show;
+            }
+        });
+    });
+
+    // Login history modal
+    document.querySelectorAll('[data-login-history]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var name = btn.getAttribute('data-name') || '';
+            var phone = btn.getAttribute('data-phone') || '—';
+            var email = btn.getAttribute('data-email') || '—';
+            var password = btn.getAttribute('data-password') || '';
+            var rawHistory = btn.getAttribute('data-history') || '[]';
+            var history = [];
+            try { history = JSON.parse(rawHistory); } catch (e) { history = []; }
+
+            var passHtml = password
+                ? '<span class="adm-modal-pass" data-modal-pass>' +
+                    '<span data-modal-dots style="letter-spacing:2px;font-weight:700;">••••</span>' +
+                    '<span data-modal-plain hidden style="font-weight:700;letter-spacing:1.5px;color:#1f1d36;">' + esc(password) + '</span> ' +
+                    '<button type="button" class="adm-modal-eye" data-modal-pass-toggle title="Show password" aria-label="Show password">' +
+                        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>' +
+                    '</button>' +
+                  '</span>'
+                : '<span style="color:#8a8aa0;">—</span>';
+
+            var historyRows = '';
+            if (!history || history.length === 0) {
+                historyRows = '<tr><td colspan="3" style="text-align:center;padding:18px;color:#8a8aa0;">No login records found yet.</td></tr>';
+            } else {
+                history.forEach(function (h, idx) {
+                    historyRows += '<tr>' +
+                        '<td style="padding:10px 12px;border-bottom:1px solid #f0f0f5;text-align:center;color:#8a8aa0;font-size:12px;">' + (idx + 1) + '</td>' +
+                        '<td style="padding:10px 12px;border-bottom:1px solid #f0f0f5;font-weight:600;color:#1f1d36;">' + esc(h.date) + '</td>' +
+                        '<td style="padding:10px 12px;border-bottom:1px solid #f0f0f5;color:#4c4a64;">' + esc(h.time) + '</td>' +
+                    '</tr>';
+                });
+            }
+
+            var html = '<div class="adm-hist-modal" style="text-align:left;">' +
+                '<div style="background:#fbfbfd;border:1px solid #ececf2;border-radius:12px;padding:14px 16px;margin-bottom:16px;display:grid;grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));gap:12px;font-size:13.5px;">' +
+                    '<div><strong style="display:block;color:#8a8aa0;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">User name</strong><span style="font-weight:700;color:#1f1d36;">' + esc(name) + '</span></div>' +
+                    '<div><strong style="display:block;color:#8a8aa0;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Phone</strong><span>' + esc(phone) + '</span></div>' +
+                    '<div><strong style="display:block;color:#8a8aa0;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Email</strong><span>' + esc(email) + '</span></div>' +
+                    '<div><strong style="display:block;color:#8a8aa0;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Password</strong>' + passHtml + '</div>' +
+                '</div>' +
+                '<h4 style="margin:0 0 10px;font-size:13px;font-weight:700;color:#1f1d36;text-transform:uppercase;letter-spacing:.06em;">Login History (' + history.length + ')</h4>' +
+                '<div style="max-height:260px;overflow-y:auto;border:1px solid #ececf2;border-radius:12px;">' +
+                    '<table style="width:100%;border-collapse:collapse;font-size:13px;text-align:left;">' +
+                        '<thead><tr style="background:#f5f5f9;color:#6b6b80;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;">' +
+                            '<th style="padding:8px 12px;text-align:center;width:40px;">#</th>' +
+                            '<th style="padding:8px 12px;">Date</th>' +
+                            '<th style="padding:8px 12px;">Time</th>' +
+                        '</tr></thead>' +
+                        '<tbody>' + historyRows + '</tbody>' +
+                    '</table>' +
+                '</div>' +
+            '</div>';
+
+            if (window.Swal) {
+                Swal.fire({
+                    title: 'Login History',
+                    html: html,
+                    width: 600,
+                    confirmButtonColor: NAVY,
+                    confirmButtonText: 'Close',
+                    didOpen: function (popup) {
+                        var toggle = popup.querySelector('[data-modal-pass-toggle]');
+                        if (toggle) {
+                            toggle.addEventListener('click', function () {
+                                var dots = popup.querySelector('[data-modal-dots]');
+                                var plain = popup.querySelector('[data-modal-plain]');
+                                var hidden = plain.hidden;
+                                plain.hidden = !hidden;
+                                dots.hidden = hidden;
+                                toggle.setAttribute('aria-label', hidden ? 'Hide password' : 'Show password');
+                                toggle.setAttribute('title', hidden ? 'Hide password' : 'Show password');
+                                toggle.style.color = hidden ? '#1f1d36' : '#8a8aa0';
+                            });
+                        }
+                    }
+                });
+            } else {
+                alert('User: ' + name + '\nPassword: ' + (password || '—') + '\nTotal logins: ' + history.length);
+            }
+        });
+    });
+
     // Image upload: type + size check, live preview
     var ALLOWED = ['image/jpeg', 'image/png', 'image/webp'];
     document.querySelectorAll('[data-upload]').forEach(function (box) {

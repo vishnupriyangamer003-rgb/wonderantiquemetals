@@ -235,6 +235,14 @@ input:focus, textarea:focus { border-color: #8a7be0; box-shadow: 0 0 0 4px rgba(
 .adm-table tbody tr:hover { background: var(--yellow); }
 .adm-table__user { font-weight: 600; color: var(--navy); }
 .adm-table .adm-muted { color: var(--muted); }
+.adm-pass-cell { display: inline-flex; align-items: center; gap: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 14px; }
+.adm-pass-dots { letter-spacing: 2px; color: var(--navy); font-weight: 700; }
+.adm-pass-plain { font-weight: 700; letter-spacing: 1.5px; color: var(--navy); }
+.adm-pass-eye { display: inline-grid; place-items: center; width: 28px; height: 28px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer; padding: 0; transition: background .15s, color .15s; }
+.adm-pass-eye:hover { background: var(--grey); color: var(--navy); }
+.adm-modal-eye { display: inline-grid; place-items: center; width: 26px; height: 26px; border: 0; border-radius: 6px; background: transparent; color: #8a8aa0; cursor: pointer; padding: 0; vertical-align: middle; transition: background .15s, color .15s; }
+.adm-modal-eye:hover { background: #ececf2; color: #1f1d36; }
+.adm-modal-pass { display: inline-flex; align-items: center; gap: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 .adm-table-wrap + .adm-pager, .adm-card > .adm-pager { margin-top: 16px; }
 .adm-pager { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .adm-pager__link {

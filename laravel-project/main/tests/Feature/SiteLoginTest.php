@@ -312,4 +312,46 @@ class SiteLoginTest extends TestCase
             ->get('/ktgadmin/user-logins')
             ->assertSee('01:18:00 PM IST');
     }
+
+    public function test_admin_user_logins_displays_username_show_hide_password_and_login_history_action(): void
+    {
+        Admin::create(['username' => 'boss', 'password' => 'secret123']);
+
+        $user = SiteUser::register('Ktg User', '+919876543210', 'ktg@example.com');
+        $pin = $user->pin;
+
+        $this->flushSession();
+        $response = $this->withSession(['admin_id' => Admin::first()->id])
+            ->get('/ktgadmin/user-logins')
+            ->assertOk()
+            ->assertSee('Password')
+            ->assertSee('Action')
+            ->assertSee('Ktg User')
+            ->assertSee('+919876543210')
+            ->assertSee('ktg@example.com')
+            ->assertSee('data-pass-cell', false)
+            ->assertSee('data-pass-dots', false)
+            ->assertSee('data-pass-plain', false)
+            ->assertSee($pin)
+            ->assertSee('data-login-history', false)
+            ->assertSee('title="Login history"', false);
+
+        // Sign in with the user's PIN to generate a login record
+        $this->flushSession();
+        $this->post('/login', ['pin' => $pin])->assertRedirect('/');
+
+        // Admin page now contains the login in the user's history attribute
+        $this->flushSession();
+        $resAfterLogin = $this->withSession(['admin_id' => Admin::first()->id])
+            ->get('/ktgadmin/user-logins')
+            ->assertOk()
+            ->assertSee('Ktg User')
+            ->assertSee('IST')
+            ->assertSee('data-login-history', false);
+
+        $this->assertDatabaseHas('user_logins', [
+            'username' => 'Ktg User',
+            'email' => 'ktg@example.com',
+        ]);
+    }
 }

@@ -89,7 +89,7 @@
             <p class="gate__eyebrow">Step 2 of 2</p>
             <h1 id="gate-title">Enter your code</h1>
             <p class="gate__lead">
-                Enter the 6-digit code for <strong>{{ $username }}</strong>.
+                Enter the 4-digit code for <strong>{{ $username }}</strong>.
                 @if ($expiresIn > 0)
                     It expires in <span data-countdown="{{ $expiresIn }}">{{ intdiv($expiresIn, 60) }}:{{ str_pad((string) ($expiresIn % 60), 2, '0', STR_PAD_LEFT) }}</span>.
                 @else
@@ -101,9 +101,9 @@
                 @csrf
                 <div class="gate__field">
                     <label for="f-code">Login code</label>
-                    <input type="text" inputmode="numeric" pattern="[0-9]*" id="f-code" name="code"
+                    <input type="text" inputmode="numeric" pattern="[0-9]{4}" id="f-code" name="code"
                            class="gate__code" value="{{ old('code') }}"
-                           autocomplete="one-time-code" maxlength="6" required autofocus>
+                           autocomplete="one-time-code" maxlength="4" required autofocus>
                 </div>
                 <button class="gate__btn" type="submit">Sign in</button>
             </form>

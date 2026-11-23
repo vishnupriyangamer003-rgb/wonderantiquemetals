@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -22,7 +23,8 @@ class LoginOtp extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Login code for '.$this->username,
+            from: new Address(config('mail.from.address'), config('mail.from.name')),
+            subject: 'Your Wonder Antique Metals login code',
         );
     }
 
@@ -30,6 +32,7 @@ class LoginOtp extends Mailable
     {
         return new Content(
             view: 'mail.otp',
+            text: 'mail.otp-text',
             with: [
                 'username' => $this->username,
                 'code' => $this->code,

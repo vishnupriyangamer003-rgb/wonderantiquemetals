@@ -58,7 +58,7 @@ class SiteLoginController extends Controller
             ]);
         }
 
-        $code = Str::padLeft((string) random_int(0, 999999), 6, '0');
+        $code = Str::padLeft((string) random_int(0, 9999), 4, '0');
         $username = trim($data['username']);
 
         $request->session()->put([
@@ -89,10 +89,10 @@ class SiteLoginController extends Controller
     public function verify(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'code' => ['required', 'string', 'size:6', 'regex:/^[0-9]{6}$/'],
+            'code' => ['required', 'string', 'size:4', 'regex:/^[0-9]{4}$/'],
         ], [
-            'code.regex' => 'Enter the 6-digit login code.',
-            'code.size' => 'Enter the 6-digit login code.',
+            'code.regex' => 'Enter the 4-digit login code.',
+            'code.size' => 'Enter the 4-digit login code.',
         ]);
 
         $session = $request->session();

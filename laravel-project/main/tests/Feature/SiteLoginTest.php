@@ -43,4 +43,16 @@ class SiteLoginTest extends TestCase
         $this->post('/login/verify', ['code' => $code])->assertRedirect('/');
         $this->get('/')->assertOk();
     }
+
+    public function test_session_ends_twelve_hours_after_login(): void
+    {
+        $this->withSession(['site_login' => true, 'site_login_at' => time() - 13 * 3600])
+            ->get('/')->assertRedirect('/login');
+    }
+
+    public function test_session_still_valid_before_twelve_hours(): void
+    {
+        $this->withSession(['site_login' => true, 'site_login_at' => time() - 11 * 3600])
+            ->get('/')->assertOk();
+    }
 }

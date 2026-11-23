@@ -20,6 +20,9 @@ class SiteLoginController extends Controller
     /** Minutes a code stays valid. */
     private const TTL_MINUTES = 5;
 
+    /** Hours a signed-in visitor stays logged in (absolute, counted from login). */
+    public const SESSION_HOURS = 12;
+
     /** Wrong-code attempts allowed before the code is invalidated. */
     private const MAX_ATTEMPTS = 5;
 
@@ -130,6 +133,7 @@ class SiteLoginController extends Controller
         ]);
 
         $session->put('site_login', true);
+        $session->put('site_login_at', now()->getTimestamp());
         $session->put('site_login_name', $username);
 
         return redirect()->route('home')->with('status', 'Signed in. Welcome, '.$username.'.');

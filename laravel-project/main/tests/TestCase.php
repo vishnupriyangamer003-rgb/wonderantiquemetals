@@ -18,6 +18,6 @@ abstract class TestCase extends BaseTestCase
 
         // Public pages sit behind the OTP login (SiteAuth); tests start signed in.
         // Gate tests can call $this->flushSession() to act as a guest.
-        $this->withSession(['site_login' => true]);
+        $this->withSession(['site_login' => true, 'site_login_at' => time()]);
     }
 }
